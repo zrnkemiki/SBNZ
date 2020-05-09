@@ -1,6 +1,6 @@
 package com.ftn.carDiagnostic.model;
 
-public class Fluids extends CarComponentsProblem{
+public class FluidParts extends CarComponentsProblem{
 	private boolean oil;
 	private boolean coolant;
 	private boolean powerSteeringFluid;
@@ -12,13 +12,13 @@ public class Fluids extends CarComponentsProblem{
 	
 	
 	
-	public Fluids() {
+	public FluidParts() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public Fluids(boolean oil, boolean coolant, boolean powerSteeringFluid, boolean washerFluid,
+	public FluidParts(boolean oil, boolean coolant, boolean powerSteeringFluid, boolean washerFluid,
 			boolean transmissionFluid, boolean freon, int level) {
 		super();
 		this.oil = oil;
