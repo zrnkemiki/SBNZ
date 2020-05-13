@@ -3,13 +3,16 @@ package com.ftn.carDiagnostic.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElectricalsPartFix {
+public class ElectricalPartsFix {
+	
+	private String testFix;
+	
 	private List<String> headlightFix;
 	private List<String> taillightFix;
 	private List<String> electricWindowsFix;
 	private List<String> batteryFix;
 	
-	public ElectricalsPartFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
+	public ElectricalPartsFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
 			List<String> batteryFix) {
 		super();
 		this.headlightFix = headlightFix;
@@ -18,12 +21,12 @@ public class ElectricalsPartFix {
 		this.batteryFix = batteryFix;
 	}
 
-	public ElectricalsPartFix() {
+	public ElectricalPartsFix() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void testFixes() {
+	public void TestFixes() {
 		this.headlightFix = new ArrayList<String>();
 		this.taillightFix = new ArrayList<String>();;
 		this.electricWindowsFix = new ArrayList<String>();;
@@ -66,6 +69,14 @@ public class ElectricalsPartFix {
 
 	public void setBatteryFix(List<String> batteryFix) {
 		this.batteryFix = batteryFix;
+	}
+
+	public String getTestFix() {
+		return testFix;
+	}
+
+	public void setTestFix(String testFix) {
+		this.testFix = testFix;
 	}
 	
 	

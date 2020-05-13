@@ -2,9 +2,9 @@ package com.ftn.carDiagnostic.model;
 
 public class ElectricalParts extends CarComponentsProblem {
 
-	private boolean headlights;
-	private boolean tailLights;
-	private boolean interiorLights;
+	private boolean headlight;
+	private boolean tailLight;
+	private boolean interiorLight;
 	private boolean carStereo;
 	private boolean electricWindows;
 	private boolean electricWindowMotor;
@@ -18,36 +18,43 @@ public class ElectricalParts extends CarComponentsProblem {
 	public ElectricalParts(boolean headlights, boolean tailLights, boolean interiorLights, boolean carStereo,
 			boolean electricWindows, boolean battery) {
 		super();
-		this.headlights = headlights;
-		this.tailLights = tailLights;
-		this.interiorLights = interiorLights;
+		this.headlight = headlights;
+		this.tailLight = tailLights;
+		this.interiorLight = interiorLights;
 		this.carStereo = carStereo;
 		this.electricWindows = electricWindows;
 		this.battery = battery;
 	}
+	
+	public ElectricalParts(boolean headlight) {
+		super();
+		this.headlight = headlight;
+	}
+	
+	
 
-	public boolean isHeadlights() {
-		return headlights;
+	public boolean isHeadlight() {
+		return headlight;
 	}
 
-	public void setHeadlights(boolean headlights) {
-		this.headlights = headlights;
+	public void setHeadlight(boolean headlight) {
+		this.headlight = headlight;
 	}
 
-	public boolean isTailLights() {
-		return tailLights;
+	public boolean isTailLight() {
+		return tailLight;
 	}
 
-	public void setTailLights(boolean tailLights) {
-		this.tailLights = tailLights;
+	public void setTailLight(boolean tailLight) {
+		this.tailLight = tailLight;
 	}
 
-	public boolean isInteriorLights() {
-		return interiorLights;
+	public boolean isInteriorLight() {
+		return interiorLight;
 	}
 
-	public void setInteriorLights(boolean interiorLights) {
-		this.interiorLights = interiorLights;
+	public void setInteriorLight(boolean interiorLight) {
+		this.interiorLight = interiorLight;
 	}
 
 	public boolean isCarStereo() {
