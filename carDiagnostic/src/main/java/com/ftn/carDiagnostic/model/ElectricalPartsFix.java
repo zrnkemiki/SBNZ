@@ -33,10 +33,14 @@ public class ElectricalPartsFix {
 		this.batteryFix = new ArrayList<String>();;
 		
 		this.headlightFix.add("Check fuse");
-		this.headlightFix.add("Check contact");
+		this.headlightFix.add("Check front contact");
+		this.taillightFix.add("Check fuse");
+		this.taillightFix.add("Check rear contact");
 		this.electricWindowsFix.add("Check fuse");
 		this.electricWindowsFix.add("Check contact");
 		this.electricWindowsFix.add("Check motor"); //Prebaci problem na electric window motor!
+		this.batteryFix.add("jump start car");
+		this.batteryFix.add("recharge battery");
 	}
 
 	public List<String> getHeadlightFix() {

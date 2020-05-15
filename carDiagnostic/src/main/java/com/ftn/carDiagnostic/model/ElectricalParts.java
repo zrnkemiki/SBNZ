@@ -4,8 +4,6 @@ public class ElectricalParts extends CarComponentsProblem {
 
 	private boolean headlight;
 	private boolean tailLight;
-	private boolean interiorLight;
-	private boolean carStereo;
 	private boolean electricWindows;
 	private boolean electricWindowMotor;
 	private boolean battery;
@@ -15,13 +13,11 @@ public class ElectricalParts extends CarComponentsProblem {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ElectricalParts(boolean headlights, boolean tailLights, boolean interiorLights, boolean carStereo,
+	public ElectricalParts(boolean headlights, boolean tailLights, 
 			boolean electricWindows, boolean battery) {
 		super();
 		this.headlight = headlights;
 		this.tailLight = tailLights;
-		this.interiorLight = interiorLights;
-		this.carStereo = carStereo;
 		this.electricWindows = electricWindows;
 		this.battery = battery;
 	}
@@ -47,22 +43,6 @@ public class ElectricalParts extends CarComponentsProblem {
 
 	public void setTailLight(boolean tailLight) {
 		this.tailLight = tailLight;
-	}
-
-	public boolean isInteriorLight() {
-		return interiorLight;
-	}
-
-	public void setInteriorLight(boolean interiorLight) {
-		this.interiorLight = interiorLight;
-	}
-
-	public boolean isCarStereo() {
-		return carStereo;
-	}
-
-	public void setCarStereo(boolean carStereo) {
-		this.carStereo = carStereo;
 	}
 
 	public boolean isElectricWindows() {

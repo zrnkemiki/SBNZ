@@ -1,0 +1,50 @@
+package rules;
+
+import com.ftn.carDiagnostic.model.VisualSymptoms;
+import com.ftn.carDiagnostic.model.ElectricalParts;
+
+
+
+rule "Headlight not working symtom"
+    when
+        $vs: VisualSymptoms( isHeadlightNotWorking() == true );
+    then
+    	insert(new ElectricalParts(true, false, false, false));  //pravi novi electrical parts problem gde je samo headlight true 
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u headlight");
+        //update($vs);
+end 
+
+
+
+rule "Taillight not working symtom"
+    when
+        $vs: VisualSymptoms( isTaillightNotWorking() == true );
+    then
+    	insert(new ElectricalParts(false, true, false, false));  //pravi novi electrical parts problem gde je samo taillight true 
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u taillight");
+        //update($vs);
+end 
+
+rule "Electric windows not working"
+    when
+        $vs: VisualSymptoms( isElectricWindowNotWorking() == true );
+    then
+    	insert(new ElectricalParts(false, false, true, false));  //pravi novi electrical parts problem gde je samo taillight true 
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u Electric windows");
+        //update($vs);
+end 
+
+rule "battery, isEngineStartProblem problem"
+    when
+        $vs: VisualSymptoms( isEngineStartProblem() == true );
+    then
+    	insert(new ElectricalParts(false, false, false, true));  
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u battery");
+        //update($vs);
+end 
+
+

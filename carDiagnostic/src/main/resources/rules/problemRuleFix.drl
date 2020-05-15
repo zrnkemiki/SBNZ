@@ -1,0 +1,43 @@
+package rules;
+
+import com.ftn.carDiagnostic.model.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.RuleReturnTest;
+
+rule "Headlight fix"
+    when
+        $ep: ElectricalParts( isHeadlight() == true );
+        $epf: ElectricalPartsFix( getHeadlightFix() != null);
+       
+    then
+    	RuleReturnTest rr = new RuleReturnTest();
+    	System.out.println("=============================");
+    	rr.ruleReturn($epf.getHeadlightFix()); //Pozivam metodu u kojoj ce rule da vrati Fix korisniku na front 
+    	System.out.println("=============================");
+    	
+    	
+    	//System.out.println($epf.getHeadlightFix());
+ end 
+
+rule "Taillight fix"
+    when
+        $ep: ElectricalParts( isTailLight() == true );
+        $epf: ElectricalPartsFix( getTaillightFix() != null);
+    then
+       	System.out.println($epf.getTaillightFix());
+end 
+
+rule "ElectricWindows fix"
+    when
+        $ep: ElectricalParts( isElectricWindows() == true );
+        $epf: ElectricalPartsFix( getElectricWindowsFix() != null);
+    then
+       	System.out.println($epf.getElectricWindowsFix());
+end 
+
+rule "Battery fix"
+    when
+        $ep: ElectricalParts( isBattery() == true );
+        $epf: ElectricalPartsFix( getBatteryFix() != null);
+    then
+       	System.out.println($epf.getBatteryFix());
+end 
