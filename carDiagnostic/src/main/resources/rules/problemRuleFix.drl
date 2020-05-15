@@ -1,7 +1,10 @@
 package rules;
 
 import com.ftn.carDiagnostic.model.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.FluidPartsFix
 import com.ftn.carDiagnostic.model.RuleReturnTest;
+
+//ELECTRICAL PROBLEMS
 
 rule "Headlight fix"
     when
@@ -41,3 +44,25 @@ rule "Battery fix"
     then
        	System.out.println($epf.getBatteryFix());
 end 
+
+//FLUID problems
+
+//Verovatno samo kondenzacija, proveriti nivo rashladne tecnosti
+rule "Coolant fix"
+    when
+        $ep: FluidParts( isCoolant() == true );
+        $epf: FluidPartsFix( getCoolantFix() != null);
+    then
+       	System.out.println($epf.getCoolantFix());
+end 
+
+//Proveriti da li ima prijavljen problem sa uljem, jer ovo znaci da motor trosi ulje?
+rule "Oil fix"
+    when
+        $ep: FluidParts( isOil() == true );
+        $epf: FluidPartsFix( getOilFix() != null);
+    then
+       	System.out.println($epf.getOilFix());
+end 
+
+

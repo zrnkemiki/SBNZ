@@ -2,8 +2,9 @@ package rules;
 
 import com.ftn.carDiagnostic.model.VisualSymptoms;
 import com.ftn.carDiagnostic.model.ElectricalParts;
+import com.ftn.carDiagnostic.model.FluidParts;
 
-
+//visual symptoms
 
 rule "Headlight not working symtom"
     when
@@ -46,5 +47,60 @@ rule "battery, isEngineStartProblem problem"
        	System.out.println("Uspeo da setujem da je problem u battery");
         //update($vs);
 end 
+
+
+rule "coolant dash light"
+    when
+        $vs: VisualSymptoms( isCoolantDashLight() == true );
+    then
+    	insert(new FluidParts(false, true, false, false, false, false, 0));  
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u coolant");
+        //update($vs);
+end 
+
+rule "oil dash light"
+    when
+        $vs: VisualSymptoms( isOilDashLight() == true );
+    then
+    	insert(new FluidParts(true, false, false, false, false, false, 0));  
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u oil");
+        //update($vs);
+end 
+
+rule "steering fluid dash light"
+    when
+        $vs: VisualSymptoms( isSteeringWheelDashLight() == true );
+    then
+    	insert(new FluidParts(false, false, true, false, false, false, 0));  
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u steering fluid");
+        //update($vs);
+end 
+
+
+rule "white smoke on exhaust, engine gasket fail"
+    when
+        $vs: VisualSymptoms( isWhiteSmoke() == true );
+    then
+    	insert(new MechanicalParts(false, false, false, false, false, true, false);  
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u engine gasket -> mechanic");
+        //update($vs);
+end 
+
+rule "blue smoke on exhaust"
+    when
+        $vs: VisualSymptoms( isBlueSmoke() == true );
+    then
+    	insert(new MechanicalParts(false, false, false, false, false, false, true)); 
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u engine oil consumption -> mechanic");
+        //update($vs);
+end
+
+
+
 
 

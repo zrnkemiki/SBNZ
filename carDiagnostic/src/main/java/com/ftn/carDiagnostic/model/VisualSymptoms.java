@@ -5,6 +5,8 @@ public class VisualSymptoms {
 	private boolean headlightNotWorking;
 	private boolean taillightNotWorking;
 	private boolean electricWindowNotWorking;
+	private boolean oilPuddleUnderCar;
+	private boolean fluidPuddle;
 	private boolean whiteSmoke;
 	private boolean blueSmoke;
 	private boolean blackSmoke;
@@ -18,9 +20,7 @@ public class VisualSymptoms {
 	private boolean engineOverHeating;
 	private boolean unevenTyreWear;
 	private boolean engineStartProblem;
-	private boolean engineShaking;
-	private boolean oilPuddleUnderCar;
-	private boolean fluidPuddle;
+	private boolean engineShaking;	
 	private boolean carUnstable;
 	
 	
@@ -57,6 +57,26 @@ public class VisualSymptoms {
 
 	public void setElectricWindowNotWorking(boolean electricWindowNotWorking) {
 		this.electricWindowNotWorking = electricWindowNotWorking;
+	}
+
+
+	public boolean isOilPuddleUnderCar() {
+		return oilPuddleUnderCar;
+	}
+
+
+	public void setOilPuddleUnderCar(boolean oilPuddleUnderCar) {
+		this.oilPuddleUnderCar = oilPuddleUnderCar;
+	}
+
+
+	public boolean isFluidPuddle() {
+		return fluidPuddle;
+	}
+
+
+	public void setFluidPuddle(boolean fluidPuddle) {
+		this.fluidPuddle = fluidPuddle;
 	}
 
 
@@ -200,26 +220,6 @@ public class VisualSymptoms {
 	}
 
 
-	public boolean isOilPuddleUnderCar() {
-		return oilPuddleUnderCar;
-	}
-
-
-	public void setOilPuddleUnderCar(boolean oilPuddleUnderCar) {
-		this.oilPuddleUnderCar = oilPuddleUnderCar;
-	}
-
-
-	public boolean isFluidPuddle() {
-		return fluidPuddle;
-	}
-
-
-	public void setFluidPuddle(boolean fluidPuddle) {
-		this.fluidPuddle = fluidPuddle;
-	}
-
-
 	public boolean isCarUnstable() {
 		return carUnstable;
 	}
@@ -229,5 +229,4 @@ public class VisualSymptoms {
 		this.carUnstable = carUnstable;
 	}
 }
-	
-	
+
