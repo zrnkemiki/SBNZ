@@ -3,7 +3,8 @@ package rules;
 import com.ftn.carDiagnostic.model.VisualSymptoms;
 import com.ftn.carDiagnostic.model.ElectricalParts;
 import com.ftn.carDiagnostic.model.FluidParts;
-
+import com.ftn.carDiagnostic.model.MechanicalParts;
+import com.ftn.carDiagnostic.model.FuelInjectionParts;
 //visual symptoms
 
 rule "Headlight not working symtom"
@@ -84,7 +85,7 @@ rule "white smoke on exhaust, engine gasket fail"
     when
         $vs: VisualSymptoms( isWhiteSmoke() == true );
     then
-    	insert(new MechanicalParts(false, false, false, false, false, true, false);  
+    	insert(new MechanicalParts(false, false, false, false, false, true, false));  
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u engine gasket -> mechanic");
         //update($vs);
@@ -100,6 +101,16 @@ rule "blue smoke on exhaust"
         //update($vs);
 end
 
+
+rule "black smoke on exhaust"
+    when
+        $vs: VisualSymptoms( isBlackSmoke() == true );
+    then
+    	insert(new FuelInjectionParts(false, false, true, false)); 
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Uspeo da setujem da je problem u nozzle");
+        //update($vs);
+end
 
 
 

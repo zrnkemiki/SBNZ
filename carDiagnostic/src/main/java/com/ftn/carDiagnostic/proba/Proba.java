@@ -3,6 +3,7 @@ package com.ftn.carDiagnostic.proba;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
@@ -30,13 +31,25 @@ public class Proba {
         //KieSession kSession =  kContainer.newKieSession("test-session2");
         
         
+        System.out.println("Izaberite simptom:\n");
+        System.out.println("1.Ne radi mi far.");
+        System.out.println("2.Ne radi mi elektricni prozor.");
+        System.out.println("3.Automobil ne moze da upali.");
         
+        Scanner input = new Scanner(System.in);
+        int option = input.nextInt();
         
         VisualSymptoms vs = new VisualSymptoms();
-        vs.setHeadlightNotWorking(true);
-        //vs.setTaillightNotWorking(true);
-        vs.setElectricWindowNotWorking(true);
-        vs.setEngineStartProblem(true);
+        if(option == 1) {
+            vs.setHeadlightNotWorking(true);
+        }
+        else if(option == 2) {
+            vs.setElectricWindowNotWorking(true);
+        }
+        else if(option ==3) {
+
+            vs.setEngineStartProblem(true);
+        }
         
         ElectricalPartsFix epf = new ElectricalPartsFix();
         epf.TestFixes();
@@ -45,7 +58,7 @@ public class Proba {
         kSession.insert(epf);
         
         int fired = kSession.fireAllRules();
-        System.out.println(fired);
+        System.out.println("No of rules fired: " + fired);
         
         
         

@@ -1,6 +1,6 @@
 package com.ftn.carDiagnostic.model;
 
-import java.util.List;
+import java.util.List;import com.google.common.collect.Range;
 
 public class RuleReturnTest {
 	
@@ -12,6 +12,7 @@ public class RuleReturnTest {
 	}
 
 	public void ruleReturn(List<String> fixes) {
-		System.out.println("Ovo je return lista za front u odvojenoj klasi" + fixes);
+		for (int i = 0; i < fixes.size(); i++)
+		System.out.println( (i+1)  + " Please  " + fixes.get(i) );
 	}
 }

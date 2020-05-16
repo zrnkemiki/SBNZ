@@ -26,6 +26,7 @@ rule "Taillight fix"
         $ep: ElectricalParts( isTailLight() == true );
         $epf: ElectricalPartsFix( getTaillightFix() != null);
     then
+   		RuleReturnTest rr = new RuleReturnTest();
        	System.out.println($epf.getTaillightFix());
 end 
 
@@ -34,7 +35,8 @@ rule "ElectricWindows fix"
         $ep: ElectricalParts( isElectricWindows() == true );
         $epf: ElectricalPartsFix( getElectricWindowsFix() != null);
     then
-       	System.out.println($epf.getElectricWindowsFix());
+    	RuleReturnTest rr = new RuleReturnTest();
+      	rr.ruleReturn($epf.getElectricWindowsFix());
 end 
 
 rule "Battery fix"
@@ -42,7 +44,8 @@ rule "Battery fix"
         $ep: ElectricalParts( isBattery() == true );
         $epf: ElectricalPartsFix( getBatteryFix() != null);
     then
-       	System.out.println($epf.getBatteryFix());
+   		RuleReturnTest rr = new RuleReturnTest();
+       	rr.ruleReturn($epf.getBatteryFix());
 end 
 
 //FLUID problems
@@ -53,7 +56,8 @@ rule "Coolant fix"
         $ep: FluidParts( isCoolant() == true );
         $epf: FluidPartsFix( getCoolantFix() != null);
     then
-       	System.out.println($epf.getCoolantFix());
+    	RuleReturnTest rr = new RuleReturnTest();
+       	rr.ruleReturn($epf.getCoolantFix());
 end 
 
 //Proveriti da li ima prijavljen problem sa uljem, jer ovo znaci da motor trosi ulje?
@@ -62,7 +66,8 @@ rule "Oil fix"
         $ep: FluidParts( isOil() == true );
         $epf: FluidPartsFix( getOilFix() != null);
     then
-       	System.out.println($epf.getOilFix());
+    	RuleReturnTest rr = new RuleReturnTest();
+       	rr.ruleReturn($epf.getOilFix());
 end 
 
 
