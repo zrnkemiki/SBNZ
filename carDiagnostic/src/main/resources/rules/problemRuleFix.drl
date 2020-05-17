@@ -4,7 +4,7 @@ import com.ftn.carDiagnostic.model.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.FluidPartsFix
 import com.ftn.carDiagnostic.model.RuleReturnTest;
 import com.ftn.carDiagnostic.model.MechanicalPartsFix;
-import com.ftn.carDiagnostic.model.FluidPartsFix;
+import com.ftn.carDiagnostic.model.FuelInjectionPartsFix;
 import com.ftn.carDiagnostic.model.AirflowPartsFix;
 //ELECTRICAL PROBLEMS
 
@@ -122,8 +122,8 @@ end
 
 rule "Nozzle fix"
 	when
-		$fip: FluidInjectionParts( isNozzle() );
-		$fipf: FluidInjectionPartsFix( getNozzleFix() != null);
+		$fip: FuelInjectionParts( isNozzle() );
+		$fipf: FuelInjectionPartsFix( getNozzleFix() != null);
 	then
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($fipf.getNozzleFix());

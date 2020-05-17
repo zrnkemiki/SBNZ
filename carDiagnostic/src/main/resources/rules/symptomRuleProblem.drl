@@ -5,6 +5,7 @@ import com.ftn.carDiagnostic.model.ElectricalParts;
 import com.ftn.carDiagnostic.model.FluidParts;
 import com.ftn.carDiagnostic.model.MechanicalParts;
 import com.ftn.carDiagnostic.model.FuelInjectionParts;
+import com.ftn.carDiagnostic.model.AirFlowParts;
 import com.ftn.carDiagnostic.model.FeelingSymptom
 import com.ftn.carDiagnostic.model.AudioSymptom
 //visual symptoms
