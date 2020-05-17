@@ -126,7 +126,7 @@ rule "Brakepad dash light - Visual Symptom"
 		mp.setBrakePads(true);
 		insert(mp);
 		System.out.println("Mechanical part problem - SET");
-		
+end
 
 rule "Air condition not working"
 	when
@@ -135,7 +135,7 @@ rule "Air condition not working"
 		FluidParts fp = new FluidParts();
 		fp.setFreon(true);
 		fp.setLevel(0);
-		insert(fp)
+		insert(fp);
 		System.out.println("Fluid problem - SET");
-
+end
 

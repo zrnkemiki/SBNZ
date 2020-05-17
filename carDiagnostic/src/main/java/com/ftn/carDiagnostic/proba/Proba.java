@@ -15,6 +15,9 @@ import com.ftn.carDiagnostic.model.AudioSymptom;
 import com.ftn.carDiagnostic.model.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.SmellSymptom;
 import com.ftn.carDiagnostic.model.VisualSymptom;
+import com.ftn.carDiagnostic.model.FluidParts;
+import com.ftn.carDiagnostic.model.FluidPartsFix;
+import com.ftn.carDiagnostic.model.MechanicalPartsFix;
 public class Proba {
 
 	public static void main(String[] args) {
@@ -35,10 +38,12 @@ public class Proba {
 		VisualSymptom vs= menu(input);
 
 		ElectricalPartsFix epf = new ElectricalPartsFix();
+		MechanicalPartsFix mpf = new MechanicalPartsFix();
 		epf.TestFixes();
 
 		kSession.insert(vs);
 		kSession.insert(epf);
+		kSession.insert(mpf);
 		System.out.println("Facts in session: " + kSession.getFactCount());
 		int fired = kSession.fireAllRules();
 		System.out.println("No of rules fired: " + fired);

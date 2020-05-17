@@ -3,6 +3,8 @@ package rules;
 import com.ftn.carDiagnostic.model.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.FluidPartsFix
 import com.ftn.carDiagnostic.model.RuleReturnTest;
+import com.ftn.carDiagnostic.model.FluidPartsFix;
+import com.ftn.carDiagnostic.model.MechanicalPartsFix;
 
 //ELECTRICAL PROBLEMS
 
@@ -74,21 +76,22 @@ end
 
 
 rule "Brakepad fix"
-	when:
-		$mp: MechanicalParts( isBrakePads() );
-		$mpf: MechanicalPartsFix( brakePadFix() != null);
-	then:
+	when
+		$mp: MechanicalParts( isBrakePads() == true);
+		$mpf: MechanicalPartsFix( getBrakePadsFix() != null);
+	then
 		RuleReturnTest rr = new RuleReturnTest();
-		rr.ruleReturn($mpf.brakePadFix());
+		rr.ruleReturn($mpf.getBrakePadsFix());
+end
 		
 rule "Freon fix"
-	when:
-		$fp: FluidParts( isFreon() );
-		$fpf: FluidPartsFix ( freonFix() != null );
-	then:
+	when
+		$fp: FluidParts( isFreon() == true );
+		$fpf: FluidPartsFix ( getFreonFix() != null );
+	then
 		RuleReturnTest rr = new RuleReturnTest();
-		rr.ruleReturn($mpf.freonFix());
-	
+		rr.ruleReturn($fpf.getFreonFix());
+end
 	
 
 
