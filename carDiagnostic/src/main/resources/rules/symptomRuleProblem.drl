@@ -11,6 +11,7 @@ rule "Headlight not working symtom"
     when
         $vs: VisualSymptoms( isHeadlightNotWorking() == true );
     then
+    	delete($vs); //izbaci simptom iz baze znanja
     	insert(new ElectricalParts(true, false, false, false));  //pravi novi electrical parts problem gde je samo headlight true 
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u headlight");
@@ -23,6 +24,7 @@ rule "Taillight not working symtom"
     when
         $vs: VisualSymptoms( isTaillightNotWorking() == true );
     then
+   		delete($vs); //izbaci simptom iz baze znanja
     	insert(new ElectricalParts(false, true, false, false));  //pravi novi electrical parts problem gde je samo taillight true 
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u taillight");
@@ -64,6 +66,7 @@ rule "oil dash light"
     when
         $vs: VisualSymptoms( isOilDashLight() == true );
     then
+    	delete($vs); //izbaci simptom iz baze znanja
     	insert(new FluidParts(true, false, false, false, false, false, 0));  
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u oil");
