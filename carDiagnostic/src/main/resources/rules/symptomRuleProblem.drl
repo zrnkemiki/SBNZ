@@ -1,13 +1,13 @@
 package rules;
 
-import com.ftn.carDiagnostic.model.VisualSymptom;
-import com.ftn.carDiagnostic.model.ElectricalParts;
-import com.ftn.carDiagnostic.model.FluidParts;
-import com.ftn.carDiagnostic.model.MechanicalParts;
-import com.ftn.carDiagnostic.model.FuelInjectionParts;
-import com.ftn.carDiagnostic.model.AirFlowParts;
-import com.ftn.carDiagnostic.model.FeelingSymptom
-import com.ftn.carDiagnostic.model.AudioSymptom
+import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
+import com.ftn.carDiagnostic.model.parts.ElectricalParts;
+import com.ftn.carDiagnostic.model.parts.FluidParts;
+import com.ftn.carDiagnostic.model.parts.MechanicalParts;
+import com.ftn.carDiagnostic.model.parts.FuelInjectionParts;
+import com.ftn.carDiagnostic.model.parts.AirFlowParts;
+import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom
+import com.ftn.carDiagnostic.model.symptoms.AudioSymptom
 //visual symptoms
 
 rule "Headlight not working symptom"

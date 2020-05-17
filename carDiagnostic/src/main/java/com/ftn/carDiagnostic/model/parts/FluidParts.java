@@ -1,4 +1,6 @@
-package com.ftn.carDiagnostic.model;
+package com.ftn.carDiagnostic.model.parts;
+
+import com.ftn.carDiagnostic.model.CarComponentsProblem;
 
 public class FluidParts extends CarComponentsProblem{
 	private boolean oil;

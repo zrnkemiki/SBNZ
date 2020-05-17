@@ -1,4 +1,4 @@
-package com.ftn.carDiagnostic.model;
+package com.ftn.carDiagnostic.model.symptoms;
 
 public class FeelingSymptom {
 	

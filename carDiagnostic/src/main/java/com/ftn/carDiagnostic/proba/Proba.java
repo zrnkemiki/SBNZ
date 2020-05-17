@@ -6,11 +6,11 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
-import com.ftn.carDiagnostic.model.AudioSymptom;
-import com.ftn.carDiagnostic.model.ElectricalPartsFix;
-import com.ftn.carDiagnostic.model.FeelingSymptom;
-import com.ftn.carDiagnostic.model.SmellSymptom;
-import com.ftn.carDiagnostic.model.VisualSymptom;
+import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
+import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
+import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
+import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 
 public class Proba {
 
@@ -64,23 +64,22 @@ public class Proba {
 			// kSession.insert(mpf);
 			int fired = kSession.fireAllRules();
 			System.out.println("No of rules fired: " + fired);
-			System.out.println("=-=-=-=-=-=END-=-=-=-=-=-=-=-=-\n");
+			System.out.println("=-=-=-=-=-=-=-=-=END-=-=-=-=-=-=-=-=-\n");
 		}
 
 	}
 
 	public static VisualSymptom visualSymptomMenu(Scanner input) {
 		System.out.println("Choose visual symptom: \n");
-		System.out.println("1. HeadlightNotWorking");
-		System.out.println("2. TaillightNotWorking");
-		System.out.println("3. ElectricWindowNotWorking");
-		System.out.println("4. OilPuddleUnderCar");
-		System.out.println("5. FluidPuddle");
-		System.out.println("6. WhiteSmoke");
-		System.out.println("7. BlueSmoke");
-		System.out.println("8. BlackSmoke");
-		System.out.println("9. BatteryDashLight");
-		System.out.println("x. More to be added on app frontend impl...");
+		System.out.println("1. Headlight Not Working");
+		System.out.println("2. Taillight Not Working");
+		System.out.println("3. Electric Window Not Working");
+		System.out.println("4. Oil Puddle Under The Car");
+		System.out.println("5. Fluid Puddle");
+		System.out.println("6. White Smoke On Exhaust");
+		System.out.println("7. Blue Smoke On Exhaust");
+		System.out.println("8. Black Smoke On Exhaust");
+		System.out.println("9. Battery Light is ON on the dash board");
 
 		int option = input.nextInt();
 		VisualSymptom vs = new VisualSymptom();

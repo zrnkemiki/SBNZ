@@ -1,11 +1,11 @@
 package rules;
 
-import com.ftn.carDiagnostic.model.ElectricalPartsFix;
-import com.ftn.carDiagnostic.model.FluidPartsFix
+import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.fix.FluidPartsFix
 import com.ftn.carDiagnostic.model.RuleReturnTest;
-import com.ftn.carDiagnostic.model.MechanicalPartsFix;
-import com.ftn.carDiagnostic.model.FuelInjectionPartsFix;
-import com.ftn.carDiagnostic.model.AirFlowPartsFix;
+import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
+import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
+import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
 //ELECTRICAL PROBLEMS
 
 rule "Headlight fix"

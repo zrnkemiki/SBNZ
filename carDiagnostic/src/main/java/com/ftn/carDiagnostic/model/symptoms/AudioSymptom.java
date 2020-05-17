@@ -1,4 +1,6 @@
-package com.ftn.carDiagnostic.model;
+package com.ftn.carDiagnostic.model.symptoms;
+
+import com.ftn.carDiagnostic.model.CarState;
 
 public class AudioSymptom {
 	private boolean grinding;  //done
