@@ -3,16 +3,16 @@ package com.ftn.carDiagnostic.model;
 public class AirFlowParts extends CarComponentsProblem {
 
 	private boolean airFilter;
-	private boolean massAirFlowMeter;
-	private boolean airIntakeTube;
-	private boolean turboCharger;
-	private boolean throttleBody;
-	private boolean intercooler;
-	private boolean manifoldAirPressure;
-	private boolean intakeManifold;
-	private boolean exhaustManifold;
-	private boolean egrValve;
-	private boolean catalyticConverter;
+	private boolean massAirFlowMeter;//poorPerformanca
+	private boolean airIntakeTube;//poorPerformanca
+	private boolean turboCharger;//whistle
+	private boolean throttleBody;//poorPerformanca
+	private boolean intercooler;//no
+	private boolean manifoldAirPressure;//poorPerformanca
+	private boolean intakeManifold;//no
+	private boolean exhaustManifold;//no
+	private boolean egrValve; //poorPerformanca
+	private boolean catalyticConverter;//emmision test
 	private boolean dieselParticulateFilter;
 	
 	
