@@ -18,6 +18,7 @@ import com.ftn.carDiagnostic.model.VisualSymptom;
 import com.ftn.carDiagnostic.model.FluidParts;
 import com.ftn.carDiagnostic.model.FluidPartsFix;
 import com.ftn.carDiagnostic.model.MechanicalPartsFix;
+
 public class Proba {
 
 	public static void main(String[] args) {
@@ -34,46 +35,45 @@ public class Proba {
 		KieContainer kContainer = ks.getKieClasspathContainer();
 		KieSession kSession = kContainer.newKieSession("rulesSession");
 		// KieSession kSession = kContainer.newKieSession("test-session2");
+		while (true) {
+			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+			VisualSymptom vs = menu(input);
 
-		VisualSymptom vs= menu(input);
+			ElectricalPartsFix epf = new ElectricalPartsFix();
+			// MechanicalPartsFix mpf = new MechanicalPartsFix();
+			epf.TestFixes();
 
-		ElectricalPartsFix epf = new ElectricalPartsFix();
-		//MechanicalPartsFix mpf = new MechanicalPartsFix();
-		epf.TestFixes();
+			kSession.insert(vs);
+			kSession.insert(epf);
+			// kSession.insert(mpf);
+			System.out.println("Facts in session: " + kSession.getFactCount());
+			int fired = kSession.fireAllRules();
+			System.out.println("No of rules fired: " + fired);
+			System.out.println("Facts in session: " + kSession.getFactCount());
 
-		kSession.insert(vs);
-		kSession.insert(epf);
-		//kSession.insert(mpf);
-		System.out.println("Facts in session: " + kSession.getFactCount());
-		int fired = kSession.fireAllRules();
-		System.out.println("No of rules fired: " + fired);
-		System.out.println("Facts in session: " + kSession.getFactCount());
-		
+		}
 
-	
-        
-        
-        
 	}
-	//test
+
+	// test
 	public static VisualSymptom menu(Scanner input) {
 		System.out.println("Choose symptom: \n");
 		System.out.println("1.visual symptom");
 		System.out.println("2.audio symptom");
 		System.out.println("3.smell symptom");
-		
+
 		int option = input.nextInt();
 		VisualSymptom vs = new VisualSymptom();
 		AudioSymptom as = new AudioSymptom();
 		if (option == 1) {
 			vs = visualSymptomMenu(input);
 		}
-		
+
 		return vs;
 	}
 
 	public static VisualSymptom visualSymptomMenu(Scanner input) {
-		System.out.println("Choose symptom: \n");
+		System.out.println("Choose visual symptom: \n");
 		System.out.println("1.headlightNotWorking");
 		System.out.println("2.taillightNotWorking");
 		System.out.println("3.electricWindowNotWorking");
@@ -85,7 +85,6 @@ public class Proba {
 		System.out.println("9.batteryDashLight");
 		System.out.println("x.More to be added on app frontend impl...");
 
-		
 		int option = input.nextInt();
 		VisualSymptom vs = new VisualSymptom();
 
@@ -97,8 +96,10 @@ public class Proba {
 			vs.setElectricWindowNotWorking(true);
 		} else if (option == 4) {
 			vs.setOilPuddleUnderCar(true);
+			//TO-DO
 		} else if (option == 5) {
 			vs.setFluidPuddle(true);
+			//TO-DO
 		} else if (option == 6) {
 			vs.setWhiteSmoke(true);
 		} else if (option == 7) {
@@ -145,7 +146,7 @@ public class Proba {
 		System.out.println("2.rottenEggSmell");
 		System.out.println("3.sweetSmell");
 		System.out.println("4.wetOldSocksSmell");
-		
+
 		int option = input.nextInt();
 		SmellSymptom ss = new SmellSymptom();
 		System.out.println("In progress");
