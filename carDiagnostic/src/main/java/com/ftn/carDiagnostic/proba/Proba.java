@@ -13,8 +13,7 @@ import org.kie.api.runtime.rule.FactHandle;
 
 import com.ftn.carDiagnostic.model.AudioSymptoms;
 import com.ftn.carDiagnostic.model.ElectricalPartsFix;
-import com.ftn.carDiagnostic.model.SmellSymptoms;
-import com.ftn.carDiagnostic.model.VisualSymptoms;
+import com.ftn.carDiagnostic.model.VisualSymptom;
 
 public class Proba {
 
@@ -108,7 +107,24 @@ public class Proba {
 			vs.setBatteryDashLight(true);
 		}
 
-		return vs;
+            vs.setEngineStartProblem(true);
+        }
+        
+        ElectricalPartsFix epf = new ElectricalPartsFix();
+        epf.TestFixes();
+        
+        kSession.insert(vs);
+        kSession.insert(epf);
+        
+        int fired = kSession.fireAllRules();
+        System.out.println("No of rules fired: " + fired);
+        
+        
+        
+        
+        
+        
+        
 	}
 
 	public static AudioSymptoms audioSymptomMenu(Scanner input) {
