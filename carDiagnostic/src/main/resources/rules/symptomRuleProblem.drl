@@ -5,6 +5,8 @@ import com.ftn.carDiagnostic.model.ElectricalParts;
 import com.ftn.carDiagnostic.model.FluidParts;
 import com.ftn.carDiagnostic.model.MechanicalParts;
 import com.ftn.carDiagnostic.model.FuelInjectionParts;
+import com.ftn.carDiagnostic.model.FeelingSymptom
+import com.ftn.carDiagnostic.model.AudioSymptom
 //visual symptoms
 
 rule "Headlight not working symptom"
@@ -143,4 +145,70 @@ rule "Air condition not working"
 		insert(fp);
 		System.out.println("Fluid problem - SET");
 end
+
+rule "DPF dash light On"
+	when
+		$vs: VisualSymptom( isDpfDashLight() );
+	then
+		AirFlowParts ap = new AirFlowParts();
+		ap.setDieselParticulateFilter(true);
+		insert(ap);
+		System.out.println("Airflow part problem - SET");
+end
+
+
+
+// Feels like symptoms
+rule "Vehicle rides uncomforbaly"
+	when
+		$fs: FeelingSymptom( isRidesUncomfortable() );
+	then
+		MechanicalParts mp = new MechanicalParts();
+		mp.setShockAbsorber(true);
+		insert(mp);
+		System.out.println("Mechanical part problem - SET");
+end
+
+// Audio symptom
+rule "Grinding symptom"
+	when
+		$as: AudioSymptom (isGrinding());
+	then
+		MechanicalParts mp = new MechanicalParts();
+		mp.setBrakeDisc(true);
+		insert(mp);
+		System.out.println("Brake Disc Problem - SET");
+end
+
+rule "Knocking symptom"
+	when
+		$as: AudioSymptom (isKnocking());
+	then
+		FuelInjectionParts fip = new FuelInjectionParts();
+		fip.setNozzle(true);
+		insert(fip);
+		System.out.println("Nozzle Problem - SET");
+end
+
+rule "Whistling symptom"
+	when
+		$as: AudioSymptom (isWhistling());
+	then
+		AirFlowParts ap = new AirFlowParts();
+		ap.setTurboCharger(true);
+		insert(ap);
+		System.out.println("Turbo charger problem - SET");
+end
+
+rule "Ticking symptom"
+	when
+		$as: AudioSymptom (isTicking());
+	then
+		MechanicalParts mp = new MechanicalParts();
+		mp.setStabilizer(true);
+		insert(mp);
+		System.out.println("Stabilizer Problem - SET");
+end
+
+
 

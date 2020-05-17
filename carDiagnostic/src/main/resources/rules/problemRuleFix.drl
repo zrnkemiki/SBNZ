@@ -3,9 +3,9 @@ package rules;
 import com.ftn.carDiagnostic.model.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.FluidPartsFix
 import com.ftn.carDiagnostic.model.RuleReturnTest;
-import com.ftn.carDiagnostic.model.FluidPartsFix;
 import com.ftn.carDiagnostic.model.MechanicalPartsFix;
-
+import com.ftn.carDiagnostic.model.FluidPartsFix;
+import com.ftn.carDiagnostic.model.AirflowPartsFix;
 //ELECTRICAL PROBLEMS
 
 rule "Headlight fix"
@@ -91,6 +91,65 @@ rule "Freon fix"
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($fpf.getFreonFix());
 end
+
+rule "DPF fix"
+	when
+		$ap: AirFlowParts( isDieselParticulateFilter() );
+		$apf: AirFlowPartsFix(getDpfFix() != null);
+	then
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($apf.getDpfFix());
+end
+
+rule "Shock absorber fix"
+	when
+		$mp: MechanicalParts( isShockAbsorber() );
+		$mpf: MechanicalPartsFix( getShockAbsorberFix() != null);
+	then
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getShockAbsorberFix());
+end
+
+rule "Brake Disc fix"
+	when
+		$mp: MechanicalParts( isBrakeDisc() );
+		$mpf: MechanicalPartsFix( getBrakeDiscFix() != null);
+	then
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getBrakeDiscFix());
+end
+
+
+rule "Nozzle fix"
+	when
+		$fip: FluidInjectionParts( isNozzle() );
+		$fipf: FluidInjectionPartsFix( getNozzleFix() != null);
+	then
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($fipf.getNozzleFix());
+end
+
+
+rule "Turbo charger fix"
+	when
+		$ap: AirFlowParts ( isTurboCharger() );
+		$apf: AirFlowPartsFix( getTurboChargerFix() != null);
+	then
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($apf.getTurboChargerFix());
+end
+
+
+rule "Stabilizer fix"
+	when
+		$mp: MechanicalParts( isStabilizer() );
+		$mpf: MechanicalPartsFix( getStabilizerFix() != null);
+	then
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getStabilizerFix());
+
+end
+
 	
 
 

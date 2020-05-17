@@ -15,13 +15,14 @@ public class VisualSymptom {
 	private boolean coolantDashLight;
 	private boolean steeringWheelDashLight;
 	private boolean brakePadsDashLight;
-	private boolean dpfDashLight; //not done
-	private boolean airConditionNotWorking; //not done
+	private boolean dpfDashLight; 
+	private boolean airConditionNotWorking; 
 	private boolean engineOverHeating; //not done
 	private boolean unevenTyreWear; //not done
 	private boolean engineStartProblem; //not done
 	private boolean engineShaking; //not done
 	private boolean carUnstable; //not done
+
 	private CarState carState;
 	
 	
