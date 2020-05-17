@@ -15,13 +15,10 @@ rule "Headlight not working symptom"
         $vs: VisualSymptom( isHeadlightNotWorking() == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
-    	//pravi novi electrical parts problem gde je samo headlight true 
-       	//$vs.setHeadlightNotWorking(false);
-       	ElectricalParts ep = new ElectricalParts();
+       	ElectricalParts ep = new ElectricalParts(); ////pravi novi electrical parts problem gde je samo headlight true 
        	ep.setHeadlight(true);
-       	insert(ep);
-       	System.out.println("Uspeo da setujem da je problem u headlight");
-        //update($vs);
+       	insert(ep); //dodajemo novi problem
+       	System.out.println("Uspeo da setujem da je problem u headlight"); //testni ispis
 end 
 
 
@@ -33,10 +30,8 @@ rule "Taillight not working symptom"
    		delete($vs); //izbaci simptom iz baze znanja
    		ElectricalParts ep = new ElectricalParts();
        	ep.setTailLight(true); //pravi novi electrical parts problem gde je samo taillight true 
-       	//$vs.setHeadlightNotWorking(false);
        	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u taillight");
-        //update($vs);
 end 
 
 rule "Electric windows not working"
@@ -44,13 +39,10 @@ rule "Electric windows not working"
         $vs: VisualSymptom( isElectricWindowNotWorking() == true );
     then
     	ElectricalParts ep = new ElectricalParts();
-       	ep.setElectricWindows(true); //pravi novi electrical parts problem gde je samo taillight true 
-    	  //pravi novi electrical parts problem gde je samo taillight true 
-       	//$vs.setHeadlightNotWorking(false);
+       	ep.setElectricWindows(true); 
        	delete($vs);
        	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u Electric windows");
-        //update($vs);
 end 
 
 rule "battery, isEngineStartProblem problem"
@@ -60,7 +52,6 @@ rule "battery, isEngineStartProblem problem"
     	ElectricalParts ep = new ElectricalParts();
        	ep.setBattery(true); 
        	insert(ep);
-       	//$vs.setHeadlightNotWorking(false);
        	delete($vs);
        	System.out.println("Uspeo da setujem da je problem u battery");
         //update($vs);
@@ -76,9 +67,7 @@ rule "coolant dash light"
        	fp.setLevel(0);
        	insert(fp);
     	delete($vs);
-       	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u coolant");
-        //update($vs);
 end 
 
 rule "oil dash light"
@@ -90,9 +79,7 @@ rule "oil dash light"
        	fp.setOil(true);
        	fp.setLevel(0);
        	insert(fp);
-       	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u oil");
-        //update($vs);
 end 
 
 rule "steering fluid dash light"
