@@ -47,6 +47,7 @@ rule "Electric windows not working"
        	ep.setElectricWindows(true); //pravi novi electrical parts problem gde je samo taillight true 
     	  //pravi novi electrical parts problem gde je samo taillight true 
        	//$vs.setHeadlightNotWorking(false);
+       	delete($vs);
        	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u Electric windows");
         //update($vs);
@@ -56,8 +57,11 @@ rule "battery, isEngineStartProblem problem"
     when
         $vs: VisualSymptom( isEngineStartProblem() == true );
     then
-    	insert(new ElectricalParts(false, false, false, true));  
+    	ElectricalParts ep = new ElectricalParts();
+       	ep.setBattery(true); 
+       	insert(ep);
        	//$vs.setHeadlightNotWorking(false);
+       	delete($vs);
        	System.out.println("Uspeo da setujem da je problem u battery");
         //update($vs);
 end 
@@ -67,7 +71,11 @@ rule "coolant dash light"
     when
         $vs: VisualSymptom( isCoolantDashLight() == true );
     then
-    	insert(new FluidParts(false, true, false, false, false, false, 0));  
+    	FluidParts fp = new FluidParts();
+       	fp.setCoolant(true);; //pravi novi electrical parts problem gde je samo taillight true 
+       	fp.setLevel(0);
+       	insert(fp);
+    	delete($vs);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u coolant");
         //update($vs);
@@ -78,7 +86,10 @@ rule "oil dash light"
         $vs: VisualSymptom( isOilDashLight() == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
-    	insert(new FluidParts(true, false, false, false, false, false, 0));  
+    	FluidParts fp = new FluidParts();
+       	fp.setOil(true);
+       	fp.setLevel(0);
+       	insert(fp);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u oil");
         //update($vs);
@@ -88,7 +99,11 @@ rule "steering fluid dash light"
     when
         $vs: VisualSymptom( isSteeringWheelDashLight() == true );
     then
-    	insert(new FluidParts(false, false, true, false, false, false, 0));  
+    	delete($vs); //izbaci simptom iz baze znanja
+    	FluidParts fp = new FluidParts();
+       	fp.setPowerSteeringFluid(true);
+       	fp.setLevel(0);
+       	insert(fp);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u steering fluid");
         //update($vs);
@@ -99,7 +114,10 @@ rule "white smoke on exhaust, engine gasket fail"
     when
         $vs: VisualSymptom( isWhiteSmoke() == true );
     then
-    	insert(new MechanicalParts(false, false, false, false, false, true, false));  
+    	delete($vs); //izbaci simptom iz baze znanja
+    	MechanicalParts mp = new MechanicalParts();
+       	mp.setEngineGasket(true);
+       	insert(mp);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u engine gasket -> mechanic");
         //update($vs);
@@ -109,7 +127,10 @@ rule "blue smoke on exhaust"
     when
         $vs: VisualSymptom( isBlueSmoke() == true );
     then
-    	insert(new MechanicalParts(false, false, false, false, false, false, true)); 
+    	delete($vs); //izbaci simptom iz baze znanja
+    	MechanicalParts mp = new MechanicalParts();
+       	mp.setEngineGasket(true);
+       	insert(mp);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u engine oil consumption -> mechanic");
         //update($vs);
@@ -120,7 +141,10 @@ rule "black smoke on exhaust"
     when
         $vs: VisualSymptom( isBlackSmoke() == true );
     then
-    	insert(new FuelInjectionParts(false, false, true, false)); 
+    	delete($vs); //izbaci simptom iz baze znanja
+    	FuelInjectionParts fip = new FuelInjectionParts();
+       	fip.setNozzle(true);
+       	insert(fip);    	
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u nozzle");
         //update($vs);
@@ -167,7 +191,7 @@ rule "Vehicle rides uncomforbaly"
 		MechanicalParts mp = new MechanicalParts();
 		mp.setShockAbsorber(true);
 		insert(mp);
-		System.out.println("Mechanical part problem - SET");
+		System.out.println("Mechanical part shockabsorber problem - SET");
 end
 
 // Audio symptom
