@@ -1,11 +1,10 @@
 package com.ftn.carDiagnostic.model;
 
 public class AudioSymptom {
-	private boolean grinding;
-	private boolean roaring;
-	private boolean squealing;
-	private boolean whistling;
-	private boolean knocking;
-	private boolean ticking;
+	private boolean grinding; //brakes
+	private boolean squealing; //belt
+	private boolean whistling; //turbo	
+	private boolean knocking; //nozzle
+	private boolean ticking; //while driving stabilizer
 	private CarState carState;
 }
