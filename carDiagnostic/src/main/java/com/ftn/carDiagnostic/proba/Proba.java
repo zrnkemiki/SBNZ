@@ -6,7 +6,9 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
 import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
 import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
 import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
 import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
@@ -36,6 +38,7 @@ public class Proba {
 			System.out.println("1. Visual symptom");
 			System.out.println("2. Audio symptom");
 			System.out.println("3. Smell symptom");
+			System.out.println("4. Feeling symptom");
 			System.out.println("0. Exit");
 
 			option = input.nextInt();
@@ -45,22 +48,32 @@ public class Proba {
 			FeelingSymptom fs = new FeelingSymptom();
 			if (option == 1) {
 				vs = visualSymptomMenu(input);
+				kSession.insert(vs);
 			} else if (option == 2) {
 				as = audioSymptomMenu(input);
+				kSession.insert(as);
 			} else if (option == 3) {
 				ss = smellSymptomMenu(input);
+				kSession.insert(ss);
 			} else if (option == 4) {
 				fs = feelingSymptomMenu(input);
+				kSession.insert(fs);
 			}
 
 			// VisualSymptom vs = menu(input);
 
 			ElectricalPartsFix epf = new ElectricalPartsFix();
+			MechanicalPartsFix mpf = new MechanicalPartsFix();
+			AirFlowPartsFix apf = new AirFlowPartsFix();
 			// MechanicalPartsFix mpf = new MechanicalPartsFix();
 			epf.TestFixes();
+			mpf.TestFixes();
+			apf.TestFixes();
 
-			kSession.insert(vs);
+			
 			kSession.insert(epf);
+			kSession.insert(mpf);
+			kSession.insert(apf);
 			// kSession.insert(mpf);
 			int fired = kSession.fireAllRules();
 			System.out.println("No of rules fired: " + fired);
@@ -79,7 +92,7 @@ public class Proba {
 		System.out.println("6. White Smoke On Exhaust");
 		System.out.println("7. Blue Smoke On Exhaust");
 		System.out.println("8. Black Smoke On Exhaust");
-		System.out.println("9. Battery Light is ON on the dash board");
+		System.out.println("9. Engine won't start");
 
 		int option = input.nextInt();
 		VisualSymptom vs = new VisualSymptom();
@@ -103,7 +116,7 @@ public class Proba {
 		} else if (option == 8) {
 			vs.setBlackSmoke(true);
 		} else if (option == 9) {
-			vs.setBatteryDashLight(true);
+			vs.setEngineStartProblem(true);
 		}
 
 		return vs;
@@ -121,17 +134,17 @@ public class Proba {
 		int option = input.nextInt();
 		AudioSymptom as = new AudioSymptom();
 		if (option == 1) {
-			System.out.println("In progress");
+			as.setGrinding(true);;
 		} else if (option == 2) {
-			System.out.println("In progress");
+			System.out.println("In progress!");
 		} else if (option == 3) {
-			System.out.println("In progress");
+			System.out.println("In progress!");
 		} else if (option == 4) {
-			System.out.println("In progress");
+			as.setWhistling(true);
 		} else if (option == 5) {
-			System.out.println("In progress");
+			as.setKnocking(true);
 		} else if (option == 6) {
-			System.out.println("In progress");
+			as.setTicking(true);
 		}
 		return as;
 	}
@@ -159,13 +172,13 @@ public class Proba {
 
 	public static FeelingSymptom feelingSymptomMenu(Scanner input) {
 		System.out.println("Izaberite simptom:\n");
-		System.out.println("1. PoorBraking");
+		System.out.println("1. Poor Braking");
 		System.out.println("2. Bouncing");
 		System.out.println("3. Shaking");
-		System.out.println("4. LongStarting");
+		System.out.println("4. Long Starting");
 		System.out.println("5. Twitching");
-		System.out.println("6. RidesUncomfortable");
-		System.out.println("7. PoorPerformance");
+		System.out.println("6. Ride is uncomfortable");
+		System.out.println("7. Poor engine Performance");
 
 		int option = input.nextInt();
 		FeelingSymptom fs = new FeelingSymptom();
@@ -180,7 +193,7 @@ public class Proba {
 		} else if (option == 5) {
 			System.out.println("In progress");
 		} else if (option == 6) {
-			System.out.println("In progress");
+			fs.setRidesUncomfortable(true);
 		} else if (option == 7) {
 			System.out.println("In progress");
 		}

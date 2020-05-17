@@ -1,5 +1,6 @@
 package com.ftn.carDiagnostic.model.fix;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AirFlowPartsFix {
@@ -15,6 +16,18 @@ public class AirFlowPartsFix {
 	private List<String> egrFix;
 	private List<String> catalyticConverterFix;
 	private List<String> dpfFix;
+	
+	public void TestFixes() {
+		this.turboChargerFix = new ArrayList<String>();
+		this.dpfFix = new ArrayList<String>();;
+		
+		
+		this.turboChargerFix.add("Check for oil signs in turbo charger");
+		this.turboChargerFix.add("Check turbine gap in turbo charger");
+		this.dpfFix.add("Go to highway and drive car for 20min on higher revs");
+		this.dpfFix.add("Using diagnostic force dpf regeneration");
+		
+	}
 	
 	public AirFlowPartsFix() {
 		

@@ -154,6 +154,7 @@ rule "Brakepad dash light - Visual Symptom"
 	when
 		$vs: VisualSymptom( isBrakePadsDashLight() );
 	then
+		delete($vs);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setBrakePads(true);
 		insert(mp);
@@ -164,6 +165,7 @@ rule "Air condition not working"
 	when
 		$vs: VisualSymptom( isAirConditionNotWorking() );
 	then
+		delete($vs);
 		FluidParts fp = new FluidParts();
 		fp.setFreon(true);
 		fp.setLevel(0);
@@ -175,6 +177,7 @@ rule "DPF dash light On"
 	when
 		$vs: VisualSymptom( isDpfDashLight() );
 	then
+		delete($vs);
 		AirFlowParts ap = new AirFlowParts();
 		ap.setDieselParticulateFilter(true);
 		insert(ap);
@@ -188,6 +191,7 @@ rule "Vehicle rides uncomforbaly"
 	when
 		$fs: FeelingSymptom( isRidesUncomfortable() );
 	then
+		delete($fs);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setShockAbsorber(true);
 		insert(mp);
@@ -199,6 +203,7 @@ rule "Grinding symptom"
 	when
 		$as: AudioSymptom (isGrinding());
 	then
+		delete($as);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setBrakeDisc(true);
 		insert(mp);
@@ -209,6 +214,7 @@ rule "Knocking symptom"
 	when
 		$as: AudioSymptom (isKnocking());
 	then
+		delete($as);
 		FuelInjectionParts fip = new FuelInjectionParts();
 		fip.setNozzle(true);
 		insert(fip);
@@ -219,6 +225,7 @@ rule "Whistling symptom"
 	when
 		$as: AudioSymptom (isWhistling());
 	then
+		delete($as);
 		AirFlowParts ap = new AirFlowParts();
 		ap.setTurboCharger(true);
 		insert(ap);
@@ -229,6 +236,7 @@ rule "Ticking symptom"
 	when
 		$as: AudioSymptom (isTicking());
 	then
+		delete($as);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setStabilizer(true);
 		insert(mp);

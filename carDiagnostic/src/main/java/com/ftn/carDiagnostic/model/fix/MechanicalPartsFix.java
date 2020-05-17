@@ -1,5 +1,6 @@
 package com.ftn.carDiagnostic.model.fix;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MechanicalPartsFix {
@@ -7,6 +8,22 @@ public class MechanicalPartsFix {
 	private List<String> brakeDiscFix;
 	private List<String> stabilizerFix;
 	private List<String> brakePadsFix;
+	
+	public void TestFixes() {
+		this.shockAbsorberFix = new ArrayList<String>();
+		this.brakeDiscFix = new ArrayList<String>();;
+		this.stabilizerFix = new ArrayList<String>();;
+		this.brakePadsFix = new ArrayList<String>();;
+		
+		this.shockAbsorberFix.add("Check shock absorber for oil leakage");
+		this.shockAbsorberFix.add("Check shock absorber is straight");
+		this.brakeDiscFix.add("Check brake discs for damage");
+		this.brakeDiscFix.add("Replace brake discs");
+		this.stabilizerFix.add("Check stabilizer is tight");
+		this.stabilizerFix.add("Check for bends"); //Prebaci problem na electric window motor!
+		this.brakePadsFix.add("Check brake pads wear");
+		this.brakePadsFix.add("Replace brake pads");
+	}
 	
 	public MechanicalPartsFix() {
 		
