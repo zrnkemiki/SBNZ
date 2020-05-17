@@ -71,3 +71,22 @@ rule "Oil fix"
 end 
 
 
+rule "Brakepad fix"
+	when:
+		$mp: MechanicalParts( isBrakePads() );
+		$mpf: MechanicalPartsFix( brakePadFix() != null);
+	then:
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.brakePadFix());
+		
+rule "Freon fix"
+	when:
+		$fp: FluidParts( isFreon() );
+		$fpf: FluidPartsFix ( freonFix() != null );
+	then:
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.freonFix());
+	
+	
+
+

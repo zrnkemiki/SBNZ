@@ -1,27 +1,30 @@
 package rules;
 
-import com.ftn.carDiagnostic.model.VisualSymptoms;
+import com.ftn.carDiagnostic.model.VisualSymptom;
 import com.ftn.carDiagnostic.model.ElectricalParts;
 import com.ftn.carDiagnostic.model.FluidParts;
 import com.ftn.carDiagnostic.model.MechanicalParts;
 import com.ftn.carDiagnostic.model.FuelInjectionParts;
 //visual symptoms
 
-rule "Headlight not working symtom"
+rule "Headlight not working symptom"
     when
-        $vs: VisualSymptoms( isHeadlightNotWorking() == true );
+        $vs: VisualSymptom( isHeadlightNotWorking() == true );
     then
-    	insert(new ElectricalParts(true, false, false, false));  //pravi novi electrical parts problem gde je samo headlight true 
+    	//insert(new ElectricalParts(true, false, false, false));  //pravi novi electrical parts problem gde je samo headlight true 
        	//$vs.setHeadlightNotWorking(false);
+       	ElectricalParts ep = new ElectricalParts();
+       	ep.setHeadlight(true);
+       	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u headlight");
         //update($vs);
 end 
 
 
 
-rule "Taillight not working symtom"
+rule "Taillight not working symptom"
     when
-        $vs: VisualSymptoms( isTaillightNotWorking() == true );
+        $vs: VisualSymptom( isTaillightNotWorking() == true );
     then
     	insert(new ElectricalParts(false, true, false, false));  //pravi novi electrical parts problem gde je samo taillight true 
        	//$vs.setHeadlightNotWorking(false);
@@ -31,7 +34,7 @@ end
 
 rule "Electric windows not working"
     when
-        $vs: VisualSymptoms( isElectricWindowNotWorking() == true );
+        $vs: VisualSymptom( isElectricWindowNotWorking() == true );
     then
     	insert(new ElectricalParts(false, false, true, false));  //pravi novi electrical parts problem gde je samo taillight true 
        	//$vs.setHeadlightNotWorking(false);
@@ -41,7 +44,7 @@ end
 
 rule "battery, isEngineStartProblem problem"
     when
-        $vs: VisualSymptoms( isEngineStartProblem() == true );
+        $vs: VisualSymptom( isEngineStartProblem() == true );
     then
     	insert(new ElectricalParts(false, false, false, true));  
        	//$vs.setHeadlightNotWorking(false);
@@ -52,7 +55,7 @@ end
 
 rule "coolant dash light"
     when
-        $vs: VisualSymptoms( isCoolantDashLight() == true );
+        $vs: VisualSymptom( isCoolantDashLight() == true );
     then
     	insert(new FluidParts(false, true, false, false, false, false, 0));  
        	//$vs.setHeadlightNotWorking(false);
@@ -62,7 +65,7 @@ end
 
 rule "oil dash light"
     when
-        $vs: VisualSymptoms( isOilDashLight() == true );
+        $vs: VisualSymptom( isOilDashLight() == true );
     then
     	insert(new FluidParts(true, false, false, false, false, false, 0));  
        	//$vs.setHeadlightNotWorking(false);
@@ -72,7 +75,7 @@ end
 
 rule "steering fluid dash light"
     when
-        $vs: VisualSymptoms( isSteeringWheelDashLight() == true );
+        $vs: VisualSymptom( isSteeringWheelDashLight() == true );
     then
     	insert(new FluidParts(false, false, true, false, false, false, 0));  
        	//$vs.setHeadlightNotWorking(false);
@@ -83,7 +86,7 @@ end
 
 rule "white smoke on exhaust, engine gasket fail"
     when
-        $vs: VisualSymptoms( isWhiteSmoke() == true );
+        $vs: VisualSymptom( isWhiteSmoke() == true );
     then
     	insert(new MechanicalParts(false, false, false, false, false, true, false));  
        	//$vs.setHeadlightNotWorking(false);
@@ -93,7 +96,7 @@ end
 
 rule "blue smoke on exhaust"
     when
-        $vs: VisualSymptoms( isBlueSmoke() == true );
+        $vs: VisualSymptom( isBlueSmoke() == true );
     then
     	insert(new MechanicalParts(false, false, false, false, false, false, true)); 
        	//$vs.setHeadlightNotWorking(false);
@@ -104,7 +107,7 @@ end
 
 rule "black smoke on exhaust"
     when
-        $vs: VisualSymptoms( isBlackSmoke() == true );
+        $vs: VisualSymptom( isBlackSmoke() == true );
     then
     	insert(new FuelInjectionParts(false, false, true, false)); 
        	//$vs.setHeadlightNotWorking(false);
@@ -112,6 +115,24 @@ rule "black smoke on exhaust"
         //update($vs);
 end
 
+rule "Brakepad dash light - Visual Symptom"
+	when
+		$vs: VisualSymptom( isBrakePadsDashLight() );
+	then
+		MechanicalParts mp = new MechanicalParts();
+		mp.setBrakePads(true);
+		insert(mp);
+		System.out.println("Mechanical part problem - SET");
+		
 
+rule "Air condition not working"
+	when
+		$vs: VisualSymptom( isAirConditionNotWorking() );
+	then
+		FluidParts fp = new FluidParts();
+		fp.setFreon(true);
+		fp.setLevel(0);
+		insert(fp)
+		System.out.println("Fluid problem - SET");
 
 

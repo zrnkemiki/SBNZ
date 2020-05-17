@@ -10,7 +10,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 import com.ftn.carDiagnostic.model.ElectricalPartsFix;
-import com.ftn.carDiagnostic.model.VisualSymptoms;
+import com.ftn.carDiagnostic.model.VisualSymptom;
 
 public class Proba {
 	
@@ -39,7 +39,7 @@ public class Proba {
         Scanner input = new Scanner(System.in);
         int option = input.nextInt();
         
-        VisualSymptoms vs = new VisualSymptoms();
+        VisualSymptom vs = new VisualSymptom();
         if(option == 1) {
             vs.setHeadlightNotWorking(true);
         }
@@ -53,13 +53,15 @@ public class Proba {
         
         ElectricalPartsFix epf = new ElectricalPartsFix();
         epf.TestFixes();
-        
         kSession.insert(vs);
         kSession.insert(epf);
         
         int fired = kSession.fireAllRules();
-        System.out.println("No of rules fired: " + fired);
         
+
+        
+        System.out.println("No of rules fired: " + fired);
+        input.close();
         
         
         
