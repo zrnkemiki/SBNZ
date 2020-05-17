@@ -38,26 +38,19 @@ public class Proba {
 		VisualSymptom vs= menu(input);
 
 		ElectricalPartsFix epf = new ElectricalPartsFix();
-		MechanicalPartsFix mpf = new MechanicalPartsFix();
+		//MechanicalPartsFix mpf = new MechanicalPartsFix();
 		epf.TestFixes();
 
 		kSession.insert(vs);
 		kSession.insert(epf);
-		kSession.insert(mpf);
+		//kSession.insert(mpf);
 		System.out.println("Facts in session: " + kSession.getFactCount());
 		int fired = kSession.fireAllRules();
 		System.out.println("No of rules fired: " + fired);
 		System.out.println("Facts in session: " + kSession.getFactCount());
 		
 
-		VisualSymptom vs1= menu(input);
-		kSession.insert(vs1);
-		int fired1 = kSession.fireAllRules();
-		System.out.println("No of rules fired: " + fired1);
-		System.out.println("Posle 2 " + kSession.getFactCount());
-		
-		input.close();
-
+	
         
         
         

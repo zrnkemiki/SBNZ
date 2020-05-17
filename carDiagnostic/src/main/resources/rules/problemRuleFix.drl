@@ -19,8 +19,7 @@ rule "Headlight fix"
     	System.out.println("=============================");
     	rr.ruleReturn($epf.getHeadlightFix()); //Pozivam metodu u kojoj ce rule da vrati Fix korisniku na front 
     	System.out.println("=============================");
-    	
-    	
+
     	//System.out.println($epf.getHeadlightFix());
  end 
 
@@ -31,7 +30,7 @@ rule "Taillight fix"
     then
     	delete($ep);
    		RuleReturnTest rr = new RuleReturnTest();
-       	System.out.println($epf.getTaillightFix());
+       rr.ruleReturn($epf.getTaillightFix());
 end 
 
 rule "ElectricWindows fix"

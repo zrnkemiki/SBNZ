@@ -12,7 +12,7 @@ rule "Headlight not working symptom"
         $vs: VisualSymptom( isHeadlightNotWorking() == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
-    	insert(new ElectricalParts(true, false, false, false));  //pravi novi electrical parts problem gde je samo headlight true 
+    	//pravi novi electrical parts problem gde je samo headlight true 
        	//$vs.setHeadlightNotWorking(false);
        	ElectricalParts ep = new ElectricalParts();
        	ep.setHeadlight(true);
@@ -28,8 +28,10 @@ rule "Taillight not working symptom"
         $vs: VisualSymptom( isTaillightNotWorking() == true );
     then
    		delete($vs); //izbaci simptom iz baze znanja
-    	insert(new ElectricalParts(false, true, false, false));  //pravi novi electrical parts problem gde je samo taillight true 
+   		ElectricalParts ep = new ElectricalParts();
+       	ep.setTailLight(true); //pravi novi electrical parts problem gde je samo taillight true 
        	//$vs.setHeadlightNotWorking(false);
+       	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u taillight");
         //update($vs);
 end 
@@ -38,8 +40,11 @@ rule "Electric windows not working"
     when
         $vs: VisualSymptom( isElectricWindowNotWorking() == true );
     then
-    	insert(new ElectricalParts(false, false, true, false));  //pravi novi electrical parts problem gde je samo taillight true 
+    	ElectricalParts ep = new ElectricalParts();
+       	ep.setElectricWindows(true); //pravi novi electrical parts problem gde je samo taillight true 
+    	  //pravi novi electrical parts problem gde je samo taillight true 
        	//$vs.setHeadlightNotWorking(false);
+       	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u Electric windows");
         //update($vs);
 end 
