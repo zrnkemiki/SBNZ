@@ -6,6 +6,9 @@ import com.ftn.carDiagnostic.model.RuleReturnTest;
 import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
 import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
 import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
+
+//DRUGA GRUPA PRAVILA, NA OSNOVU PROBLEMATICNOG DELA SE PRONALAZI POPRAVKA ZA ISTI
+
 //ELECTRICAL PROBLEMS
 
 rule "Headlight fix"

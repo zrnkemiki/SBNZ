@@ -3,6 +3,11 @@ package com.ftn.carDiagnostic.model.parts;
 import com.ftn.carDiagnostic.model.CarComponentsProblem;
 
 public class ElectricalParts extends CarComponentsProblem {
+	
+	/*Delovi automobila su grupisani po klasama onog tipa kom pripadaju ( elektro, mehanicki..).
+	 *Aplikacija pomocu pravila, na osnovu simptoma setuje atribut onog dela automobila koji je u kvaru na TRUE
+	 */
+	
 
 	private boolean headlight;
 	private boolean tailLight;

@@ -5,6 +5,10 @@ import java.util.List;
 
 public class ElectricalPartsFix {
 	
+	/*Razliciti nacini popravke delova automobila su grupisani po klasama onog tipa kom pripadaju ( elektro, mehanicki..).
+	 *Aplikacija pomocu pravila, na osnovu dela koji je problematican, pomocu pravila dobavlja popravku za taj deo.
+	 */
+	
 	private String testFix;
 	
 	private List<String> headlightFix;

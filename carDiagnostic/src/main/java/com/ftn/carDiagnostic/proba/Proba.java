@@ -20,6 +20,19 @@ public class Proba {
 		// testClassifyItem()
 		test();
 	}
+	
+	/* Ovo je samo testna klasa koju koristimo kako bi pravili potrebne objekte, ubacivali ih u bazu znanja i
+	 * proveravali da li se pravila okidaju kako treba, odnosno da li kao povratnu vrednost dobijamo odgovarajucu popravku
+	 * 
+	 * Sistem funkcionise po principu: Korisnik unosi Simptom -> Simptom se setuje -> Pravilo -> Problem -> Pravilo -> Popravka -> Korisnik
+	 * 
+	 * Napomena** Trenutno aplikacija funkcionise da na osnovu samo jednog simptoma setuje problem, kasnije ce biti dodata dodatna pitanja korisniku,
+	 * o simptomima itd kako bi aplikacija sto precizinije dosla do problema.
+	 * 
+	 * Trenutno su implementirane dve grupe pravila, prilikom cega izvrsavanje pravila iz prve grupe, okida pravila iz druge grupe.
+	 * 
+	 * U nastavku je dat deo koda za konzolnu aplikaciju, i mogucnost prikaza i testiranja dosadasnje implementacije.
+	 */
 
 	public static void test() {
 		Scanner input = new Scanner(System.in);

@@ -3,6 +3,8 @@ package com.ftn.carDiagnostic.model;
 import java.util.Date;
 
 public abstract class CarComponentsProblem {
+	
+	//Abstraktna klasa koju nasledjuju ostale klase koje sadrze delove automobila prema tipu dela
 
 	private Date date;
 	private int milage;

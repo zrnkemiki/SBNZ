@@ -4,6 +4,11 @@ import com.ftn.carDiagnostic.model.CarState;
 
 public class VisualSymptom {
 	
+	/*Klasa VisualSymptom zajedno sa ostalim simptomima sluzi da aplikacija na osnovu korisnikovog unosa simptoma, setuje konkretan 
+	 * atribut na "TRUE" kao i stanje automobila prilikom manifestacije simptoma -  IDLE, BREAKING, ACCELERATING, DRIVING, ENGINE_OFF
+	 * Kasnije na osnovu ovoga, pomocu pravila aplikacija odreduje koji deo automobila je problematican. 
+	 */
+	
 	private boolean headlightNotWorking;
 	private boolean taillightNotWorking;
 	private boolean electricWindowNotWorking;
@@ -25,7 +30,7 @@ public class VisualSymptom {
 	private boolean engineShaking; //not done
 	private boolean carUnstable; //not done
 
-	private CarState carState;
+	private CarState carState; //
 	
 	
 	public VisualSymptom() {
