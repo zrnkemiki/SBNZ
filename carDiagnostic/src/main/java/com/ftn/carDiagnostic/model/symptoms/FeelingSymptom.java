@@ -3,12 +3,11 @@ package com.ftn.carDiagnostic.model.symptoms;
 public class FeelingSymptom {
 	
 	private boolean poorBraking; // done
-	private boolean bouncing;
-	private boolean shaking;
-	private boolean longStarting;
-	private boolean twitching;
+	private boolean bouncing; //kops
+	private boolean shaking; //kops
+	private boolean longStarting; //kops
 	private boolean ridesUncomfortable;	// done
-	private boolean poorPerformance;
+	private boolean poorPerformance; //done
 	
 	public boolean isPoorPerformance() {
 		return poorPerformance;
@@ -52,14 +51,6 @@ public class FeelingSymptom {
 
 	public void setLongStarting(boolean longStarting) {
 		this.longStarting = longStarting;
-	}
-
-	public boolean isTwitching() {
-		return twitching;
-	}
-
-	public void setTwitching(boolean twitching) {
-		this.twitching = twitching;
 	}
 
 	public boolean isRidesUncomfortable() {

@@ -12,7 +12,11 @@ public class MechanicalParts extends CarComponentsProblem {
 	private boolean engineGasket;
 	private boolean engineOilConsumption;
 	private boolean brakeLines;
+	private boolean dualMassFlyWheel;
+	private boolean tyre;
 	
+	
+
 	
 
 	
@@ -21,7 +25,7 @@ public class MechanicalParts extends CarComponentsProblem {
 		// TODO Auto-generated constructor stub
 	}
 	public MechanicalParts(boolean shockAbsorber, boolean brakeDisc, boolean stabilizer, boolean brakePads, 
-			boolean engineBelt, boolean engineGasket, boolean engineOilConsumption, boolean brakeLines) {
+			boolean engineBelt, boolean engineGasket, boolean engineOilConsumption, boolean brakeLines, boolean dualMassFlyWheel,boolean tyre) {
 		super();
 		this.shockAbsorber = shockAbsorber;
 		this.brakeDisc = brakeDisc;
@@ -31,6 +35,8 @@ public class MechanicalParts extends CarComponentsProblem {
 		this.engineGasket = engineGasket;
 		this.engineOilConsumption = engineOilConsumption;
 		this.brakeLines = brakeLines;
+		this.dualMassFlyWheel = dualMassFlyWheel;
+		this.tyre = tyre;
 	}
 	
 	public boolean isEngineOilConsumption() {
@@ -82,6 +88,17 @@ public class MechanicalParts extends CarComponentsProblem {
 	public void setBrakeLines(boolean brakeLines) {
 		this.brakeLines = brakeLines;
 	}
-	
+	public boolean isDualMassFlyWheel() {
+		return dualMassFlyWheel;
+	}
+	public void setDualMassFlyWheel(boolean dualMassFlyWheel) {
+		this.dualMassFlyWheel = dualMassFlyWheel;
+	}
+	public boolean isTyre() {
+		return tyre;
+	}
+	public void setTyre(boolean tyre) {
+		this.tyre = tyre;
+	}
 	
 }

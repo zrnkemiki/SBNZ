@@ -12,6 +12,8 @@ public class MechanicalPartsFix {
 	private List<String> brakeLinesFix;
 	private List<String> engineOilConsumptionFix;
 	private List<String> engineGasketFix;
+	private List<String> dualMassFlyWheelFix;
+	private List<String> tyreFix;
 	
 	public void TestFixes() {
 		this.shockAbsorberFix = new ArrayList<String>();
@@ -34,7 +36,7 @@ public class MechanicalPartsFix {
 	}
 
 	public MechanicalPartsFix(List<String> shockAbsorberFix, List<String> brakeDiscFix, List<String> stabilizerFix,
-			List<String> brakePadsFix, List<String> engineBeltFix, List<String> brakeLinesFix, List<String> engineOilConsumptionFix, List<String> engineGasketFix) {
+			List<String> brakePadsFix, List<String> engineBeltFix, List<String> brakeLinesFix, List<String> engineOilConsumptionFix, List<String> engineGasketFix, List<String> dualMassFlyWheelFix,List<String> tyreFix ) {
 		super();
 		this.shockAbsorberFix = shockAbsorberFix;
 		this.brakeDiscFix = brakeDiscFix;
@@ -44,6 +46,8 @@ public class MechanicalPartsFix {
 		this.brakeLinesFix = brakeLinesFix;
 		this.engineOilConsumptionFix = engineOilConsumptionFix;
 		this.engineGasketFix = engineGasketFix;
+		this.dualMassFlyWheelFix = dualMassFlyWheelFix;
+		this.tyreFix = tyreFix;
 	}
 
 	public List<String> getShockAbsorberFix() {
@@ -108,6 +112,22 @@ public class MechanicalPartsFix {
 
 	public void setEngineGasketFix(List<String> engineGasketFix) {
 		this.engineGasketFix = engineGasketFix;
+	}
+
+	public List<String> getDualMassFlyWheelFix() {
+		return dualMassFlyWheelFix;
+	}
+
+	public void setDualMassFlyWheelFix(List<String> dualMassFlyWheelFix) {
+		this.dualMassFlyWheelFix = dualMassFlyWheelFix;
+	}
+
+	public List<String> getTyreFix() {
+		return tyreFix;
+	}
+
+	public void setTyreFix(List<String> tyreFix) {
+		this.tyreFix = tyreFix;
 	}
 	
 	
