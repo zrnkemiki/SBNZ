@@ -9,6 +9,7 @@ public class FluidParts extends CarComponentsProblem{
 	private boolean washerFluid;
 	private boolean transmissionFluid;
 	private boolean freon;
+	private boolean brakeFluid;
 	private int level; //0-low 1-normal 2-high
 	
 	
@@ -21,7 +22,7 @@ public class FluidParts extends CarComponentsProblem{
 	
 	
 	public FluidParts(boolean oil, boolean coolant, boolean powerSteeringFluid, boolean washerFluid,
-			boolean transmissionFluid, boolean freon, int level) {
+			boolean transmissionFluid, boolean freon, boolean brakeFluid, int level) {
 		super();
 		this.oil = oil;
 		this.coolant = coolant;
@@ -30,6 +31,7 @@ public class FluidParts extends CarComponentsProblem{
 		this.transmissionFluid = transmissionFluid;
 		this.freon = freon;
 		this.level = level;
+		this.brakeFluid = brakeFluid;
 	}
 
 
@@ -74,6 +76,16 @@ public class FluidParts extends CarComponentsProblem{
 	}
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+
+	public boolean isBrakeFluid() {
+		return brakeFluid;
+	}
+
+
+	public void setBrakeFluid(boolean brakeFluid) {
+		this.brakeFluid = brakeFluid;
 	}
 	
 	

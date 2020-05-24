@@ -55,6 +55,18 @@ rule "Battery fix"
        	rr.ruleReturn($epf.getBatteryFix());
 end 
 
+rule "Electrical fan"
+    when
+        $ep: ElectricalParts( isElectricFan() == true );
+        $epf: ElectricalPartsFix( getElectricFanFix() != null);
+    then
+    	delete($ep);
+   		RuleReturnTest rr = new RuleReturnTest();
+       	rr.ruleReturn($epf.getElectricFanFix());
+end 
+
+
+
 //FLUID problems
 
 //Verovatno samo kondenzacija, proveriti nivo rashladne tecnosti
@@ -80,15 +92,6 @@ rule "Oil fix"
 end 
 
 
-rule "Brakepad fix"
-	when
-		$mp: MechanicalParts( isBrakePads() == true);
-		$mpf: MechanicalPartsFix( getBrakePadsFix() != null);
-	then
-		delete($mp);
-		RuleReturnTest rr = new RuleReturnTest();
-		rr.ruleReturn($mpf.getBrakePadsFix());
-end
 		
 rule "Freon fix"
 	when
@@ -98,6 +101,17 @@ rule "Freon fix"
 		delete($fp);
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($fpf.getFreonFix());
+end
+
+//MECHANICAL PART FIX
+rule "Brakepad fix"
+	when
+		$mp: MechanicalParts( isBrakePads() == true);
+		$mpf: MechanicalPartsFix( getBrakePadsFix() != null);
+	then
+		delete($mp);
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getBrakePadsFix());
 end
 
 rule "DPF fix"
@@ -131,6 +145,29 @@ rule "Brake Disc fix"
 end
 
 
+rule "Stabilizer fix"
+	when
+		$mp: MechanicalParts( isStabilizer() );
+		$mpf: MechanicalPartsFix( getStabilizerFix() != null);
+	then	
+		delete($mp);
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getStabilizerFix());
+
+end
+
+rule "Engine belt fix"
+	when
+		$mp: MechanicalParts( isEngineBelt() );
+		$mpf: MechanicalPartsFix( getEngineBeltFix() != null);
+	then	
+		delete($mp);
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getEngineBeltFix());
+
+end
+
+//FUEL INJECTION PARTS FIX
 rule "Nozzle fix"
 	when
 		$fip: FuelInjectionParts( isNozzle() );
@@ -141,7 +178,7 @@ rule "Nozzle fix"
 		rr.ruleReturn($fipf.getNozzleFix());
 end
 
-
+//AIRFLOW PARTS FIX
 rule "Turbo charger fix"
 	when
 		$ap: AirFlowParts ( isTurboCharger() );
@@ -153,16 +190,7 @@ rule "Turbo charger fix"
 end
 
 
-rule "Stabilizer fix"
-	when
-		$mp: MechanicalParts( isStabilizer() );
-		$mpf: MechanicalPartsFix( getStabilizerFix() != null);
-	then	
-		delete($mp);
-		RuleReturnTest rr = new RuleReturnTest();
-		rr.ruleReturn($mpf.getStabilizerFix());
 
-end
 
 	
 

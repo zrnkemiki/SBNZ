@@ -174,9 +174,39 @@ rule "DPF dash light On"
 		System.out.println("Airflow part problem - SET");
 end
 
+rule "Brake fluid low level"
+	when
+		$vs: VisualSymptom( isBrakeFluidLow() );
+	then
+		delete($vs);
+		FluidParts fp = new FluidParts();
+		fp.setBrakeFluid(true);
+		fp.setLevel(0);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setBrakeLines(true);
+		insert(fp);
+		insert(mp);
+		System.out.println("Brake fluid fix + brakeLines - SET");	
+end
+
+rule "Engine overheating"
+	when
+		$vs: VisualSymptom( isEngineOverHeating() );
+	then
+		delete($vs);
+		FluidParts fp = new FluidParts();
+		fp.setCoolant(true);
+		fp.setLevel(0);
+		ElectricalParts ep = new ElectricalParts();
+		ep.setElectricFan(true);
+		insert(fp);
+		insert(ep);
+		System.out.println("Coolant problem + electric fan - SET");	
+end
 
 
 // Feels like symptoms
+
 rule "Vehicle rides uncomforbaly"
 	when
 		$fs: FeelingSymptom( isRidesUncomfortable() );
@@ -188,7 +218,42 @@ rule "Vehicle rides uncomforbaly"
 		System.out.println("Mechanical part shockabsorber problem - SET");
 end
 
-// Audio symptom
+rule "Poor breaking"
+	when
+		$fs: FeelingSymptom( isPoorBraking() );
+	then
+		delete($fs);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setBrakePads(true);
+		mp.setBrakeDisc(true);
+		FluidParts fp = new FluidParts();
+		fp.setBrakeFluid(true);
+		insert(mp);
+		insert(fp);
+		System.out.println("Brake pads, brake disc problem");
+end
+
+rule "Poor performanece"
+	when
+		$fs: FeelingSymptom( isPoorPerformance() );
+	then
+		delete($fs);
+		AirFlowParts ap = new AirFlowParts();
+		ap.setTurboCharger(true);
+		ap.setThrottleBody(true);
+		ap.setMassAirFlowMeter(true);
+		ap.setManifoldAirPressure(true);
+		ap.setIntakeManifold(true);
+		ap.setEgrValve(true);
+		ap.setAirIntakeTube(true);
+		ap.setAirFilter(true);
+		insert(mp);
+		insert(fp);
+		System.out.println("Brake pads, brake disc problem");
+end
+
+// Audio symptom -- DONE
+
 rule "Grinding symptom"
 	when
 		$as: AudioSymptom (isGrinding());
@@ -231,6 +296,17 @@ rule "Ticking symptom"
 		mp.setStabilizer(true);
 		insert(mp);
 		System.out.println("Stabilizer Problem - SET");
+end
+
+rule "squealing symptom"
+	when
+		$as: AudioSymptom (isSquealing());
+	then
+		delete($as);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setEngineBelt(true);
+		insert(mp);
+		System.out.println("Engine belt Problem - SET");
 end
 
 

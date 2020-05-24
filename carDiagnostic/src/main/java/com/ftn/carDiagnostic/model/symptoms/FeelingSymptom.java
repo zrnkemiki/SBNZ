@@ -2,7 +2,7 @@ package com.ftn.carDiagnostic.model.symptoms;
 
 public class FeelingSymptom {
 	
-	private boolean poorBraking;
+	private boolean poorBraking; // done
 	private boolean bouncing;
 	private boolean shaking;
 	private boolean longStarting;

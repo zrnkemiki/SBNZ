@@ -4,8 +4,7 @@ import com.ftn.carDiagnostic.model.CarState;
 
 public class AudioSymptom {
 	private boolean grinding;  //done
-	private boolean roaring;
-	private boolean squealing;
+	private boolean squealing;  //done
 	private boolean whistling; // done
 	private boolean knocking; // done
 	private boolean ticking;  // done
@@ -26,15 +25,6 @@ public class AudioSymptom {
 		this.grinding = grinding;
 	}
 
-
-	public boolean isRoaring() {
-		return roaring;
-	}
-
-
-	public void setRoaring(boolean roaring) {
-		this.roaring = roaring;
-	}
 
 
 	public boolean isSquealing() {

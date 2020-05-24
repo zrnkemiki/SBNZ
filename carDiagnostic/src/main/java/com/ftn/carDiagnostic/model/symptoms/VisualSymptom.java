@@ -26,9 +26,10 @@ public class VisualSymptom {
 	private boolean airConditionNotWorking; 
 	private boolean engineOverHeating; //not done
 	private boolean unevenTyreWear; //not done
-	private boolean engineStartProblem; //not done
+	private boolean engineStartProblem;
 	private boolean engineShaking; //not done
 	private boolean carUnstable; //not done
+	private boolean brakeFluidLow; 
 
 	private CarState carState; //
 	
@@ -236,6 +237,16 @@ public class VisualSymptom {
 
 	public void setCarUnstable(boolean carUnstable) {
 		this.carUnstable = carUnstable;
+	}
+
+
+	public boolean isBrakeFluidLow() {
+		return brakeFluidLow;
+	}
+
+
+	public void setBrakeFluidLow(boolean brakeFluidLow) {
+		this.brakeFluidLow = brakeFluidLow;
 	}
 }
 

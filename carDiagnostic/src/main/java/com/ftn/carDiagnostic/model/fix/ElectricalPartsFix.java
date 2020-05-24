@@ -14,15 +14,19 @@ public class ElectricalPartsFix {
 	private List<String> headlightFix;
 	private List<String> taillightFix;
 	private List<String> electricWindowsFix;
+	private List<String> electricWindowMotorFix;
 	private List<String> batteryFix;
+	private List<String> electricFanFix;
 	
 	public ElectricalPartsFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
-			List<String> batteryFix) {
+			List<String> batteryFix, List<String> electricFanFix, List<String> electricWindowMotorFix) {
 		super();
 		this.headlightFix = headlightFix;
 		this.taillightFix = taillightFix;
 		this.electricWindowsFix = electricWindowsFix;
 		this.batteryFix = batteryFix;
+		this.electricFanFix = electricFanFix;
+		this.electricWindowMotorFix = electricWindowMotorFix;
 	}
 
 	public ElectricalPartsFix() {
@@ -85,6 +89,22 @@ public class ElectricalPartsFix {
 
 	public void setTestFix(String testFix) {
 		this.testFix = testFix;
+	}
+
+	public List<String> getElectricFanFix() {
+		return electricFanFix;
+	}
+
+	public void setElectricFanFix(List<String> electricFanFix) {
+		this.electricFanFix = electricFanFix;
+	}
+
+	public List<String> getElectricWindowMotorFix() {
+		return electricWindowMotorFix;
+	}
+
+	public void setElectricWindowMotorFix(List<String> electricWindowMotorFix) {
+		this.electricWindowMotorFix = electricWindowMotorFix;
 	}
 	
 	

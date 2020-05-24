@@ -8,6 +8,10 @@ public class MechanicalPartsFix {
 	private List<String> brakeDiscFix;
 	private List<String> stabilizerFix;
 	private List<String> brakePadsFix;
+	private List<String> engineBeltFix;
+	private List<String> brakeLinesFix;
+	private List<String> engineOilConsumptionFix;
+	private List<String> engineGasketFix;
 	
 	public void TestFixes() {
 		this.shockAbsorberFix = new ArrayList<String>();
@@ -30,12 +34,16 @@ public class MechanicalPartsFix {
 	}
 
 	public MechanicalPartsFix(List<String> shockAbsorberFix, List<String> brakeDiscFix, List<String> stabilizerFix,
-			List<String> brakePadsFix) {
+			List<String> brakePadsFix, List<String> engineBeltFix, List<String> brakeLinesFix, List<String> engineOilConsumptionFix, List<String> engineGasketFix) {
 		super();
 		this.shockAbsorberFix = shockAbsorberFix;
 		this.brakeDiscFix = brakeDiscFix;
 		this.stabilizerFix = stabilizerFix;
 		this.brakePadsFix = brakePadsFix;
+		this.engineBeltFix = engineBeltFix;
+		this.brakeLinesFix = brakeLinesFix;
+		this.engineOilConsumptionFix = engineOilConsumptionFix;
+		this.engineGasketFix = engineGasketFix;
 	}
 
 	public List<String> getShockAbsorberFix() {
@@ -68,6 +76,38 @@ public class MechanicalPartsFix {
 
 	public void setBrakePadsFix(List<String> brakePadsFix) {
 		this.brakePadsFix = brakePadsFix;
+	}
+
+	public List<String> getEngineBeltFix() {
+		return engineBeltFix;
+	}
+
+	public void setEngineBeltFix(List<String> engineBeltFix) {
+		this.engineBeltFix = engineBeltFix;
+	}
+
+	public List<String> getBrakeLinesFix() {
+		return brakeLinesFix;
+	}
+
+	public void setBrakeLinesFix(List<String> brakeLinesFix) {
+		this.brakeLinesFix = brakeLinesFix;
+	}
+
+	public List<String> getEngineOilConsumptionFix() {
+		return engineOilConsumptionFix;
+	}
+
+	public void setEngineOilConsumptionFix(List<String> engineOilConsumptionFix) {
+		this.engineOilConsumptionFix = engineOilConsumptionFix;
+	}
+
+	public List<String> getEngineGasketFix() {
+		return engineGasketFix;
+	}
+
+	public void setEngineGasketFix(List<String> engineGasketFix) {
+		this.engineGasketFix = engineGasketFix;
 	}
 	
 	
