@@ -189,6 +189,38 @@ rule "Turbo charger fix"
 		rr.ruleReturn($apf.getTurboChargerFix());
 end
 
+rule "Spark plug fix"
+	when
+		$fp: FuelInjectionParts ( isSparkPlug() );
+		$fipf: FuelInjectionPartsFix( getSparkPlugFix() != null);
+	then
+		delete($fp);
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($apf.getSparkPlugFix());
+end
+
+rule "Dualmassflywheel fix"
+	when
+		$mp: MechanicalParts( isDualMassFlyWheel() );
+		$mpf: MechanicalPartsFix( getDualMassFlyWheelFix() != null);
+	then	
+		delete($mp);
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getDualMassFlyWheelFix());
+
+end
+
+rule "Tyre fix"
+	when
+		$mp: MechanicalParts( isTyre() );
+		$mpf: MechanicalPartsFix( getTyreFix() != null);
+	then	
+		delete($mp);
+		RuleReturnTest rr = new RuleReturnTest();
+		rr.ruleReturn($mpf.getTyreFix());
+
+end
+
 
 
 

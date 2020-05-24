@@ -308,5 +308,41 @@ rule "squealing symptom"
 		System.out.println("Engine belt Problem - SET");
 end
 
+rule "long starting problem"
+	when
+		$fs: FeelingSymptom( isLongStarting() ) ;
+	then
+		delete($as);
+		FuelInjectionParts fp = new FuelInjectionParts();
+		fp.setSparkPlug(true);
+		insert(fp);
+		System.out.println("Spark plugs problem");
+end
+
+rule "shaking problem"
+	when
+		$fs: FeelingSymptom( isShaking() ) ;
+	then
+		delete($as);
+		FuelInjectionParts fp = new FuelInjectionParts();
+		fp.setNozzle(true);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setDualMassFlyWheel(true);
+		insert(fp);
+		insert(mp):
+		System.out.println("Nozzle or dualmass flywheel problem");
+end
+
+rule "bouncing problem"
+	when
+		$fs: FeelingSymptom( isBouncing() ) ;
+	then
+		delete($as);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setTyre(true);;
+		insert(mp):
+		System.out.println("Tyre problem");
+end
+
 
 
