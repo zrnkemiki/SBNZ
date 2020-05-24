@@ -247,8 +247,7 @@ rule "Poor performanece"
 		ap.setEgrValve(true);
 		ap.setAirIntakeTube(true);
 		ap.setAirFilter(true);
-		insert(mp);
-		insert(fp);
+		insert(ap);
 		System.out.println("Brake pads, brake disc problem");
 end
 
