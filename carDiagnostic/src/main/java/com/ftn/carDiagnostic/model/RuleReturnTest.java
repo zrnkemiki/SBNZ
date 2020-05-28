@@ -9,7 +9,7 @@ public class RuleReturnTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void ruleReturn(List<String> fixes) {
+	public List<String> ruleReturn(List<String> fixes) {
 		System.out.println("POSSIBLE FIXES: ");
 		System.out.println("-----------------------------------");
 		for (int i = 0; i < fixes.size(); i++) {
@@ -17,5 +17,8 @@ public class RuleReturnTest {
 			
 		}
 		System.out.println("-----------------------------------");
+		return fixes;
 	}
+	
+	
 }

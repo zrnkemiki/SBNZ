@@ -1,5 +1,7 @@
 package com.ftn.carDiagnostic.proba;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.kie.api.KieServices;
@@ -15,12 +17,12 @@ import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 
 public class Proba {
-
+/*
 	public static void main(String[] args) {
 		// testClassifyItem()
 		test();
 	}
-	
+	*/
 	/* Ovo je samo testna klasa koju koristimo kako bi pravili potrebne objekte, ubacivali ih u bazu znanja i
 	 * proveravali da li se pravila okidaju kako treba, odnosno da li kao povratnu vrednost dobijamo odgovarajucu popravku
 	 * 
@@ -34,6 +36,7 @@ public class Proba {
 	 * U nastavku je dat deo koda za konzolnu aplikaciju, i mogucnost prikaza i testiranja dosadasnje implementacije.
 	 */
 
+	/*
 	public static void test() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("\n=================================");
@@ -92,9 +95,50 @@ public class Proba {
 			System.out.println("No of rules fired: " + fired);
 			System.out.println("=-=-=-=-=-=-=-=-=END-=-=-=-=-=-=-=-=-\n");
 		}
+		
 
 	}
+*/
+	
+	public static List<String> test1(VisualSymptom vs) {
+		System.out.println("Bootstrapping the Rule Engine ...");
+		// Bootstrapping a Rule Engine Session
+		KieServices ks = KieServices.Factory.get();
+		//KieContainer kContainer = ks.getKieClasspathContainer();
+		KieContainer kContainer = ks.newKieClasspathContainer();
+		KieSession kSession = kContainer.newKieSession("rulesSession");
+		// KieSession kSession = kContainer.newKieSession("test-session2");
+		kSession.setGlobal("fixes", new ArrayList<String>());
+		System.out.println("Ovo je ulazni podatak:" + vs.isHeadlightNotWorking());
+		
+		
+				
+		kSession.insert(vs);
+		
 
+		// VisualSymptom vs = menu(input);
+
+		ElectricalPartsFix epf = new ElectricalPartsFix();
+		MechanicalPartsFix mpf = new MechanicalPartsFix();
+		AirFlowPartsFix apf = new AirFlowPartsFix();
+		// MechanicalPartsFix mpf = new MechanicalPartsFix();
+		epf.TestFixes();
+		mpf.TestFixes();
+		apf.TestFixes();
+
+		
+		kSession.insert(epf);
+		kSession.insert(mpf);
+		kSession.insert(apf);
+		// kSession.insert(mpf);
+		int fired = kSession.fireAllRules();
+		System.out.println("No of rules fired: " + fired);
+		System.out.println("=-=-=-=-=-=-=-=-=END-=-=-=-=-=-=-=-=-\n");
+		
+        List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
+        return fixes;
+		
+	}
 	public static VisualSymptom visualSymptomMenu(Scanner input) {
 		System.out.println("Choose visual symptom: \n");
 		System.out.println("1. Headlight Not Working");

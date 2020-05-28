@@ -7,6 +7,8 @@ import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
 import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
 import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
 
+global java.util.List fixes;
+
 //DRUGA GRUPA PRAVILA, NA OSNOVU PROBLEMATICNOG DELA SE PRONALAZI POPRAVKA ZA ISTI
 
 //ELECTRICAL PROBLEMS
@@ -19,6 +21,8 @@ rule "Headlight fix"
     then
     	RuleReturnTest rr = new RuleReturnTest();
     	delete($ep);
+    	fixes.clear();
+    	fixes.addAll($epf.getHeadlightFix());
     	rr.ruleReturn($epf.getHeadlightFix()); //Pozivam metodu u kojoj ce rule da vrati Fix korisniku na front 
     	
 
@@ -196,7 +200,7 @@ rule "Spark plug fix"
 	then
 		delete($fp);
 		RuleReturnTest rr = new RuleReturnTest();
-		rr.ruleReturn($apf.getSparkPlugFix());
+		rr.ruleReturn($fipf.getSparkPlugFix());
 end
 
 rule "Dualmassflywheel fix"
