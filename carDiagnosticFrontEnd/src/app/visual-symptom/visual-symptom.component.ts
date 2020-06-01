@@ -12,12 +12,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./visual-symptom.component.css']
 })
 export class VisualSymptomComponent implements OnInit {
-
+  visualSymptomTemp: string;
+  carTemp: string;
+  carStateTemp: string;
   public visualSymptom: VisualSymptom;
   private symptomUrl = "http://localhost:8080/visual-symptom";
   private symptomSource = new BehaviorSubject<VisualSymptom[]>([]);
   symptomsObservable = this.symptomSource.asObservable();
-  private fixes;
+  fixes;
 
   constructor(
     private router: Router,
@@ -26,17 +28,81 @@ export class VisualSymptomComponent implements OnInit {
     private http: HttpClient
     
   ) {
-    this.visualSymptom = {headlightNotWorking: undefined };
+    this.visualSymptomTemp = "";
+    this.carStateTemp = "";
+    this.carTemp = "";
   }
 
   ngOnInit() {
   }
 
   addVisualSymptom(){
-    
-    if(this.visualSymptom.headlightNotWorking){
+    alert("Ovo je simptom: " + this.visualSymptomTemp);
+    if(this.visualSymptomTemp == "headlight"){
       this.visualSymptom.headlightNotWorking = true;
     }
+    else if(this.visualSymptomTemp == "taillight"){
+      this.visualSymptom.taillightNotWorking = true;
+    }
+    else if(this.visualSymptomTemp == "electricWindows"){
+      this.visualSymptom.electricWindowNotWorking = true;
+    }
+    else if(this.visualSymptomTemp == "oilPuddle"){
+      this.visualSymptom.oilPuddleUnderCar = true;
+    }
+    else if(this.visualSymptomTemp == "fluidPuddle"){
+      this.visualSymptom.fluidPuddle = true;
+    }
+    else if(this.visualSymptomTemp == "whiteSmoke"){
+      this.visualSymptom.whiteSmoke = true;
+    }
+    else if(this.visualSymptomTemp == "blueSmoke"){
+      this.visualSymptom.blueSmoke = true;
+    }
+    else if(this.visualSymptomTemp == "blackSmoke"){
+      this.visualSymptom.blackSmoke = true;
+    }
+    else if(this.visualSymptomTemp == "oilDashLight"){
+      this.visualSymptom.oilDashLight = true;
+    }
+    else if(this.visualSymptomTemp == "coolantDashLight"){
+      this.visualSymptom.coolantDashLight = true;
+    }
+    else if(this.visualSymptomTemp == "steeringWheelDashLight"){
+      this.visualSymptom.steeringWheelDashLight = true;
+    }
+    else if(this.visualSymptomTemp == "brakePadsDashLight"){
+      this.visualSymptom.brakePadsDashLight = true;
+    }
+    else if(this.visualSymptomTemp == "dpfDashLight"){
+      this.visualSymptom.dpfDashLight = true;
+    }
+    else if(this.visualSymptomTemp == "airConditionNotWorking"){
+      this.visualSymptom.airConditionNotWorking = true;
+    }
+    else if(this.visualSymptomTemp == "engineOverHeating"){
+      this.visualSymptom.engineOverHeating = true;
+    }
+    else if(this.visualSymptomTemp == "unevenTyreWear"){
+      this.visualSymptom.unevenTyreWear = true;
+    }
+    else if(this.visualSymptomTemp == "engineStartProblem"){
+      this.visualSymptom.engineStartProblem = true;
+    }
+    else if(this.visualSymptomTemp == "engineShaking"){
+      this.visualSymptom.engineShaking = true;
+    }
+    else if(this.visualSymptomTemp == "carUnstable"){
+      this.visualSymptom.carUnstable = true;
+    }
+    else if(this.visualSymptomTemp == "brakeFluidLow"){
+      this.visualSymptom.brakeFluidLow = true;
+    }
+
+    this.visualSymptom.carState = this.carStateTemp;
+    this.visualSymptom.car = this.carTemp;
+    
+
 
     
 

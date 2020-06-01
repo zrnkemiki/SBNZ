@@ -1,6 +1,7 @@
 <section class="jumbotron" style="background:url('https://ae01.alicdn.com/kf/HTB1q2RoKrGYBuNjy0Foq6AiBFXaN.jpg')">
     <div class="container" id="jumbotron1">
-        <h1 class="jumbotron-heading" style="color: rgba(255, 255, 255, 0.781);">Welcome to Car Diagnostic application!</h1>
+        <h1 class="jumbotron-heading" style="color: rgba(255, 255, 255, 0.781);">Welcome to Car Diagnostic application!
+        </h1>
     </div>
 </section>
 
@@ -12,10 +13,10 @@
                     <form action="" autocomplete="off">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Vehicle</label>
                             <div class="col-md-9 selectContainer">
+                                <label>Please fill in the fields</label>
                                 <div class="input-group">
-                                    <select name="department" class="form-control selectpicker">
+                                    <select name="car" [(ngModel)]="this.carTemp" class="form-control selectpicker">
                                         <option value="">Select your Vehicle</option>
                                         <option>Audi A4</option>
                                         <option>Fiat Panda</option>
@@ -25,11 +26,47 @@
                         </div>
                         <div class="col-md-9 selectContainer">
                             <div class="input-group">
-                                <select name="dan" class="form-control" [(ngModel)]="this.visualSymptom.headlightNotWorking" required>
-                                    <option value="autobus" selected>HeadlightProblem</option>
+                                <select name="visualSymptom" class="form-control" [(ngModel)]="this.visualSymptomTemp" required>
+                                    <option value="">Select your symptom</option>
+                                    <option value="headlight" selected>HeadlightProblem</option>
+                                    <option value="taillight" selected>Taillight problem</option>
+                                    <option value="electricWindows" selected>Electric windows problem</option>
+                                    <option value="oilPuddle" selected>Oil puddle under car</option>
+                                    <option value="fluidPuddle" selected>Fluid puddle under car</option>
+                                    <option value="whiteSmoke" selected>White smoke</option>
+                                    <option value="blueSmoke" selected>Blue smoke</option>
+                                    <option value="blackSmoke" selected>Black smoke</option>
+                                    <option value="oilDashLight" selected>Oil dash light</option>
+                                    <option value="coolantDashLight" selected>Coolant dash light</option>
+                                    <option value="steeringWheelDashLight" selected>Steering wheel dash light</option>
+                                    <option value="brakePadsDashLight" selected>Brake pads dash light</option>
+                                    <option value="dpfDashLight" selected>DPF Dash light</option>
+                                    <option value="airConditionNotWorking" selected>Aircondition not working</option>
+                                    <option value="engineOverHeating" selected>Engine overheating</option>
+                                    <option value="unevenTyreWear" selected>Unewaven tyre wear</option>
+                                    <option value="engineStartProblem" selected>Engine start problem</option>
+                                    <option value="engineShaking" selected>Engine shaking</option>
+                                    <option value="carUnstable" selected>Car unstable</option>
+                                    <option value="brakeFluidLow" selected>Brake fluid low</option>
                                 </select>
                             </div>
+
                         </div>
+                        <br>
+                        <div class="col-md-9 selectContainer">
+                            <div class="input-group">
+                                <select name="carState" class="form-control" [(ngModel)]="this.carStateTemp" required>
+                                    <option value="">Select your car state</option>
+                                    <option value="idle" selected>IDLE</option>
+                                    <option value="braking" selected>Braking</option>
+                                    <option value="accelerating" selected>Accelerating</option>
+                                    <option value="driving" selected>Driving</option>
+                                    <option value="engineOff" selected>Engine off</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <br>
                         <button (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Check</button>
 
                     </form>

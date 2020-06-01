@@ -1,7 +1,7 @@
 export interface VisualSymptom {
 
     headlightNotWorking : boolean
-    /*
+    
     taillightNotWorking : boolean
     electricWindowNotWorking : boolean
 
@@ -24,6 +24,8 @@ export interface VisualSymptom {
     engineShaking: boolean //not done
     carUnstable: boolean //not done
     brakeFluidLow: boolean 
-    */
+    
+    carState: string;
+    car: string; //Trebao bi ovo da bude ID
 
 }
