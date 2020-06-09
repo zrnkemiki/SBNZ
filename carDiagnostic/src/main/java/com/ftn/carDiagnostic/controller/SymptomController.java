@@ -19,12 +19,12 @@ public class SymptomController {
 
 	@PostMapping(consumes = "application/json")
 	public ResponseEntity<List<String>> addVehicle(@RequestBody VisualSymptom visualSymptom) {
-		System.out.println("Visual symptom: " + visualSymptom.isHeadlightNotWorking());
-		VisualSymptom vs = new VisualSymptom();
-
-		vs.setHeadlightNotWorking(true);
+		//VisualSymptom vs = new VisualSymptom();
+		//NapravitiDTO
+		//vs.setHeadlightNotWorking(true);
 		Proba proba = new Proba();
-		List<String> fixes = proba.test1(vs);
+		@SuppressWarnings("static-access")
+		List<String> fixes = proba.test1(visualSymptom);
 		
 		System.out.println("Ovo je za front povratne vrednosti" + fixes);
 		

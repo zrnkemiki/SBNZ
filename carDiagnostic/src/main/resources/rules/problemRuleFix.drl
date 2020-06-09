@@ -35,6 +35,8 @@ rule "Taillight fix"
         $epf: ElectricalPartsFix( getTaillightFix() != null);
     then
     	delete($ep);
+    	fixes.clear();
+    	fixes.addAll($epf.getTaillightFix());
    		RuleReturnTest rr = new RuleReturnTest();
        rr.ruleReturn($epf.getTaillightFix());
 end 
@@ -45,6 +47,8 @@ rule "ElectricWindows fix"
         $epf: ElectricalPartsFix( getElectricWindowsFix() != null);
     then
     	delete($ep);
+    	fixes.clear();
+    	fixes.addAll($epf.getElectricWindowsFix());
     	RuleReturnTest rr = new RuleReturnTest();
       	rr.ruleReturn($epf.getElectricWindowsFix());
 end 
@@ -55,6 +59,8 @@ rule "Battery fix"
         $epf: ElectricalPartsFix( getBatteryFix() != null);
     then
     	delete($ep);
+    	fixes.clear();
+    	fixes.addAll($epf.getBatteryFix());
    		RuleReturnTest rr = new RuleReturnTest();
        	rr.ruleReturn($epf.getBatteryFix());
 end 
@@ -65,6 +71,8 @@ rule "Electrical fan"
         $epf: ElectricalPartsFix( getElectricFanFix() != null);
     then
     	delete($ep);
+    	fixes.clear();
+    	fixes.addAll($epf.getElectricFanFix());
    		RuleReturnTest rr = new RuleReturnTest();
        	rr.ruleReturn($epf.getElectricFanFix());
 end 
@@ -77,22 +85,26 @@ end
 rule "Coolant fix"
     when
         $fp: FluidParts( isCoolant() == true );
-        $epf: FluidPartsFix( getCoolantFix() != null);
+        $fpf: FluidPartsFix( getCoolantFix() != null);
     then
     	delete($fp);
+    	fixes.clear();
+    	fixes.addAll($fpf.getCoolantFix());
     	RuleReturnTest rr = new RuleReturnTest();
-       	rr.ruleReturn($epf.getCoolantFix());
+       	rr.ruleReturn($fpf.getCoolantFix());
 end 
 
 //Proveriti da li ima prijavljen problem sa uljem, jer ovo znaci da motor trosi ulje?
 rule "Oil fix"
     when
         $fp: FluidParts( isOil() == true );
-        $epf: FluidPartsFix( getOilFix() != null);
+        $fpf: FluidPartsFix( getOilFix() != null);
     then
     	delete($fp);
+    	fixes.clear();
+    	fixes.addAll($fpf.getOilFix());
     	RuleReturnTest rr = new RuleReturnTest();
-       	rr.ruleReturn($epf.getOilFix());
+       	rr.ruleReturn($fpf.getOilFix());
 end 
 
 
@@ -103,6 +115,8 @@ rule "Freon fix"
 		$fpf: FluidPartsFix ( getFreonFix() != null );
 	then
 		delete($fp);
+		fixes.clear();
+    	fixes.addAll($fpf.getFreonFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($fpf.getFreonFix());
 end
@@ -114,6 +128,8 @@ rule "Brakepad fix"
 		$mpf: MechanicalPartsFix( getBrakePadsFix() != null);
 	then
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getBrakePadsFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getBrakePadsFix());
 end
@@ -124,6 +140,8 @@ rule "DPF fix"
 		$apf: AirFlowPartsFix(getDpfFix() != null);
 	then
 		delete($ap);
+		fixes.clear();
+    	fixes.addAll($apf.getDpfFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($apf.getDpfFix());
 end
@@ -134,6 +152,8 @@ rule "Shock absorber fix"
 		$mpf: MechanicalPartsFix( getShockAbsorberFix() != null);
 	then
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getShockAbsorberFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getShockAbsorberFix());
 end
@@ -144,6 +164,8 @@ rule "Brake Disc fix"
 		$mpf: MechanicalPartsFix( getBrakeDiscFix() != null);
 	then
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getBrakeDiscFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getBrakeDiscFix());
 end
@@ -155,6 +177,8 @@ rule "Stabilizer fix"
 		$mpf: MechanicalPartsFix( getStabilizerFix() != null);
 	then	
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getStabilizerFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getStabilizerFix());
 
@@ -166,6 +190,8 @@ rule "Engine belt fix"
 		$mpf: MechanicalPartsFix( getEngineBeltFix() != null);
 	then	
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getEngineBeltFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getEngineBeltFix());
 
@@ -178,6 +204,8 @@ rule "Nozzle fix"
 		$fipf: FuelInjectionPartsFix( getNozzleFix() != null);
 	then
 		delete($fip);
+		fixes.clear();
+    	fixes.addAll($fipf.getNozzleFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($fipf.getNozzleFix());
 end
@@ -189,6 +217,8 @@ rule "Turbo charger fix"
 		$apf: AirFlowPartsFix( getTurboChargerFix() != null);
 	then
 		delete($ap);
+		fixes.clear();
+    	fixes.addAll($apf.getTurboChargerFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($apf.getTurboChargerFix());
 end
@@ -199,6 +229,8 @@ rule "Spark plug fix"
 		$fipf: FuelInjectionPartsFix( getSparkPlugFix() != null);
 	then
 		delete($fp);
+		fixes.clear();
+    	fixes.addAll($fipf.getSparkPlugFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($fipf.getSparkPlugFix());
 end
@@ -209,6 +241,8 @@ rule "Dualmassflywheel fix"
 		$mpf: MechanicalPartsFix( getDualMassFlyWheelFix() != null);
 	then	
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getDualMassFlyWheelFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getDualMassFlyWheelFix());
 
@@ -220,6 +254,8 @@ rule "Tyre fix"
 		$mpf: MechanicalPartsFix( getTyreFix() != null);
 	then	
 		delete($mp);
+		fixes.clear();
+    	fixes.addAll($mpf.getTyreFix());
 		RuleReturnTest rr = new RuleReturnTest();
 		rr.ruleReturn($mpf.getTyreFix());
 

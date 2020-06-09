@@ -109,7 +109,6 @@ public class Proba {
 		KieSession kSession = kContainer.newKieSession("rulesSession");
 		// KieSession kSession = kContainer.newKieSession("test-session2");
 		kSession.setGlobal("fixes", new ArrayList<String>());
-		System.out.println("Ovo je ulazni podatak:" + vs.isHeadlightNotWorking());
 		
 		
 				

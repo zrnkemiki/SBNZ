@@ -1,4 +1,4 @@
-export interface VisualSymptom {
+export class VisualSymptom {
 
     headlightNotWorking : boolean
     
@@ -27,5 +27,5 @@ export interface VisualSymptom {
     
     carState: string;
     car: string; //Trebao bi ovo da bude ID
-
+    
 }

@@ -31,9 +31,11 @@ export class VisualSymptomComponent implements OnInit {
     this.visualSymptomTemp = "";
     this.carStateTemp = "";
     this.carTemp = "";
+    
   }
 
   ngOnInit() {
+    this.visualSymptom = new VisualSymptom();
   }
 
   addVisualSymptom(){
@@ -41,6 +43,7 @@ export class VisualSymptomComponent implements OnInit {
     if(this.visualSymptomTemp == "headlight"){
       this.visualSymptom.headlightNotWorking = true;
     }
+    
     else if(this.visualSymptomTemp == "taillight"){
       this.visualSymptom.taillightNotWorking = true;
     }
@@ -98,10 +101,10 @@ export class VisualSymptomComponent implements OnInit {
     else if(this.visualSymptomTemp == "brakeFluidLow"){
       this.visualSymptom.brakeFluidLow = true;
     }
-
+    /*
     this.visualSymptom.carState = this.carStateTemp;
     this.visualSymptom.car = this.carTemp;
-    
+    */
 
 
     
