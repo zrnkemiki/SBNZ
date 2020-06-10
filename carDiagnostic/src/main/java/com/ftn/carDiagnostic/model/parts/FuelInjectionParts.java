@@ -1,9 +1,20 @@
 package com.ftn.carDiagnostic.model.parts;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.ftn.carDiagnostic.model.CarComponentsProblem;
-
+@Entity
+@DiscriminatorValue("fuel_injection_parts")
 public class FuelInjectionParts extends CarComponentsProblem {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	
 	private boolean fuelPump;
 	private boolean fuelFilter;
 	private boolean nozzle;

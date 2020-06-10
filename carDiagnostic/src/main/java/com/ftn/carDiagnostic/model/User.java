@@ -1,16 +1,39 @@
 package com.ftn.carDiagnostic.model;
 
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+import com.ftn.carDiagnostic.dto.UserDTO;
+
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-	//Mozda protected umesto private?
-	private Long id;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+	protected Long id;
 	private Long carId;
-	private String firstName;
-	private String lastName;
-	private String username;
-	private String email;
-    private String password;
-    private String city;
-    private String phoneNumber;
+	protected String firstName;
+	protected String lastName;
+	protected String username;
+	protected String email;
+	protected String password;
+	protected String city;
+	protected String phoneNumber;
+	@Enumerated(EnumType.ORDINAL)
+    protected UserStatus userStatus;
+	
+	protected String uuid;
     
     
     
@@ -19,10 +42,8 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
 	public User(Long id, Long carId, String firstName, String lastName, String username, String email, String password,
-			String city, String phoneNumber) {
+			String city, String phoneNumber, UserStatus userStatus, String uuid) {
 		super();
 		this.id = id;
 		this.carId = carId;
@@ -33,7 +54,24 @@ public class User {
 		this.password = password;
 		this.city = city;
 		this.phoneNumber = phoneNumber;
+		this.userStatus = userStatus;
+		this.uuid = uuid;
 	}
+	
+	public User(UserDTO dto) {
+		this.firstName = dto.getFirstName();
+		this.lastName = dto.getLastName();
+		this.username = dto.getUsername();
+		this.email = dto.getEmail();
+		this.password = dto.getPassword();
+		this.city = dto.getCity();
+		this.phoneNumber = dto.getNumber();
+		this.uuid = UUID.randomUUID().toString();
+	}
+
+
+
+
 
 
 
@@ -90,6 +128,30 @@ public class User {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+
+
+	public UserStatus getUserStatus() {
+		return userStatus;
+	}
+
+
+
+	public void setUserStatus(UserStatus userStatus) {
+		this.userStatus = userStatus;
+	}
+
+
+
+	public String getUuid() {
+		return uuid;
+	}
+
+
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
     
     

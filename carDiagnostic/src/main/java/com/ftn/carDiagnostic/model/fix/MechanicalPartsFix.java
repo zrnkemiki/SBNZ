@@ -3,40 +3,78 @@ package com.ftn.carDiagnostic.model.fix;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "mechanicalpartsfix")
 public class MechanicalPartsFix {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> shockAbsorberFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> brakeDiscFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> stabilizerFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> brakePadsFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> engineBeltFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> brakeLinesFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> engineOilConsumptionFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> engineGasketFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> dualMassFlyWheelFix;
+	@Column
+	@ElementCollection(targetClass = String.class)
 	private List<String> tyreFix;
-	
+
 	public void TestFixes() {
 		this.shockAbsorberFix = new ArrayList<String>();
-		this.brakeDiscFix = new ArrayList<String>();;
-		this.stabilizerFix = new ArrayList<String>();;
-		this.brakePadsFix = new ArrayList<String>();;
-		
+		this.brakeDiscFix = new ArrayList<String>();
+		;
+		this.stabilizerFix = new ArrayList<String>();
+		;
+		this.brakePadsFix = new ArrayList<String>();
+		;
+
 		this.shockAbsorberFix.add("Check shock absorber for oil leakage");
 		this.shockAbsorberFix.add("Check shock absorber is straight");
 		this.brakeDiscFix.add("Check brake discs for damage");
 		this.brakeDiscFix.add("Replace brake discs");
 		this.stabilizerFix.add("Check stabilizer is tight");
-		this.stabilizerFix.add("Check for bends"); //Prebaci problem na electric window motor!
+		this.stabilizerFix.add("Check for bends"); // Prebaci problem na electric window motor!
 		this.brakePadsFix.add("Check brake pads wear");
 		this.brakePadsFix.add("Replace brake pads");
 	}
-	
+
 	public MechanicalPartsFix() {
-		
+
 	}
 
 	public MechanicalPartsFix(List<String> shockAbsorberFix, List<String> brakeDiscFix, List<String> stabilizerFix,
-			List<String> brakePadsFix, List<String> engineBeltFix, List<String> brakeLinesFix, List<String> engineOilConsumptionFix, List<String> engineGasketFix, List<String> dualMassFlyWheelFix,List<String> tyreFix ) {
+			List<String> brakePadsFix, List<String> engineBeltFix, List<String> brakeLinesFix,
+			List<String> engineOilConsumptionFix, List<String> engineGasketFix, List<String> dualMassFlyWheelFix,
+			List<String> tyreFix) {
 		super();
 		this.shockAbsorberFix = shockAbsorberFix;
 		this.brakeDiscFix = brakeDiscFix;
@@ -129,6 +167,5 @@ public class MechanicalPartsFix {
 	public void setTyreFix(List<String> tyreFix) {
 		this.tyreFix = tyreFix;
 	}
-	
-	
+
 }

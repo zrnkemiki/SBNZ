@@ -39,4 +39,5 @@ public class SymptomController {
 		return new ResponseEntity<>(fixes, HttpStatus.OK);
 		
 	}
+	
 }

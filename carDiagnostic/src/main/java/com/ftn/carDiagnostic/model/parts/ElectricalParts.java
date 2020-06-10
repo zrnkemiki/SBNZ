@@ -1,14 +1,26 @@
 package com.ftn.carDiagnostic.model.parts;
 
-import com.ftn.carDiagnostic.model.CarComponentsProblem;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import com.ftn.carDiagnostic.model.CarComponentsProblem;
+@Entity
+@DiscriminatorValue("electrical_parts")
 public class ElectricalParts extends CarComponentsProblem {
 	
 	/*Delovi automobila su grupisani po klasama onog tipa kom pripadaju ( elektro, mehanicki..).
 	 *Aplikacija pomocu pravila, na osnovu simptoma setuje atribut onog dela automobila koji je u kvaru na TRUE
 	 */
 	
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	private boolean headlight;
 	private boolean tailLight;
 	private boolean electricWindows;

@@ -16,7 +16,7 @@ export class VisualSymptomComponent implements OnInit {
   carTemp: string;
   carStateTemp: string;
   public visualSymptom: VisualSymptom;
-  private symptomUrl = "http://localhost:8080/visual-symptom";
+  private symptomUrl = "http://localhost:8081/api/visual-symptom";
   private symptomSource = new BehaviorSubject<VisualSymptom[]>([]);
   symptomsObservable = this.symptomSource.asObservable();
   fixes;

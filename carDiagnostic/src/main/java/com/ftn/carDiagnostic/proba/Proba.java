@@ -17,12 +17,15 @@ import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 
 public class Proba {
-/*
+	
+	
+	
+
 	public static void main(String[] args) {
 		// testClassifyItem()
-		test();
+		//test();
 	}
-	*/
+	
 	/* Ovo je samo testna klasa koju koristimo kako bi pravili potrebne objekte, ubacivali ih u bazu znanja i
 	 * proveravali da li se pravila okidaju kako treba, odnosno da li kao povratnu vrednost dobijamo odgovarajucu popravku
 	 * 
@@ -138,6 +141,8 @@ public class Proba {
         return fixes;
 		
 	}
+
+	/*
 	public static VisualSymptom visualSymptomMenu(Scanner input) {
 		System.out.println("Choose visual symptom: \n");
 		System.out.println("1. Headlight Not Working");
@@ -255,5 +260,6 @@ public class Proba {
 		}
 		return fs;
 	}
-
+*/
 }
+		

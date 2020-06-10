@@ -1,13 +1,29 @@
 package com.ftn.carDiagnostic.model.symptoms;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.ftn.carDiagnostic.model.CarState;
+
+@Entity
+@Table(name = "feelingsymptom")
 public class FeelingSymptom {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private boolean poorBraking; // done
 	private boolean bouncing; //kops
 	private boolean shaking; //kops
 	private boolean longStarting; //kops
 	private boolean ridesUncomfortable;	// done
 	private boolean poorPerformance; //done
+	@Enumerated(EnumType.STRING)
+	private CarState carState;
 	
 	public boolean isPoorPerformance() {
 		return poorPerformance;
@@ -59,6 +75,14 @@ public class FeelingSymptom {
 
 	public void setRidesUncomfortable(boolean ridesUncomfortable) {
 		this.ridesUncomfortable = ridesUncomfortable;
+	}
+
+	public CarState getCarState() {
+		return carState;
+	}
+
+	public void setCarState(CarState carState) {
+		this.carState = carState;
 	}
 	
 	

@@ -1,9 +1,21 @@
 package com.ftn.carDiagnostic.model.parts;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.ftn.carDiagnostic.model.CarComponentsProblem;
-
+@Entity
+@DiscriminatorValue("air_flow_parts")
 public class AirFlowParts extends CarComponentsProblem {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	private boolean airFilter;
 	private boolean massAirFlowMeter;//poorPerformanca
 	private boolean airIntakeTube;//poorPerformanca

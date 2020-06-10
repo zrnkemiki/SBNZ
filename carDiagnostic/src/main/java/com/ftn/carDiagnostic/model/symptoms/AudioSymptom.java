@@ -1,13 +1,26 @@
 package com.ftn.carDiagnostic.model.symptoms;
 
-import com.ftn.carDiagnostic.model.CarState;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import com.ftn.carDiagnostic.model.CarState;
+@Entity
+@Table(name = "audiosymptom")
 public class AudioSymptom {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private boolean grinding;  //done
 	private boolean squealing;  //done
 	private boolean whistling; // done
 	private boolean knocking; // done
 	private boolean ticking;  // done
+	@Enumerated(EnumType.STRING)
 	private CarState carState;
 	
 	

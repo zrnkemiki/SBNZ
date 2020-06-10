@@ -1,5 +1,11 @@
 package com.ftn.carDiagnostic.model.symptoms;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.ftn.carDiagnostic.model.CarState;
 
 public class VisualSymptom {
@@ -8,7 +14,9 @@ public class VisualSymptom {
 	 * atribut na "TRUE" kao i stanje automobila prilikom manifestacije simptoma -  IDLE, BREAKING, ACCELERATING, DRIVING, ENGINE_OFF
 	 * Kasnije na osnovu ovoga, pomocu pravila aplikacija odreduje koji deo automobila je problematican. 
 	 */
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private boolean headlightNotWorking;
 	private boolean taillightNotWorking;
 	private boolean electricWindowNotWorking;
@@ -30,7 +38,7 @@ public class VisualSymptom {
 	private boolean engineShaking; //not done
 	private boolean carUnstable; //not done
 	private boolean brakeFluidLow; 
-
+	@Enumerated(EnumType.STRING)
 	private CarState carState; //
 	
 	

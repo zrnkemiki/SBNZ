@@ -3,19 +3,35 @@ package com.ftn.carDiagnostic.model.fix;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name = "electricalpartsfix")
 public class ElectricalPartsFix {
 	
 	/*Razliciti nacini popravke delova automobila su grupisani po klasama onog tipa kom pripadaju ( elektro, mehanicki..).
 	 *Aplikacija pomocu pravila, na osnovu dela koji je problematican, pomocu pravila dobavlja popravku za taj deo.
 	 */
 	
-	private String testFix;
-	
+	//private String testFix;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@ElementCollection(targetClass = String.class)
 	private List<String> headlightFix;
+	@ElementCollection(targetClass = String.class)
 	private List<String> taillightFix;
+	@ElementCollection(targetClass = String.class)
 	private List<String> electricWindowsFix;
+	@ElementCollection(targetClass = String.class)
 	private List<String> electricWindowMotorFix;
+	@ElementCollection(targetClass = String.class)
 	private List<String> batteryFix;
+	@ElementCollection(targetClass = String.class)
 	private List<String> electricFanFix;
 	
 	public ElectricalPartsFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
@@ -50,7 +66,7 @@ public class ElectricalPartsFix {
 		this.batteryFix.add("Jump start your car");
 		this.batteryFix.add("Recharge battery");
 	}
-
+	
 	public List<String> getHeadlightFix() {
 		return headlightFix;
 	}
@@ -82,7 +98,7 @@ public class ElectricalPartsFix {
 	public void setBatteryFix(List<String> batteryFix) {
 		this.batteryFix = batteryFix;
 	}
-
+	/*
 	public String getTestFix() {
 		return testFix;
 	}
@@ -90,7 +106,7 @@ public class ElectricalPartsFix {
 	public void setTestFix(String testFix) {
 		this.testFix = testFix;
 	}
-
+	*/
 	public List<String> getElectricFanFix() {
 		return electricFanFix;
 	}

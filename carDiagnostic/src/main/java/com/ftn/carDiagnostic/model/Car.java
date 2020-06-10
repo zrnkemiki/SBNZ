@@ -2,16 +2,27 @@ package com.ftn.carDiagnostic.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "car")
 public class Car {
 	
 
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String brand;
 	private String model;
 	private String year;
 	private String engineType;
 	private String milage;
+	@ManyToMany
 	private List<CarComponentsProblem> problemHistory; 
 	//Svi problemi koji su se pojavljivali cuvace se u problemHistory radi kasnije implementacije nekih kompleksnijih pravila.
 	

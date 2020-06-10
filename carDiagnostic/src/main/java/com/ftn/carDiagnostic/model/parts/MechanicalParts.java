@@ -1,9 +1,19 @@
 package com.ftn.carDiagnostic.model.parts;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.ftn.carDiagnostic.model.CarComponentsProblem;
-
+@Entity
+@DiscriminatorValue("mechanical_parts")
 public class MechanicalParts extends CarComponentsProblem {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	private boolean shockAbsorber;
 	private boolean brakeDisc;
 	private boolean stabilizer;
