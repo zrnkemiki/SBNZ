@@ -22,7 +22,7 @@ export class LoginService {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
-  /*
+  
   public get currentUserValue(): User {
     let user: User = new User();
     if (localStorage.getItem('currentUser')) {
@@ -33,14 +33,14 @@ export class LoginService {
     }
     return this.currentUserSubject.value;
   }
-
+  
   public get currentUserStatus(): String {
     if (this.currentUserValue) {
       return this.currentUserValue.status;
     }
     return "ADMIN";
   }
-  */
+
   login(loginDto: LoginDTO) {
     return this.http.post<any>(this.userUrl, loginDto)
       .pipe(map(userDTO => {
