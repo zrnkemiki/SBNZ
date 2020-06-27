@@ -67,7 +67,8 @@
 
                         </div>
                         <br>
-                        <button (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Check</button>
+                        <button *ngIf="!fixes" (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Submit</button>
+                        <button *ngIf="fixes" (click)="refresh()" id="sendlogin" class="col-md-9 btn btn-primary">Submit new symptom</button>
 
                     </form>
 
@@ -78,12 +79,16 @@
         <table class="table table-bordered table-hover table-dark" *ngIf="fixes">
             <thead>
                 <tr>
+                    <th>No.</th>
                     <th>Potential Fix</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let fix of fixes; let i = index">
+                    <td>
+                        {{i}}
+                    </td>
                     <td>
                         {{fix}}
                     </td>

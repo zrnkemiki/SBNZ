@@ -38,6 +38,10 @@ export class VisualSymptomComponent implements OnInit {
     this.visualSymptom = new VisualSymptom();
   }
 
+  refresh(){
+    window.location.reload();
+  }
+
   addVisualSymptom(){
     alert("Ovo je simptom: " + this.visualSymptomTemp);
     if(this.visualSymptomTemp == "headlight"){

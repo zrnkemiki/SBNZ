@@ -19,7 +19,7 @@ public class MechanicalPartsFixService {
 	}
 	
 	public MechanicalPartsFix getMPF(Long id) {
-		return mechanicalPartsFixRepository.getOne(id);
+		return mechanicalPartsFixRepository.findById(id).orElse(null);
 	}
 	
 	public List<MechanicalPartsFix> findAll(){

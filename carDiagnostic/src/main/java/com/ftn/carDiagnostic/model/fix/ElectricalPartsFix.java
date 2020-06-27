@@ -24,17 +24,17 @@ public class ElectricalPartsFix {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ElementCollection
-	private List<String> headlightFix = new ArrayList<String>();
+	private List<String> headlightFix;
 	@ElementCollection
-	private List<String> taillightFix= new ArrayList<String>();
+	private List<String> taillightFix;
 	@ElementCollection
-	private List<String> electricWindowsFix= new ArrayList<String>();
+	private List<String> electricWindowsFix;
 	@ElementCollection
-	private List<String> electricWindowMotorFix= new ArrayList<String>();
+	private List<String> electricWindowMotorFix;
 	@ElementCollection
-	private List<String> batteryFix= new ArrayList<String>();
+	private List<String> batteryFix;
 	@ElementCollection
-	private List<String> electricFanFix= new ArrayList<String>();
+	private List<String> electricFanFix;
 	
 	public ElectricalPartsFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
 			List<String> batteryFix, List<String> electricFanFix, List<String> electricWindowMotorFix) {

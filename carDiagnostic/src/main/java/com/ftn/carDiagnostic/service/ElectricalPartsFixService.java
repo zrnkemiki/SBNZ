@@ -21,7 +21,7 @@ public class ElectricalPartsFixService {
 	}
 	
 	public ElectricalPartsFix getEPF(Long id) {
-		return electricalPartsFixRepo.getOne(id);
+		return electricalPartsFixRepo.findById(id).orElse(null);
 	}
 	
 	public List<ElectricalPartsFix> findAll(){

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
-import com.ftn.carDiagnostic.repository.ElectricalPartsFixRepository;
 
 @Service
 public class VisualSymptomService {
@@ -35,9 +34,10 @@ public class VisualSymptomService {
 	public List<String> insertSymptom(VisualSymptom vs) {
 		vs.setExecutionTime(new Date());
 		/*
-		ElectricalPartsFix epf = new ElectricalPartsFix();
-		epf.TestFixes();
-		electricalPartsFixService.saveEPF(epf);
+		//For filling database
+		ElectricalPartsFix test = new ElectricalPartsFix();
+		test.GenerateFixes();
+		electricalPartsFixService.saveEPF(test);
 		*/
 		
 		ElectricalPartsFix epf = electricalPartsFixService.getEPF(1L);

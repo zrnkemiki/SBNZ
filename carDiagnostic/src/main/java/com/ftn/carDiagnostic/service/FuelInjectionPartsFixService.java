@@ -20,7 +20,7 @@ public class FuelInjectionPartsFixService {
 	}
 	
 	public FuelInjectionPartsFix getEPF(Long id) {
-		return fuelInjectionPartsFixRepository.getOne(id);
+		return fuelInjectionPartsFixRepository.findById(id).orElse(null);
 	}
 	
 	public List<FuelInjectionPartsFix> findAll(){

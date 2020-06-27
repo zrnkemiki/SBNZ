@@ -20,7 +20,7 @@ public class FluidPartsFixService {
 	}
 	
 	public FluidPartsFix getAFPF(Long id) {
-		return fluidPartsFixRepository.getOne(id);
+		return fluidPartsFixRepository.findById(id).orElse(null);
 	}
 	
 	public List<FluidPartsFix> findAll(){
