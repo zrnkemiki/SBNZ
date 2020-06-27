@@ -7,4 +7,6 @@ import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
 @Repository
 public interface ElectricalPartsFixRepository extends JpaRepository<ElectricalPartsFix, Long> {
 
+	@SuppressWarnings("unchecked")
+	ElectricalPartsFix save(ElectricalPartsFix epf);
 }

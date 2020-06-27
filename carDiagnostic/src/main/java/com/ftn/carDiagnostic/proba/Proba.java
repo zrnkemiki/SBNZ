@@ -15,8 +15,23 @@ import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
 import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
 import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
+import com.ftn.carDiagnostic.service.ElectricalPartsFixService;
 
 public class Proba {
+	
+	public void fillDB() {
+		ElectricalPartsFix epf = new ElectricalPartsFix();
+		MechanicalPartsFix mpf = new MechanicalPartsFix();
+		AirFlowPartsFix apf = new AirFlowPartsFix();
+		// MechanicalPartsFix mpf = new MechanicalPartsFix();
+		epf.GenerateFixes();
+		mpf.GenerateFixes();
+		apf.GenerateFixes();
+		
+		ElectricalPartsFixService epfs = new ElectricalPartsFixService();
+		epfs.saveEPF(epf);
+
+	}
 	
 	
 	
@@ -124,9 +139,9 @@ public class Proba {
 		MechanicalPartsFix mpf = new MechanicalPartsFix();
 		AirFlowPartsFix apf = new AirFlowPartsFix();
 		// MechanicalPartsFix mpf = new MechanicalPartsFix();
-		epf.TestFixes();
-		mpf.TestFixes();
-		apf.TestFixes();
+		epf.GenerateFixes();
+		mpf.GenerateFixes();
+		apf.GenerateFixes();
 
 		
 		kSession.insert(epf);

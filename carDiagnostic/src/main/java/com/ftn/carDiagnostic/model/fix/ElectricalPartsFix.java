@@ -3,6 +3,7 @@ package com.ftn.carDiagnostic.model.fix;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,21 +19,22 @@ public class ElectricalPartsFix {
 	 */
 	
 	//private String testFix;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ElementCollection(targetClass = String.class)
-	private List<String> headlightFix;
-	@ElementCollection(targetClass = String.class)
-	private List<String> taillightFix;
-	@ElementCollection(targetClass = String.class)
-	private List<String> electricWindowsFix;
-	@ElementCollection(targetClass = String.class)
-	private List<String> electricWindowMotorFix;
-	@ElementCollection(targetClass = String.class)
-	private List<String> batteryFix;
-	@ElementCollection(targetClass = String.class)
-	private List<String> electricFanFix;
+	@ElementCollection
+	private List<String> headlightFix = new ArrayList<String>();
+	@ElementCollection
+	private List<String> taillightFix= new ArrayList<String>();
+	@ElementCollection
+	private List<String> electricWindowsFix= new ArrayList<String>();
+	@ElementCollection
+	private List<String> electricWindowMotorFix= new ArrayList<String>();
+	@ElementCollection
+	private List<String> batteryFix= new ArrayList<String>();
+	@ElementCollection
+	private List<String> electricFanFix= new ArrayList<String>();
 	
 	public ElectricalPartsFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
 			List<String> batteryFix, List<String> electricFanFix, List<String> electricWindowMotorFix) {
@@ -50,11 +52,13 @@ public class ElectricalPartsFix {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void TestFixes() {
+	public void GenerateFixes() {
 		this.headlightFix = new ArrayList<String>();
 		this.taillightFix = new ArrayList<String>();;
 		this.electricWindowsFix = new ArrayList<String>();;
 		this.batteryFix = new ArrayList<String>();;
+		this.electricFanFix = new ArrayList<String>();
+		this.electricWindowMotorFix = new ArrayList<String>();
 		
 		this.headlightFix.add("Check fuse");
 		this.headlightFix.add("Check front contact");
@@ -62,9 +66,11 @@ public class ElectricalPartsFix {
 		this.taillightFix.add("Check rear contact");
 		this.electricWindowsFix.add("Check fuse");
 		this.electricWindowsFix.add("Check contact");
-		this.electricWindowsFix.add("Check window motor"); //Prebaci problem na electric window motor!
+		this.electricWindowsFix.add("Check window motor");
 		this.batteryFix.add("Jump start your car");
 		this.batteryFix.add("Recharge battery");
+		this.electricFanFix.add("Replace fan");
+		this.electricWindowMotorFix.add("Replace window motor.");
 	}
 	
 	public List<String> getHeadlightFix() {

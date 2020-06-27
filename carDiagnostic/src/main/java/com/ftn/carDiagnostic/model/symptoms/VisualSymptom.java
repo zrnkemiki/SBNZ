@@ -1,13 +1,23 @@
 package com.ftn.carDiagnostic.model.symptoms;
 
+import java.util.Date;
+
 import javax.persistence.EnumType;
+
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.kie.api.definition.type.Expires;
+import org.kie.api.definition.type.Role;
+import org.kie.api.definition.type.Timestamp;
+
 import com.ftn.carDiagnostic.model.CarState;
 
+@Role(Role.Type.EVENT)
+@Timestamp("executionTime")
+@Expires("2h30m")
 public class VisualSymptom {
 	
 	/*Klasa VisualSymptom zajedno sa ostalim simptomima sluzi da aplikacija na osnovu korisnikovog unosa simptoma, setuje konkretan 
@@ -40,6 +50,9 @@ public class VisualSymptom {
 	private boolean brakeFluidLow; 
 	@Enumerated(EnumType.STRING)
 	private CarState carState; //
+
+    private Date executionTime;
+    
 	
 	
 	public VisualSymptom() {
@@ -255,6 +268,36 @@ public class VisualSymptom {
 
 	public void setBrakeFluidLow(boolean brakeFluidLow) {
 		this.brakeFluidLow = brakeFluidLow;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public CarState getCarState() {
+		return carState;
+	}
+
+
+	public void setCarState(CarState carState) {
+		this.carState = carState;
+	}
+
+
+	public Date getExecutionTime() {
+		return executionTime;
+	}
+
+
+	public void setExecutionTime(Date executionTime) {
+		this.executionTime = executionTime;
 	}
 }
 

@@ -48,14 +48,17 @@ public class MechanicalPartsFix {
 	@ElementCollection(targetClass = String.class)
 	private List<String> tyreFix;
 
-	public void TestFixes() {
+	public void GenerateFixes() {
 		this.shockAbsorberFix = new ArrayList<String>();
 		this.brakeDiscFix = new ArrayList<String>();
-		;
 		this.stabilizerFix = new ArrayList<String>();
-		;
 		this.brakePadsFix = new ArrayList<String>();
-		;
+		this.engineBeltFix = new ArrayList<String>();
+		this.brakeLinesFix = new ArrayList<String>();
+		this.engineOilConsumptionFix = new ArrayList<String>();
+		this.engineGasketFix = new ArrayList<String>();
+		this.dualMassFlyWheelFix = new ArrayList<String>();
+		this.tyreFix = new ArrayList<String>();
 
 		this.shockAbsorberFix.add("Check shock absorber for oil leakage");
 		this.shockAbsorberFix.add("Check shock absorber is straight");
@@ -65,10 +68,20 @@ public class MechanicalPartsFix {
 		this.stabilizerFix.add("Check for bends"); // Prebaci problem na electric window motor!
 		this.brakePadsFix.add("Check brake pads wear");
 		this.brakePadsFix.add("Replace brake pads");
+		this.engineBeltFix.add("Put some soap on belt");
+		this.engineBeltFix.add("Replace belt");
+		this.brakeLinesFix.add("Repair brake lines");
+		this.brakeLinesFix.add("Replace brake lines");
+		this.engineOilConsumptionFix.add("Try using oil with more density");
+		this.engineGasketFix.add("Replace gasket");
+		this.dualMassFlyWheelFix.add("Replace dualmass flywheel");
+		this.tyreFix.add("Re-inflate tyre");
+		this.tyreFix.add("Repair puncture");
+		this.tyreFix.add("Change tyre");
 	}
 
 	public MechanicalPartsFix() {
-
+		
 	}
 
 	public MechanicalPartsFix(List<String> shockAbsorberFix, List<String> brakeDiscFix, List<String> stabilizerFix,

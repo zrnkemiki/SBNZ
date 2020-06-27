@@ -39,7 +39,7 @@ public class AirFlowPartsFix {
 	@ElementCollection(targetClass = String.class)
 	private List<String> dpfFix;
 	
-	public void TestFixes() {
+	public void GenerateFixes() {
 		this.turboChargerFix = new ArrayList<String>();
 		this.dpfFix = new ArrayList<String>();;
 		
