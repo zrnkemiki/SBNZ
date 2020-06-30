@@ -8,10 +8,14 @@ import com.ftn.carDiagnostic.model.parts.FuelInjectionParts;
 import com.ftn.carDiagnostic.model.parts.AirFlowParts;
 import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom
 import com.ftn.carDiagnostic.model.symptoms.AudioSymptom
+import com.ftn.carDiagnostic.model.Log
 
 //PRVA GRUPA PRAVILA, NA OSNOVU SIMPTOMA SE PRONALAZI PROBLEMATICAN DEO
 
 //Visual symptoms
+
+
+
 
 rule "Headlight not working symptom"
     when

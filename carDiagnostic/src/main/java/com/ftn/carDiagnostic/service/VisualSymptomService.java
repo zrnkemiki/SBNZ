@@ -9,6 +9,7 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.carDiagnostic.model.Log;
 import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 
@@ -17,6 +18,8 @@ public class VisualSymptomService {
 	
 	private final KieContainer kieContainer;
 	private final KieSession kSession;
+	List<String> fixes;
+	List<String> logs;
 
 	
 	@Autowired
@@ -56,6 +59,23 @@ public class VisualSymptomService {
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
         
 		return fixes;
+		
+	}
+
+
+	public List<String> insertLog(Log log) {
+		kSession.insert(log);
+		int fired = kSession.fireAllRules();
+		System.out.println("Number of rules fired: " + fired);
+		try {
+			logs = (ArrayList<String>) kSession.getGlobal("fixes");
+			for (String logTemp : logs) {
+				System.out.println(logTemp);
+			}
+		} catch (Exception e) {
+		
+		}
+		return logs;
 		
 	}
 

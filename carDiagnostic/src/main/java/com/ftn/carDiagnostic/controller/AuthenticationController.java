@@ -1,5 +1,7 @@
 package com.ftn.carDiagnostic.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.carDiagnostic.dto.LoginDTO;
 import com.ftn.carDiagnostic.dto.UserDTO;
+import com.ftn.carDiagnostic.model.Log;
 import com.ftn.carDiagnostic.security.TokenUtils;
 import com.ftn.carDiagnostic.service.UserServiceImpl;
+import com.ftn.carDiagnostic.service.VisualSymptomService;
 
 
 @RestController
@@ -36,6 +40,15 @@ public class AuthenticationController {
 	
 	@Autowired
 	UserServiceImpl userService;
+	
+	private final VisualSymptomService visualSymptomService;
+
+	@Autowired
+	public AuthenticationController(VisualSymptomService visualSymptomService) {
+		this.visualSymptomService = visualSymptomService;
+	}
+	
+	
 		
 	
 	@PostMapping()
@@ -59,6 +72,11 @@ public class AuthenticationController {
             return new ResponseEntity<UserDTO>(
             		user, HttpStatus.OK);
         } catch (Exception ex) {
+        	Log log = new Log();
+        	log.setExecutionTime(new Date());
+        	log.setId(1);
+        	log.setMessage("login_fail");
+        	visualSymptomService.insertLog(log);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
         }
 	}

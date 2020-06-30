@@ -13,6 +13,16 @@ global java.util.List fixes;
 
 //ELECTRICAL PROBLEMS
 
+rule "FAILURE ID-1 -loginFail multiple"
+	when
+	    $log: Log( getId() == 1 && getMessage() == 'login_fail' , $logId: id );
+	    Number(intValue >= 2) from accumulate(
+        $log2: Log( this != $log, id == $logId, this meets[1m] $log),count($log2))
+	then
+		fixes.add("ALERT! : Multiple failed login for short time! Time: " + $log.getExecutionTime() + "| Message: " + $log.getMessage() + "\n");
+		delete($log);
+end 
+
 rule "Headlight fix"
     when
         $ep: ElectricalParts( isHeadlight() == true );
