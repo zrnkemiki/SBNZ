@@ -40,7 +40,7 @@ public class SymptomController {
 	@PostMapping(value = "/visual-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addVisualSymptom(@RequestBody VisualSymptom visualSymptom) {
 		System.out.println("Usao u add visual symptom controller");
-		List<String> fixes = symptomService.insertSymptom(visualSymptom);
+		List<String> fixes = symptomService.insertVisualSymptom(visualSymptom);
 
 		if (fixes != null) {
 			for (String fix : fixes) {
@@ -54,6 +54,7 @@ public class SymptomController {
 	
 	@PostMapping(value = "/audio-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addAudioSymptom(@RequestBody AudioSymptom audioSymptom) {
+		
 		return null;
 		
 	}
