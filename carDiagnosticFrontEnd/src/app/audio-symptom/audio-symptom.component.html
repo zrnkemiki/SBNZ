@@ -14,7 +14,7 @@
 
                         <div class="form-group">
                             <div class="col-md-9 selectContainer">
-                                <label>Please fill in visual symptoms:</label>
+                                <label>Please fill in audio symptoms:</label>
                                 <div class="input-group">
                                     <select name="car" [(ngModel)]="this.carTemp" class="form-control selectpicker">
                                         <option value="">Select your Vehicle</option>
@@ -26,28 +26,13 @@
                         </div>
                         <div class="col-md-9 selectContainer">
                             <div class="input-group">
-                                <select name="visualSymptom" class="form-control" [(ngModel)]="this.visualSymptomTemp" required>
+                                <select name="visualSymptom" class="form-control" [(ngModel)]="this.audioSymptomTemp" required>
                                     <option value="">Select your symptom</option>
-                                    <option value="headlight" selected>HeadlightProblem</option>
-                                    <option value="taillight" selected>Taillight problem</option>
-                                    <option value="electricWindows" selected>Electric windows problem</option>
-                                    <option value="oilPuddle" selected>Oil puddle under car</option>
-                                    <option value="fluidPuddle" selected>Fluid puddle under car</option>
-                                    <option value="whiteSmoke" selected>White smoke</option>
-                                    <option value="blueSmoke" selected>Blue smoke</option>
-                                    <option value="blackSmoke" selected>Black smoke</option>
-                                    <option value="oilDashLight" selected>Oil dash light</option>
-                                    <option value="coolantDashLight" selected>Coolant dash light</option>
-                                    <option value="steeringWheelDashLight" selected>Steering wheel dash light</option>
-                                    <option value="brakePadsDashLight" selected>Brake pads dash light</option>
-                                    <option value="dpfDashLight" selected>DPF Dash light</option>
-                                    <option value="airConditionNotWorking" selected>Aircondition not working</option>
-                                    <option value="engineOverHeating" selected>Engine overheating</option>
-                                    <option value="unevenTyreWear" selected>Unewaven tyre wear</option>
-                                    <option value="engineStartProblem" selected>Engine start problem</option>
-                                    <option value="engineShaking" selected>Engine shaking</option>
-                                    <option value="carUnstable" selected>Car unstable</option>
-                                    <option value="brakeFluidLow" selected>Brake fluid low</option>
+                                    <option value="grinding" selected>Grinding noise</option>
+                                    <option value="squealing" selected>Squealing noise</option>
+                                    <option value="whistling" selected>Whistling noise</option>
+                                    <option value="knocking" selected>Knocking noise</option>
+                                    <option value="ticking" selected>Ticking noise</option>
                                 </select>
                             </div>
 

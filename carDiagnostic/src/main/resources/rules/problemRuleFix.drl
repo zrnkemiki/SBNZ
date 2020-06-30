@@ -19,6 +19,7 @@ rule "FAILURE ID-1 -loginFail multiple"
 	    Number(intValue >= 2) from accumulate(
         $log2: Log( this != $log, id == $logId, this meets[1m] $log),count($log2))
 	then
+		fixes.clear();
 		fixes.add("ALERT! : Multiple failed login for short time! Time: " + $log.getExecutionTime() + "| Message: " + $log.getMessage() + "\n");
 		delete($log);
 end 

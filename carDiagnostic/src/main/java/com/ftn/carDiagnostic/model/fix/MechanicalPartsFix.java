@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,34 +19,34 @@ public class MechanicalPartsFix {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> shockAbsorberFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> brakeDiscFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> stabilizerFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> brakePadsFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> engineBeltFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> brakeLinesFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> engineOilConsumptionFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> engineGasketFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> dualMassFlyWheelFix;
 	@Column
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> tyreFix;
 
 	public void GenerateFixes() {

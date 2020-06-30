@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,27 +17,27 @@ public class AirFlowPartsFix {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> mafFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> airIntakeTubeFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> turboChargerFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> throttleBodyFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> intercoolerFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> mapFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> intakemanifoldFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> exhaustmanifoldFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> egrFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> catalyticConverterFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> dpfFix;
 	
 	public void GenerateFixes() {

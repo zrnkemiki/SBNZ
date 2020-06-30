@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { VisualSymptomComponent } from './visual-symptom/visual-symptom.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AudioSymptomComponent } from './audio-symptom/audio-symptom.component';
+import { FeelingSymptomComponent } from './feeling-symptom/feeling-symptom.component';
+import { SmellSymptomComponent } from './smell-symptom/smell-symptom.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     HomepageComponent,
     VisualSymptomComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AudioSymptomComponent,
+    FeelingSymptomComponent,
+    SmellSymptomComponent
   ],
   imports: [
     BrowserModule,

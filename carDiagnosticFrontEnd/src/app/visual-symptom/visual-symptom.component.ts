@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { SymptomService } from '../services/symptom.service';
 
 @Component({
   selector: 'app-visual-symptom',
@@ -16,16 +17,14 @@ export class VisualSymptomComponent implements OnInit {
   carTemp: string;
   carStateTemp: string;
   public visualSymptom: VisualSymptom;
-  private symptomUrl = "http://localhost:8080/api/visual-symptom";
-  private symptomSource = new BehaviorSubject<VisualSymptom[]>([]);
-  symptomsObservable = this.symptomSource.asObservable();
   fixes;
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private symptomService: SymptomService,
     
   ) {
     this.visualSymptomTemp = "";
@@ -43,7 +42,6 @@ export class VisualSymptomComponent implements OnInit {
   }
 
   addVisualSymptom(){
-    alert("Ovo je simptom: " + this.visualSymptomTemp);
     if(this.visualSymptomTemp == "headlight"){
       this.visualSymptom.headlightNotWorking = true;
     }
@@ -105,39 +103,9 @@ export class VisualSymptomComponent implements OnInit {
     else if(this.visualSymptomTemp == "brakeFluidLow"){
       this.visualSymptom.brakeFluidLow = true;
     }
-    /*
-    this.visualSymptom.carState = this.carStateTemp;
-    this.visualSymptom.car = this.carTemp;
-    */
 
-
-    
-
-      //alert(this.visualSymptom.headlightNotWorking)
-    this.http.post<String[]>(this.symptomUrl, this.visualSymptom)
-    .subscribe(resp => {
-      this.fixes = resp;
-      console.log(resp);
-        //alert("Successfully added vehicle. New " + vehicle.lineNumber + " vehicle added.");
-      }
-    )
-  }
-  /*
-  addVehicle() {
-    if (this.vehicle.tip !== '') {
-      if (this.router.url != "/add-vehicle") {
-        this.vehicleService.editVehicle(this.vehicle);
-      }
-      else {
-        this.vehicleService.addVehicle(this.vehicle);
-      }
-      this.router.navigate(["/homepage"]);
-
-    }
-    else {
-      this.toastr.error('Morate uneti tip vozila!');
-    }
+    this.symptomService.addVisualSymptom(this.visualSymptom).subscribe(resp => {this.fixes = resp;console.log(resp); });
   }
 
-*/
+ 
 }

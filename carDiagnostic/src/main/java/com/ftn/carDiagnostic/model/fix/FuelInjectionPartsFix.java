@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,13 +16,13 @@ public class FuelInjectionPartsFix {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> fuelPump;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> fuelFilter;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> nozzleFix;
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	private List<String> sparkPlugFix;
 	
 	

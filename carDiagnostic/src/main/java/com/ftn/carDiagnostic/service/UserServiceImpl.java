@@ -54,9 +54,9 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 		//USER TYPE?
 		user.setUserStatus(UserStatus.PENDING);
-		//emailService.sendMail(user, "Activation link",
-		//		"Please follow the link below to activate \nhttp://localhost:8080/api/user/activate/"
-		//				+ user.getUuid());
+		emailService.sendMail(user, "Activation link",
+				"Please follow the link below to activate \nhttp://localhost:8081/api/user/activate/"
+						+ user.getUuid());
 		
 		userRepository.save(user);
 		return user;

@@ -53,7 +53,6 @@ public class AuthenticationController {
 	
 	@PostMapping()
 	public ResponseEntity<?> login(@RequestBody()LoginDTO loginDTO){
-		System.out.println("Usao sam u funkciju login!\n");
 		try {
         	// Perform the authentication
         	UsernamePasswordAuthenticationToken token = 
