@@ -21,7 +21,7 @@ import com.ftn.carDiagnostic.dto.UserDTO;
 import com.ftn.carDiagnostic.model.Log;
 import com.ftn.carDiagnostic.security.TokenUtils;
 import com.ftn.carDiagnostic.service.UserServiceImpl;
-import com.ftn.carDiagnostic.service.VisualSymptomService;
+import com.ftn.carDiagnostic.service.SymptomService;
 
 
 @RestController
@@ -41,10 +41,10 @@ public class AuthenticationController {
 	@Autowired
 	UserServiceImpl userService;
 	
-	private final VisualSymptomService visualSymptomService;
+	private final SymptomService visualSymptomService;
 
 	@Autowired
-	public AuthenticationController(VisualSymptomService visualSymptomService) {
+	public AuthenticationController(SymptomService visualSymptomService) {
 		this.visualSymptomService = visualSymptomService;
 	}
 	

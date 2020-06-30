@@ -14,23 +14,23 @@ import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 
 @Service
-public class VisualSymptomService {
+public class SymptomService {
 	
 	private final KieContainer kieContainer;
 	private final KieSession kSession;
-	List<String> fixes;
-	List<String> logs;
+	private List<String> fixes;
+	private List<String> logs;
 
 	
 	@Autowired
-	public VisualSymptomService(KieContainer kieContainer) {
+	public SymptomService(KieContainer kieContainer) {
 		this.kieContainer = kieContainer;
 		kSession = kieContainer.newKieSession("rulesSession");
 		kSession.setGlobal("fixes", new ArrayList<String>());
 	}
 	
 	@Autowired
-	ElectricalPartsFixService electricalPartsFixService;
+	private ElectricalPartsFixService electricalPartsFixService;
 	
 	
 	@SuppressWarnings("unchecked")
