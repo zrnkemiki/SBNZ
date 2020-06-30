@@ -28,6 +28,8 @@ public class Appointment {
 	
 	private Date executionTime;
 	
+	private Date date;
+	
 	public Appointment() {
 		
 	}
@@ -38,7 +40,22 @@ public class Appointment {
 		this.userId = userId;
 		this.executionTime = executionTime;
 	}
+	
+	
 
+	public Appointment(Long id, Long userId, Date executionTime, Date date) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.executionTime = executionTime;
+		this.date = date;
+	}
+
+	public Appointment(Long userId) {
+		super();
+		this.userId = userId;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -61,6 +78,14 @@ public class Appointment {
 
 	public void setExecutionTime(Date executionTime) {
 		this.executionTime = executionTime;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

@@ -8,6 +8,7 @@ import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
 import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
 
 global java.util.List fixes;
+global java.util.List appointments;
 
 //DRUGA GRUPA PRAVILA, NA OSNOVU PROBLEMATICNOG DELA SE PRONALAZI POPRAVKA ZA ISTI
 
