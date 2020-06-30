@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
-import com.ftn.carDiagnostic.service.VisualSymptomService;
+import com.ftn.carDiagnostic.service.SymptomService;
 
 
 @RestController
@@ -23,13 +23,13 @@ import com.ftn.carDiagnostic.service.VisualSymptomService;
 public class SymptomController {
 	
 	private List<String> alerts;
-	FileOutputStream fop = null;
-	File file;
+	private FileOutputStream fop = null;
+	private File file;
 
-	private final VisualSymptomService visualSymptomService;
+	private final SymptomService visualSymptomService;
 
 	@Autowired
-	public SymptomController(VisualSymptomService visualSymptomService) {
+	public SymptomController(SymptomService visualSymptomService) {
 		this.visualSymptomService = visualSymptomService;
 	}
 	
