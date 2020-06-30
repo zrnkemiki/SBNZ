@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
+import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
+import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 import com.ftn.carDiagnostic.service.SymptomService;
 
 
 @RestController
-@RequestMapping(value = "/visual-symptom")
+@RequestMapping(value = "/symptom")
 @Transactional
 public class SymptomController {
 	
@@ -26,33 +29,43 @@ public class SymptomController {
 	private FileOutputStream fop = null;
 	private File file;
 
-	private final SymptomService visualSymptomService;
+	private final SymptomService symptomService;
 
 	@Autowired
-	public SymptomController(SymptomService visualSymptomService) {
-		this.visualSymptomService = visualSymptomService;
+	public SymptomController(SymptomService symptomService) {
+		this.symptomService = symptomService;
 	}
 	
 
-	@PostMapping(consumes = "application/json")
+	@PostMapping(value = "/visual-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addVisualSymptom(@RequestBody VisualSymptom visualSymptom) {
 		System.out.println("Usao u add visual symptom controller");
-		List<String> fixes = visualSymptomService.insertSymptom(visualSymptom);
+		List<String> fixes = symptomService.insertSymptom(visualSymptom);
 
 		if (fixes != null) {
 			for (String fix : fixes) {
 				System.out.println(fix);
 			}
 		}
-		
-	
-		
 		System.out.println("Ovo je za front povratne vrednosti" + fixes);
 		
+		return new ResponseEntity<>(fixes, HttpStatus.OK);		
+	}
+	
+	@PostMapping(value = "/audio-symptom" ,consumes = "application/json")
+	public ResponseEntity<List<String>> addAudioSymptom(@RequestBody AudioSymptom audioSymptom) {
+		return null;
 		
-		
-		return new ResponseEntity<>(fixes, HttpStatus.OK);
-		
+	}
+	
+	@PostMapping(value = "/smell-symptom" ,consumes = "application/json")
+	public ResponseEntity<List<String>> addSoundSymptom(@RequestBody SmellSymptom smellSymptom) {
+		return null;
+	}
+	
+	@PostMapping(value = "/feeling-symptom" ,consumes = "application/json")
+	public ResponseEntity<List<String>> addFeelingSymptom(@RequestBody FeelingSymptom feelingSymptom) {
+		return null;
 	}
 	
 }

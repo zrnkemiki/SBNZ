@@ -41,11 +41,11 @@ public class AuthenticationController {
 	@Autowired
 	UserServiceImpl userService;
 	
-	private final SymptomService visualSymptomService;
+	private final SymptomService symptomService;
 
 	@Autowired
-	public AuthenticationController(SymptomService visualSymptomService) {
-		this.visualSymptomService = visualSymptomService;
+	public AuthenticationController(SymptomService symptomService) {
+		this.symptomService = symptomService;
 	}
 	
 	
@@ -75,7 +75,7 @@ public class AuthenticationController {
         	log.setExecutionTime(new Date());
         	log.setId(1);
         	log.setMessage("login_fail");
-        	visualSymptomService.insertLog(log);
+        	symptomService.insertLog(log);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
         }
 	}
