@@ -1,5 +1,6 @@
 package com.ftn.carDiagnostic.service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,6 +62,15 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 		return user;
 	}
+	
+	public User sendDeactivationMail(User user) {
+		emailService.sendMail(user, "Activation link",
+				"There were multiple failed login attempts for your account. If this was you please follow the link below to activate \n"
+				+ "http://localhost:8081/api/user/reactivate/" + user.getUuid());
+		return user;
+	}
+	
+	
 	
 
 	

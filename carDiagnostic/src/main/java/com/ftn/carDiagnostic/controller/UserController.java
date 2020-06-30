@@ -83,5 +83,20 @@ public class UserController {
 		}
 		return "Bad activation link!";
 	}
+	
+	@GetMapping(value = "/reactivate/{uuid}")
+	public String reactivateUser(@PathVariable("uuid") String uuid) {
+		User user = userService.findByuuid(uuid);
+		if (user != null) {
+			if (user.getUserStatus() == UserStatus.PENDING || user.getUserStatus() == UserStatus.DEACTIVATED) {
+				user.setUserStatus(UserStatus.ACTIVATED);
+				userService.saveUser(user);
+				return String.format("<p>Succesfully Re-activated! <p> <p>%s welcome to Car Diagnostics App!<p>", user.getUsername() + user.getLastName());
+			} else {
+				return "User already activated!";
+			}
+		}
+		return "Bad activation link!";
+	}
 
 }

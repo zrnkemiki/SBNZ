@@ -75,7 +75,8 @@ public class AuthenticationController {
         	log.setExecutionTime(new Date());
         	log.setId(1);
         	log.setMessage("login_fail");
-        	symptomService.insertLog(log);
+        	log.setUserName(loginDTO.getUsername());
+        	symptomService.insertLog(log, loginDTO);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
         }
 	}

@@ -9,9 +9,14 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.carDiagnostic.dto.LoginDTO;
 import com.ftn.carDiagnostic.model.Log;
+import com.ftn.carDiagnostic.model.User;
+import com.ftn.carDiagnostic.model.UserStatus;
 import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
+
+import exceptions.UserDoesntExistException;
 
 @Service
 public class SymptomService {
@@ -31,6 +36,9 @@ public class SymptomService {
 	
 	@Autowired
 	private ElectricalPartsFixService electricalPartsFixService;
+	
+	@Autowired
+	private UserServiceImpl userService;
 	
 	
 	@SuppressWarnings("unchecked")
@@ -63,20 +71,27 @@ public class SymptomService {
 	}
 
 
-	public List<String> insertLog(Log log) {
+	public void insertLog(Log log, LoginDTO loginDTO) {
 		kSession.insert(log);
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
 		try {
 			logs = (ArrayList<String>) kSession.getGlobal("fixes");
+			if(logs.size() != 0) {
+				User currentUser = userService.getUserByUsername(loginDTO.getUsername());
+				currentUser.setUserStatus(UserStatus.DEACTIVATED);
+				userService.saveUser(currentUser);
+				userService.sendDeactivationMail(currentUser);
+			}
 			for (String logTemp : logs) {
 				System.out.println(logTemp);
 			}
 		} catch (Exception e) {
 		
+			
 		}
-		return logs;
-		
+		logs.clear();
+			
 	}
 
 
