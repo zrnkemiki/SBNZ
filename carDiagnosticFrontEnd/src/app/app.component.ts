@@ -24,6 +24,8 @@ export class AppComponent {
     window.location.replace('/login')
   }
 
+
+
   register(){
     window.location.replace('/registration')
   }

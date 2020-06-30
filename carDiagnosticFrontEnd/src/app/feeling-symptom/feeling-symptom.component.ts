@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { SymptomService } from '../services/symptom.service';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-feeling-symptom',
@@ -16,6 +17,7 @@ export class FeelingSymptomComponent implements OnInit {
   carStateTemp: string;
   public feelingSymptom: FeelingSymptom;
   fixes;
+  dates: Date[];
 
   constructor(
     private router: Router,
@@ -23,6 +25,7 @@ export class FeelingSymptomComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private symptomService: SymptomService,
+    private reservationService: ReservationService,
     
   ) {
     this.feelingSymptomTemp = "";
@@ -62,6 +65,15 @@ export class FeelingSymptomComponent implements OnInit {
 
     this.symptomService.addFeelingSymptom(this.feelingSymptom).subscribe(resp => {this.fixes = resp;console.log(resp); });
   
+  }
+
+  checkReservation(fix: String){
+    alert(fix);
+    this.reservationService.checkReservation(fix).subscribe(data => {this.dates = data; alert(data)})
+  }
+
+  reserve(date: Date){
+    alert(date);
   }
  
 }

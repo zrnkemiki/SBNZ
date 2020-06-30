@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.carDiagnostic.dto.LoginDTO;
 import com.ftn.carDiagnostic.dto.UserDTO;
 import com.ftn.carDiagnostic.model.Log;
+import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
 import com.ftn.carDiagnostic.security.TokenUtils;
 import com.ftn.carDiagnostic.service.UserServiceImpl;
+import com.ftn.carDiagnostic.service.ElectricalPartsFixService;
 import com.ftn.carDiagnostic.service.SymptomService;
 
 
@@ -68,6 +70,9 @@ public class AuthenticationController {
             UserDTO user = new UserDTO(userService.getLoggedUser());
             
             user.setJWTToken(tokenUtils.generateToken(details));
+            
+
+            
             return new ResponseEntity<UserDTO>(
             		user, HttpStatus.OK);
         } catch (Exception ex) {

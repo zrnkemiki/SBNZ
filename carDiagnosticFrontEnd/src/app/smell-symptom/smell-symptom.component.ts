@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { SymptomService } from '../services/symptom.service';
 import { SmellSymptom } from '../model/smellSymptom';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-smell-symptom',
@@ -17,6 +18,7 @@ export class SmellSymptomComponent implements OnInit {
   carStateTemp: string;
   public smellSymptom: SmellSymptom;
   fixes;
+  dates: Date[];
 
   constructor(
     private router: Router,
@@ -24,6 +26,7 @@ export class SmellSymptomComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private symptomService: SymptomService,
+    private reservationService: ReservationService,
     
   ) {
     this.smellSymptomTemp = "";
@@ -58,6 +61,15 @@ export class SmellSymptomComponent implements OnInit {
 
     this.symptomService.addSmellSymptom(this.smellSymptom).subscribe(resp => {this.fixes = resp;console.log(resp); });
   
+  }
+
+  checkReservation(fix: String){
+    alert(fix);
+    this.reservationService.checkReservation(fix).subscribe(data => {this.dates = data; alert(data)})
+  }
+
+  reserve(date: Date){
+    alert(date);
   }
  
 }
