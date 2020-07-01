@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.carDiagnostic.dto.LoginDTO;
+import com.ftn.carDiagnostic.model.CarComponentsProblem;
 import com.ftn.carDiagnostic.model.Log;
 import com.ftn.carDiagnostic.model.User;
 import com.ftn.carDiagnostic.model.UserStatus;
@@ -35,6 +36,7 @@ public class SymptomService {
 		this.kieContainer = kieContainer;
 		kSession = kieContainer.newKieSession("rulesSession");
 		kSession.setGlobal("fixes", new ArrayList<String>());
+		kSession.setGlobal("problems", new ArrayList<CarComponentsProblem>());
 	}
 	
 	@Autowired
@@ -68,7 +70,11 @@ public class SymptomService {
 		
 		
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
-        
+		List<CarComponentsProblem> problems = (ArrayList<CarComponentsProblem>) kSession.getGlobal("problems");
+		
+		for (CarComponentsProblem carComponentsProblem : problems) {
+			System.out.println(carComponentsProblem.getDescription());
+		}
 		return fixes;
 		
 	}
