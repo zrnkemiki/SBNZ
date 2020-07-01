@@ -15,7 +15,7 @@ public class Log {
 	@Id
 	private int id;
 	private String message;
-
+	private String userName;
 	private Date executionTime;
 	
 
@@ -26,11 +26,12 @@ public class Log {
 	
 	
 
-	public Log(int id, String message, Date executionTime) {
+	public Log(int id, String message, Date executionTime, String userName) {
 		super();
 		this.id = id;
 		this.message = message;
 		this.executionTime = executionTime;
+		this.setUserName(userName);
 	}
 
 
@@ -57,6 +58,18 @@ public class Log {
 
 	public void setExecutionTime(Date executionTime) {
 		this.executionTime = executionTime;
+	}
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

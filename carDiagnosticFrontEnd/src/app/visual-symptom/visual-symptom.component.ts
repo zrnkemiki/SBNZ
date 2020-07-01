@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SymptomService } from '../services/symptom.service';
+import { ReservationService } from '../services/reservation.service';
+import { reservationDTO } from '../dto/reservationDTO';
 
 @Component({
   selector: 'app-visual-symptom',
@@ -18,6 +20,10 @@ export class VisualSymptomComponent implements OnInit {
   carStateTemp: string;
   public visualSymptom: VisualSymptom;
   fixes;
+  dates: Date[];
+  reservationDTO: reservationDTO;
+
+  date1 = new Date();
 
   constructor(
     private router: Router,
@@ -25,11 +31,13 @@ export class VisualSymptomComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private symptomService: SymptomService,
+    private reservationService: ReservationService,
     
   ) {
     this.visualSymptomTemp = "";
     this.carStateTemp = "";
     this.carTemp = "";
+    this.reservationDTO = new reservationDTO();
     
   }
 
@@ -45,7 +53,6 @@ export class VisualSymptomComponent implements OnInit {
     if(this.visualSymptomTemp == "headlight"){
       this.visualSymptom.headlightNotWorking = true;
     }
-    
     else if(this.visualSymptomTemp == "taillight"){
       this.visualSymptom.taillightNotWorking = true;
     }
@@ -104,7 +111,24 @@ export class VisualSymptomComponent implements OnInit {
       this.visualSymptom.brakeFluidLow = true;
     }
 
+  
+
+
     this.symptomService.addVisualSymptom(this.visualSymptom).subscribe(resp => {this.fixes = resp;console.log(resp); });
+  }
+
+  checkReservation(fix: String){
+    this.reservationDTO.fix = fix;
+    this.dates = [];
+    this.dates.push(new Date());
+    this.dates.push(new Date());
+
+
+    this.reservationService.checkReservation(this.reservationDTO).subscribe(data => {this.dates = data; alert(data)})
+  }
+
+  reserve(date: Date){
+    alert(date);
   }
 
  

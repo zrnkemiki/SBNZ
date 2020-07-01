@@ -2,6 +2,7 @@ package com.ftn.carDiagnostic.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.carDiagnostic.model.User;
 import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
 import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
 import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
 import com.ftn.carDiagnostic.model.symptoms.VisualSymptom;
 import com.ftn.carDiagnostic.service.SymptomService;
+import com.ftn.carDiagnostic.service.UserServiceImpl;
 
 
 @RestController
@@ -30,6 +33,9 @@ public class SymptomController {
 	private File file;
 
 	private final SymptomService symptomService;
+	
+	@Autowired
+	UserServiceImpl userService;
 
 	@Autowired
 	public SymptomController(SymptomService symptomService) {
@@ -38,8 +44,8 @@ public class SymptomController {
 	
 
 	@PostMapping(value = "/visual-symptom" ,consumes = "application/json")
-	public ResponseEntity<List<String>> addVisualSymptom(@RequestBody VisualSymptom visualSymptom) {
-		System.out.println("Usao u add visual symptom controller");
+	public ResponseEntity<List<String>> addVisualSymptom(@RequestBody VisualSymptom visualSymptom, Principal principal) {
+		User user = userService.getLoggedUser();
 		List<String> fixes = symptomService.insertVisualSymptom(visualSymptom);
 
 		if (fixes != null) {
@@ -53,9 +59,10 @@ public class SymptomController {
 	}
 	
 	@PostMapping(value = "/audio-symptom" ,consumes = "application/json")
-	public ResponseEntity<List<String>> addAudioSymptom(@RequestBody AudioSymptom audioSymptom) {
+	public ResponseEntity<List<String>> addAudioSymptom(@RequestBody AudioSymptom audioSymptom, Principal principal) {
 		System.out.println("Usao u add audio symptom controller");
 		List<String> fixes = symptomService.insertAudioSymptom(audioSymptom);
+	
 		
 		if (fixes != null) {
 			for (String fix : fixes) {
@@ -68,7 +75,7 @@ public class SymptomController {
 	}
 	
 	@PostMapping(value = "/smell-symptom" ,consumes = "application/json")
-	public ResponseEntity<List<String>> addSoundSymptom(@RequestBody SmellSymptom smellSymptom) {
+	public ResponseEntity<List<String>> addSoundSymptom(@RequestBody SmellSymptom smellSymptom, Principal principal) {
 		System.out.println("Usao u add smell symptom controller");
 		List<String> fixes = symptomService.insertSmellSymptom(smellSymptom);
 		
@@ -81,7 +88,7 @@ public class SymptomController {
 	}
 	
 	@PostMapping(value = "/feeling-symptom" ,consumes = "application/json")
-	public ResponseEntity<List<String>> addFeelingSymptom(@RequestBody FeelingSymptom feelingSymptom) {
+	public ResponseEntity<List<String>> addFeelingSymptom(@RequestBody FeelingSymptom feelingSymptom, Principal principal) {
 		System.out.println("Usao u add feeling symptom controller");
 		List<String> fixes = symptomService.insertFeelSymptom(feelingSymptom);
 		
@@ -92,6 +99,6 @@ public class SymptomController {
 		}
 		
 		return new ResponseEntity<>(fixes, HttpStatus.OK);
-	}
+
 	
 }

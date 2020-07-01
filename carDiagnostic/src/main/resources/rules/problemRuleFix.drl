@@ -16,12 +16,12 @@ global java.util.List appointments;
 
 rule "FAILURE ID-1 -loginFail multiple"
 	when
-	    $log: Log( getId() == 1 && getMessage() == 'login_fail' , $logId: id );
+	    $log: Log( getId() == 1 && getMessage() == 'login_fail' , $user: userName );
 	    Number(intValue >= 2) from accumulate(
-        $log2: Log( this != $log, id == $logId, this meets[1m] $log),count($log2))
+        $log2: Log( this != $log, userName == $user, this meets[10s] $log),count($log2))
 	then
 		fixes.clear();
-		fixes.add("ALERT! : Multiple failed login for short time! Time: " + $log.getExecutionTime() + "| Message: " + $log.getMessage() + "\n");
+		fixes.add("ALERT! : Multiple failed login for short time! Time: " + $log.getExecutionTime() + "| Message: " + $log.getMessage() + "\n USER DEACTIVATED!");
 		delete($log);
 end 
 

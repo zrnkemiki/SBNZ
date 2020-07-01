@@ -10,9 +10,7 @@ import com.ftn.carDiagnostic.model.CarComponentsProblem;
 @Entity
 @DiscriminatorValue("mechanical_parts")
 public class MechanicalParts extends CarComponentsProblem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+
 	
 	private boolean shockAbsorber;
 	private boolean brakeDisc;

@@ -2,6 +2,7 @@ package com.ftn.carDiagnostic.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Car {
 	private String year;
 	private String engineType;
 	private String milage;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<CarComponentsProblem> problemHistory; 
 	//Svi problemi koji su se pojavljivali cuvace se u problemHistory radi kasnije implementacije nekih kompleksnijih pravila.
 	
