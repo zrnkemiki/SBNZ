@@ -1,0 +1,61 @@
+<section class="jumbotron" style="background:url('https://ae01.alicdn.com/kf/HTB1q2RoKrGYBuNjy0Foq6AiBFXaN.jpg')">
+    <div class="container" id="jumbotron1">
+    </div>
+</section>
+
+
+<div class="container">
+    <form class="well form-horizontal">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Car ID</label>
+            <label> {{this.car.id}} </label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Car model</label>
+            <label> {{this.car.model}} </label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Brand</label>
+            <label> {{this.car.brand}} </label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Year</label>
+            <label> {{this.car.year}} </label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Engine Type</label>
+            <label> {{this.car.engineType}} </label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Milage</label>
+            <label> {{this.car.milage}} </label>
+        </div>
+
+
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Milage</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let e of this.car.problemHistory; let i = index">
+                    <td>
+                        {{this.car.problemHistory[i]["id"]}}
+                    </td>
+                    <td>
+                        {{this.car.problemHistory[i]["date"] | date}}
+                    </td>
+                    <td>
+                        {{this.car.problemHistory[i]["milage"]}}
+                    </td>
+                    <td>
+                        {{this.car.problemHistory[i]["description"]}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>

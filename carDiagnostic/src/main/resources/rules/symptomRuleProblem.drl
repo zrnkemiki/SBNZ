@@ -10,6 +10,8 @@ import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom
 import com.ftn.carDiagnostic.model.symptoms.AudioSymptom
 import com.ftn.carDiagnostic.model.Log
 
+global java.util.List problems;
+
 //PRVA GRUPA PRAVILA, NA OSNOVU SIMPTOMA SE PRONALAZI PROBLEMATICAN DEO
 
 //Visual symptoms
@@ -24,6 +26,9 @@ rule "Headlight not working symptom"
     	delete($vs); //izbaci simptom iz baze znanja
        	ElectricalParts ep = new ElectricalParts(); ////pravi novi electrical parts problem gde je samo headlight true 
        	ep.setHeadlight(true);
+       	ep.setDescription("Problem with headlight");
+       	problems.clear();
+       	problems.add(ep);
        	insert(ep); //dodajemo novi problem
        	System.out.println("Uspeo da setujem da je problem u headlight"); //testni ispis
 end 
@@ -37,6 +42,9 @@ rule "Taillight not working symptom"
    		delete($vs); //izbaci simptom iz baze znanja
    		ElectricalParts ep = new ElectricalParts();
        	ep.setTailLight(true); //pravi novi electrical parts problem gde je samo taillight true 
+       	ep.setDescription("Problem with taillight");
+		problems.clear();
+       	problems.add(ep);
        	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u taillight");
 end 
@@ -47,7 +55,10 @@ rule "Electric windows not working"
     then
     	ElectricalParts ep = new ElectricalParts();
        	ep.setElectricWindows(true); 
+       	ep.setDescription("Problem with electric windows");
        	delete($vs);
+       	problems.clear();
+       	problems.add(ep);
        	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u Electric windows");
 end 
@@ -58,6 +69,7 @@ rule "battery, isEngineStartProblem problem"
     then
     	ElectricalParts ep = new ElectricalParts();
        	ep.setBattery(true); 
+       	ep.setDescription("Problem with battery");
        	insert(ep);
        	delete($vs);
        	System.out.println("Uspeo da setujem da je problem u battery");
@@ -71,7 +83,8 @@ rule "coolant dash light"
     then
     	FluidParts fp = new FluidParts();
        	fp.setCoolant(true);; //pravi novi electrical parts problem gde je samo taillight true 
-       	fp.setLevel(0);
+       	fp.setLevel(0);       	
+       	fp.setDescription("Problem with low coolant level.");
        	insert(fp);
     	delete($vs);
        	System.out.println("Uspeo da setujem da je problem u coolant");
@@ -84,6 +97,7 @@ rule "oil dash light"
     	delete($vs); //izbaci simptom iz baze znanja
     	FluidParts fp = new FluidParts();
        	fp.setOil(true);
+       	fp.setDescription("Problem with low oil level.");
        	fp.setLevel(0);
        	insert(fp);
        	System.out.println("Uspeo da setujem da je problem u oil");
@@ -96,6 +110,7 @@ rule "steering fluid dash light"
     	delete($vs); //izbaci simptom iz baze znanja
     	FluidParts fp = new FluidParts();
        	fp.setPowerSteeringFluid(true);
+       	fp.setDescription("Problem with low power steering level.");
        	fp.setLevel(0);
        	insert(fp);
        	//$vs.setHeadlightNotWorking(false);
@@ -111,6 +126,7 @@ rule "white smoke on exhaust, engine gasket fail"
     	delete($vs); //izbaci simptom iz baze znanja
     	MechanicalParts mp = new MechanicalParts();
        	mp.setEngineGasket(true);
+       	mp.setDescription("Problem with engine gasket.");
        	insert(mp);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u engine gasket -> mechanic");
@@ -124,6 +140,7 @@ rule "blue smoke on exhaust"
     	delete($vs); //izbaci simptom iz baze znanja
     	MechanicalParts mp = new MechanicalParts();
        	mp.setEngineGasket(true);
+       	mp.setDescription("Problem with engine gasket.");
        	insert(mp);
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u engine oil consumption -> mechanic");
@@ -138,6 +155,7 @@ rule "black smoke on exhaust"
     	delete($vs); //izbaci simptom iz baze znanja
     	FuelInjectionParts fip = new FuelInjectionParts();
        	fip.setNozzle(true);
+       	fip.setDescription("Problem with nozzle.");
        	insert(fip);    	
        	//$vs.setHeadlightNotWorking(false);
        	System.out.println("Uspeo da setujem da je problem u nozzle");
@@ -151,6 +169,7 @@ rule "Brakepad dash light - Visual Symptom"
 		delete($vs);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setBrakePads(true);
+		mp.setDescription("Problem with brake padst.");
 		insert(mp);
 		System.out.println("Mechanical part problem - SET");
 end
@@ -162,6 +181,7 @@ rule "Air condition not working"
 		delete($vs);
 		FluidParts fp = new FluidParts();
 		fp.setFreon(true);
+		fp.setDescription("Problem with low freon level.");
 		fp.setLevel(0);
 		insert(fp);
 		System.out.println("Fluid problem - SET");
@@ -174,6 +194,7 @@ rule "DPF dash light On"
 		delete($vs);
 		AirFlowParts ap = new AirFlowParts();
 		ap.setDieselParticulateFilter(true);
+		ap.setDescription("Problem with DPF.");
 		insert(ap);
 		System.out.println("Airflow part problem - SET");
 end
@@ -188,6 +209,9 @@ rule "Brake fluid low level"
 		fp.setLevel(0);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setBrakeLines(true);
+		
+		fp.setDescription("Problem with brake fluid level.");
+		mp.setDescription("Problem with brake lines.");
 		insert(fp);
 		insert(mp);
 		System.out.println("Brake fluid fix + brakeLines - SET");	
@@ -203,6 +227,8 @@ rule "Engine overheating"
 		fp.setLevel(0);
 		ElectricalParts ep = new ElectricalParts();
 		ep.setElectricFan(true);
+		fp.setDescription("Problem with coolant level.");
+		ep.setDescription("Problem with electric fan.");
 		insert(fp);
 		insert(ep);
 		System.out.println("Coolant problem + electric fan - SET");	
@@ -218,6 +244,7 @@ rule "Vehicle rides uncomforbaly"
 		delete($fs);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setShockAbsorber(true);
+		mp.setDescription("Problem with shock absorber.");
 		insert(mp);
 		System.out.println("Mechanical part shockabsorber problem - SET");
 end
@@ -232,6 +259,8 @@ rule "Poor breaking"
 		mp.setBrakeDisc(true);
 		FluidParts fp = new FluidParts();
 		fp.setBrakeFluid(true);
+		mp.setDescription("Problem with brake pads and brake discs.");
+		fp.setDescription("Problem with brake fluid.");
 		insert(mp);
 		insert(fp);
 		System.out.println("Brake pads, brake disc problem");
@@ -251,6 +280,7 @@ rule "Poor performanece"
 		ap.setEgrValve(true);
 		ap.setAirIntakeTube(true);
 		ap.setAirFilter(true);
+		ap.setDescription("Multiple possible problems with air injection system.");
 		insert(ap);
 		System.out.println("Brake pads, brake disc problem");
 end
@@ -264,6 +294,7 @@ rule "Grinding symptom"
 		delete($as);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setBrakeDisc(true);
+		mp.setDescription("Problem with brake discs.");
 		insert(mp);
 		System.out.println("Brake Disc Problem - SET");
 end
@@ -275,6 +306,7 @@ rule "Knocking symptom"
 		delete($as);
 		FuelInjectionParts fip = new FuelInjectionParts();
 		fip.setNozzle(true);
+		fip.setDescription("Problem with nozzle.");
 		insert(fip);
 		System.out.println("Nozzle Problem - SET");
 end
@@ -286,6 +318,7 @@ rule "Whistling symptom"
 		delete($as);
 		AirFlowParts ap = new AirFlowParts();
 		ap.setTurboCharger(true);
+		ap.setDescription("Problem with turbo charger.");
 		insert(ap);
 		System.out.println("Turbo charger problem - SET");
 end
@@ -297,6 +330,7 @@ rule "Ticking symptom"
 		delete($as);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setStabilizer(true);
+		mp.setDescription("Problem with stabilizer.");
 		insert(mp);
 		System.out.println("Stabilizer Problem - SET");
 end
@@ -308,6 +342,7 @@ rule "squealing symptom"
 		delete($as);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setEngineBelt(true);
+		mp.setDescription("Problem with engine belt.");
 		insert(mp);
 		System.out.println("Engine belt Problem - SET");
 end
@@ -319,6 +354,7 @@ rule "long starting problem"
 		delete($fs);
 		FuelInjectionParts fp = new FuelInjectionParts();
 		fp.setSparkPlug(true);
+		fp.setDescription("Problem with spark plugs.");
 		insert(fp);
 		System.out.println("Spark plugs problem");
 end
@@ -332,6 +368,8 @@ rule "shaking problem"
 		fp.setNozzle(true);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setDualMassFlyWheel(true);
+		fp.setDescription("Problem with nozzle.");
+		mp.setDescription("Problem with dual mass flywheel.");
 		insert(fp);
 		insert(mp);
 		System.out.println("Nozzle or dualmass flywheel problem");
@@ -344,6 +382,7 @@ rule "bouncing problem"
 		delete($fs);
 		MechanicalParts mp = new MechanicalParts();
 		mp.setTyre(true);;
+		mp.setDescription("Problem with tyre.");
 		insert(mp);
 		System.out.println("Tyre problem");
 end

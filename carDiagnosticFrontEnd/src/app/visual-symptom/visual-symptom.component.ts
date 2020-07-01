@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SymptomService } from '../services/symptom.service';
 import { ReservationService } from '../services/reservation.service';
+import { reservationDTO } from '../dto/reservationDTO';
 
 @Component({
   selector: 'app-visual-symptom',
@@ -20,9 +21,9 @@ export class VisualSymptomComponent implements OnInit {
   public visualSymptom: VisualSymptom;
   fixes;
   dates: Date[];
+  reservationDTO: reservationDTO;
 
   date1 = new Date();
-  date2 = new Date();
 
   constructor(
     private router: Router,
@@ -36,6 +37,7 @@ export class VisualSymptomComponent implements OnInit {
     this.visualSymptomTemp = "";
     this.carStateTemp = "";
     this.carTemp = "";
+    this.reservationDTO = new reservationDTO();
     
   }
 
@@ -48,7 +50,6 @@ export class VisualSymptomComponent implements OnInit {
   }
 
   addVisualSymptom(){
-    debugger;
     if(this.visualSymptomTemp == "headlight"){
       this.visualSymptom.headlightNotWorking = true;
     }
@@ -117,12 +118,13 @@ export class VisualSymptomComponent implements OnInit {
   }
 
   checkReservation(fix: String){
+    this.reservationDTO.fix = fix;
     this.dates = [];
-    this.dates.push(this.date1);
     this.dates.push(new Date());
     this.dates.push(new Date());
 
-    this.reservationService.checkReservation(fix).subscribe(data => {this.dates = data; alert(data)})
+
+    this.reservationService.checkReservation(this.reservationDTO).subscribe(data => {this.dates = data; alert(data)})
   }
 
   reserve(date: Date){

@@ -12,9 +12,7 @@ import com.ftn.carDiagnostic.model.CarComponentsProblem;
 @Entity
 @DiscriminatorValue("fluid_parts")
 public class FluidParts extends CarComponentsProblem{
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+
 	
 	private boolean oil;
 	private boolean coolant;

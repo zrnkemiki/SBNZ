@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { SymptomService } from '../services/symptom.service';
 import { SmellSymptom } from '../model/smellSymptom';
 import { ReservationService } from '../services/reservation.service';
+import { reservationDTO } from '../dto/reservationDTO';
 
 @Component({
   selector: 'app-smell-symptom',
@@ -19,6 +20,7 @@ export class SmellSymptomComponent implements OnInit {
   public smellSymptom: SmellSymptom;
   fixes;
   dates: Date[];
+  reservationDTO: reservationDTO;
 
   constructor(
     private router: Router,
@@ -32,6 +34,7 @@ export class SmellSymptomComponent implements OnInit {
     this.smellSymptomTemp = "";
     this.carStateTemp = "";
     this.carTemp = "";
+    this.reservationDTO = new reservationDTO();
     
   }
 
@@ -62,10 +65,9 @@ export class SmellSymptomComponent implements OnInit {
     this.symptomService.addSmellSymptom(this.smellSymptom).subscribe(resp => {this.fixes = resp;console.log(resp); });
   
   }
-
   checkReservation(fix: String){
-    alert(fix);
-    this.reservationService.checkReservation(fix).subscribe(data => {this.dates = data; alert(data)})
+    this.reservationDTO.fix = fix;
+    this.reservationService.checkReservation(this.reservationDTO).subscribe(data => {this.dates = data; alert(data)})
   }
 
   reserve(date: Date){

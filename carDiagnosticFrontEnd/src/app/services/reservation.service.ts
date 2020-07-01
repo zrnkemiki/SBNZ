@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { reservationDTO } from '../dto/reservationDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class ReservationService {
 
   constructor(private http : HttpClient, private router: Router) { }
 
-  checkReservation(fix: String) {
-    return this.http.post<Date[]>('http://localhost:8081/api/make-appointment', fix)
+  checkReservation(reservationDTO: reservationDTO) {
+    return this.http.post<Date[]>('http://localhost:8081/api/make-appointment', reservationDTO)
   }
 
 

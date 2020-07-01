@@ -17,9 +17,6 @@ public class ElectricalParts extends CarComponentsProblem {
 	 *Aplikacija pomocu pravila, na osnovu simptoma setuje atribut onog dela automobila koji je u kvaru na TRUE
 	 */
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 	
 	private boolean headlight;
 	private boolean tailLight;

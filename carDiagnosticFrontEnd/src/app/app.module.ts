@@ -13,6 +13,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AudioSymptomComponent } from './audio-symptom/audio-symptom.component';
 import { FeelingSymptomComponent } from './feeling-symptom/feeling-symptom.component';
 import { SmellSymptomComponent } from './smell-symptom/smell-symptom.component';
+import { CarViewComponent } from './car-view/car-view.component';
+import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { SmellSymptomComponent } from './smell-symptom/smell-symptom.component';
     RegistrationComponent,
     AudioSymptomComponent,
     FeelingSymptomComponent,
-    SmellSymptomComponent
+    SmellSymptomComponent,
+    CarViewComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import { SmellSymptomComponent } from './smell-symptom/smell-symptom.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot({preventDuplicates: true})
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

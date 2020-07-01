@@ -12,9 +12,7 @@ import com.ftn.carDiagnostic.model.CarComponentsProblem;
 @Entity
 @DiscriminatorValue("air_flow_parts")
 public class AirFlowParts extends CarComponentsProblem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+
 	
 	private boolean airFilter;
 	private boolean massAirFlowMeter;//poorPerformanca
