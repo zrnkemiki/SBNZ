@@ -54,19 +54,44 @@ public class SymptomController {
 	
 	@PostMapping(value = "/audio-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addAudioSymptom(@RequestBody AudioSymptom audioSymptom) {
+		System.out.println("Usao u add audio symptom controller");
+		List<String> fixes = symptomService.insertAudioSymptom(audioSymptom);
 		
-		return null;
+		if (fixes != null) {
+			for (String fix : fixes) {
+				System.out.println(fix);
+			}
+		}
+		System.out.println("ovo je za fron provratne vrednosti" + fixes);
+		return new ResponseEntity<>(fixes, HttpStatus.OK);
 		
 	}
 	
 	@PostMapping(value = "/smell-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addSoundSymptom(@RequestBody SmellSymptom smellSymptom) {
-		return null;
+		System.out.println("Usao u add smell symptom controller");
+		List<String> fixes = symptomService.insertSmellSymptom(smellSymptom);
+		
+		if (fixes != null) {
+			for (String fix : fixes) {
+				System.out.println(fix);
+			}
+		}
+		return new ResponseEntity<>(fixes, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/feeling-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addFeelingSymptom(@RequestBody FeelingSymptom feelingSymptom) {
-		return null;
+		System.out.println("Usao u add feeling symptom controller");
+		List<String> fixes = symptomService.insertFeelSymptom(feelingSymptom);
+		
+		if (fixes != null) {
+			for (String fix : fixes) {
+				System.out.println(fix);
+			}
+		}
+		
+		return new ResponseEntity<>(fixes, HttpStatus.OK);
 	}
 	
 }

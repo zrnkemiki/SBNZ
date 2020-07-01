@@ -1,0 +1,16 @@
+package rules;
+
+import com.ftn.carDiagnostic.dto.ReservationDTO
+
+global java.util.List fixes;
+global java.util.List appointments;
+global java.util.List timeNeeded;
+
+
+rule "Time for headlight fix"
+	when
+		ReservationDTO(getFix() == "Headlight replacement");
+	then
+		timeNeeded.add("1");
+
+end
