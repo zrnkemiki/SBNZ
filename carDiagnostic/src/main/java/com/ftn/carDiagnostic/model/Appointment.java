@@ -3,9 +3,11 @@ package com.ftn.carDiagnostic.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.kie.api.definition.type.Expires;
@@ -24,7 +26,8 @@ public class Appointment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Long userId;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private User user;
 	
 	private Date executionTime;
 	
@@ -36,26 +39,26 @@ public class Appointment {
 		
 	}
 
-	public Appointment(Long id, Long userId, Date executionTime) {
+	public Appointment(Long id, User user, Date executionTime) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.user = user;
 		this.executionTime = executionTime;
 	}
 	
 	
 
-	public Appointment(Long id, Long userId, Date executionTime, Date startTime) {
+	public Appointment(Long id, User user, Date executionTime, Date startTime) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.user = user;
 		this.executionTime = executionTime;
 		this.startTime = startTime;
 	}
 
-	public Appointment(Long userId) {
+	public Appointment(User user) {
 		super();
-		this.userId = userId;
+		this.user = user;
 	}
 	
 	public Long getId() {
@@ -64,14 +67,6 @@ public class Appointment {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public Date getExecutionTime() {

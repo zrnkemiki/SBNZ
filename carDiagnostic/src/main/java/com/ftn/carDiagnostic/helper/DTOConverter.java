@@ -18,7 +18,7 @@ public class DTOConverter {
 	public static Appointment dtoToAppointment(AppointmentDTO dto) {
 		Appointment ret = new Appointment();
 		ret.setExecutionTime(new Date());
-		ret.setUserId(Long.parseLong(dto.getUserId()));
+		//ret.setUserId(Long.parseLong(dto.getUserId()));
 		try {
 			ret.setStartTime(FORMATTER.parse(dto.getDate()));
 		} catch (ParseException e) {
