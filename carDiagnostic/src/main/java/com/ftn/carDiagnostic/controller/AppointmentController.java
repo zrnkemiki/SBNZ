@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.carDiagnostic.dto.AppointmentDTO;
 import com.ftn.carDiagnostic.dto.ReservationDTO;
 import com.ftn.carDiagnostic.model.User;
 import com.ftn.carDiagnostic.service.AppointmentService;
@@ -28,29 +29,20 @@ public class AppointmentController {
 	@Autowired
 	private UserService userService;
 	
-/*	
-	@PostMapping("/make-appointment")
-	public ResponseEntity<?> addAppointment(@RequestBody AppointmentDTO appointmentDTO) {
-		Appointment apt = DTOConverter.dtoToAppointment(appointmentDTO);
-		
-		appointmentService.insertAppointment(apt);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-*/
-	
+
 	
 	@PostMapping("/available-appointments")
 	public ResponseEntity<?> getAvailableAppointments(@RequestBody ReservationDTO reservationDTO) {
 		
-		List<Date> available = appointmentService.getAvailables(reservationDTO);
-		return new ResponseEntity<List<Date>>(available, HttpStatus.OK);
+		AppointmentDTO available = appointmentService.getAvailables(reservationDTO);
+		return new ResponseEntity<AppointmentDTO>(available, HttpStatus.OK);
 	}
 	
 	@PostMapping("/make-appointment")
-	public ResponseEntity<?> makeAppointment(@RequestBody Date startDate, Principal principal) {
+	public ResponseEntity<?> makeAppointment(@RequestBody AppointmentDTO appointment, Principal principal) {
 		User loggedUser = userService.getLoggedUser();
-		return null;
+		appointmentService.makeAppointment(loggedUser, appointment);
+		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
 	
@@ -61,8 +53,8 @@ public class AppointmentController {
 		dto.setFix("Headlight replacement");
 		dto.setDate(new Date());
 		
-		List<Date> ret = appointmentService.getAvailables(dto);
-		for (Date d : ret) {
+		AppointmentDTO ret = appointmentService.getAvailables(dto);
+		for (Date d : ret.getAvailable()) {
 			System.out.println(d);
 		}
 		return ResponseEntity.ok("ok");

@@ -1,34 +1,47 @@
 package com.ftn.carDiagnostic.dto;
 
+import java.util.Date;
+import java.util.List;
+
 public class AppointmentDTO {
 
-	private String userId;
-	private String date;
+	private List<Date> available;
+	private Date chosenDate;
+	private int appointmentDuration;
 	
 	public AppointmentDTO() {
 		
 	}
 
-	public AppointmentDTO(String userId, String date) {
+	public AppointmentDTO(List<Date> available, Date chosenDate, int appointmentDuration) {
 		super();
-		this.userId = userId;
-		this.date = date;
+		this.available = available;
+		this.chosenDate = chosenDate;
+		this.appointmentDuration = appointmentDuration;
 	}
 
-	public String getUserId() {
-		return userId;
+	public List<Date> getAvailable() {
+		return available;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setAvailable(List<Date> available) {
+		this.available = available;
 	}
 
-	public String getDate() {
-		return date;
+	public Date getChosenDate() {
+		return chosenDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setChosenDate(Date chosenDate) {
+		this.chosenDate = chosenDate;
+	}
+
+	public int getAppointmentDuration() {
+		return appointmentDuration;
+	}
+
+	public void setAppointmentDuration(int appointmentDuration) {
+		this.appointmentDuration = appointmentDuration;
 	}
 	
 	

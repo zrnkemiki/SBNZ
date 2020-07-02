@@ -15,6 +15,7 @@ public class DTOConverter {
 
 	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
+	/*
 	public static Appointment dtoToAppointment(AppointmentDTO dto) {
 		Appointment ret = new Appointment();
 		ret.setExecutionTime(new Date());
@@ -26,6 +27,7 @@ public class DTOConverter {
 		}
 		return ret;
 	}
+	*/
 	
 	public static Appointment resDtoToAPpointment(ReservationDTO dto) {
 		Appointment ret = new Appointment();

@@ -10,10 +10,10 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.carDiagnostic.dto.AppointmentDTO;
 import com.ftn.carDiagnostic.dto.ReservationDTO;
 import com.ftn.carDiagnostic.helper.DTOConverter;
 import com.ftn.carDiagnostic.model.Appointment;
-import com.ftn.carDiagnostic.model.Car;
 import com.ftn.carDiagnostic.model.User;
 import com.ftn.carDiagnostic.repository.AppointmentRepository;
 
@@ -49,7 +49,7 @@ public class AppointmentService {
 	}
 	
 	
-	public List<Date> getAvailables(ReservationDTO resDTO) {
+	public AppointmentDTO getAvailables(ReservationDTO resDTO) {
 		kSession.insert(resDTO);
 		int fired = kSession.fireAllRules();
 		System.out.println("[getAvailables() in AppointmentService] Number of rules fired: " + fired);
@@ -91,12 +91,21 @@ public class AppointmentService {
 				}
 			}
 		}
-		
-		return available;
+		AppointmentDTO dto = new AppointmentDTO();
+		dto.setAvailable(available);
+		dto.setAppointmentDuration(timeNeededInt);
+		return dto;
 	}
 	
 	
-	public void makeAppointment(User loggedUser, Date startDate) {
+	public void makeAppointment(User loggedUser, AppointmentDTO dto) {
+		Appointment newApt = new Appointment();
+		newApt.setUser(loggedUser);
+		newApt.setStartTime(dto.getChosenDate());
+		Date endTime = DateUtils.addHours(dto.getChosenDate(), dto.getAppointmentDuration());
+		newApt.setEndTime(endTime);
+		
+		Appointment saved = appointmentRepository.save(newApt);
 		
 		
 	}
