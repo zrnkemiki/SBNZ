@@ -85,7 +85,9 @@ public class AppointmentService {
 				startApp = t;
 				endApp = DateUtils.addHours(startApp, timeNeededInt);
 				for (Appointment app : booked) {
-					if (startApp.before(app.getStartTime()) && endApp.before(app.getEndTime())) {
+					if (startApp.before(app.getStartTime()) && endApp.before(app.getStartTime())) {
+						available.add(startApp);
+					} else if (startApp.after(app.getEndTime()) && endApp.after(app.getEndTime())) {
 						available.add(startApp);
 					}
 				}
