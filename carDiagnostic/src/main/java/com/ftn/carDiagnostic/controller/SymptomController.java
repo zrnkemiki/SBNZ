@@ -46,7 +46,7 @@ public class SymptomController {
 	@PostMapping(value = "/visual-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addVisualSymptom(@RequestBody VisualSymptom visualSymptom, Principal principal) {
 		User user = userService.getLoggedUser();
-		List<String> fixes = symptomService.insertVisualSymptom(visualSymptom);
+		List<String> fixes = symptomService.insertVisualSymptom(visualSymptom, user);
 
 		if (fixes != null) {
 			for (String fix : fixes) {
@@ -60,10 +60,10 @@ public class SymptomController {
 	
 	@PostMapping(value = "/audio-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addAudioSymptom(@RequestBody AudioSymptom audioSymptom, Principal principal) {
+		User user = userService.getLoggedUser();
 		System.out.println("Usao u add audio symptom controller");
-		List<String> fixes = symptomService.insertAudioSymptom(audioSymptom);
+		List<String> fixes = symptomService.insertAudioSymptom(audioSymptom, user);
 	
-		
 		if (fixes != null) {
 			for (String fix : fixes) {
 				System.out.println(fix);
@@ -76,8 +76,9 @@ public class SymptomController {
 	
 	@PostMapping(value = "/smell-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addSoundSymptom(@RequestBody SmellSymptom smellSymptom, Principal principal) {
+		User user = userService.getLoggedUser();
 		System.out.println("Usao u add smell symptom controller");
-		List<String> fixes = symptomService.insertSmellSymptom(smellSymptom);
+		List<String> fixes = symptomService.insertSmellSymptom(smellSymptom, user);
 		
 		if (fixes != null) {
 			for (String fix : fixes) {
@@ -89,8 +90,9 @@ public class SymptomController {
 	
 	@PostMapping(value = "/feeling-symptom" ,consumes = "application/json")
 	public ResponseEntity<List<String>> addFeelingSymptom(@RequestBody FeelingSymptom feelingSymptom, Principal principal) {
+		User user = userService.getLoggedUser();
 		System.out.println("Usao u add feeling symptom controller");
-		List<String> fixes = symptomService.insertFeelSymptom(feelingSymptom);
+		List<String> fixes = symptomService.insertFeelSymptom(feelingSymptom, user);
 		
 		if (fixes != null) {
 			for (String fix : fixes) {
@@ -99,6 +101,7 @@ public class SymptomController {
 		}
 		
 		return new ResponseEntity<>(fixes, HttpStatus.OK);
+	}
 
 	}
 }

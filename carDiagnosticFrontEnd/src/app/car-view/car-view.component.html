@@ -35,9 +35,7 @@
         <table class="table table-bordered table-hover table-dark">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Date</th>
-                    <th>Milage</th>
                     <th>Description</th>
                 </tr>
             </thead>
@@ -45,13 +43,7 @@
             <tbody>
                 <tr *ngFor="let e of this.car.problemHistory; let i = index">
                     <td>
-                        {{this.car.problemHistory[i]["id"]}}
-                    </td>
-                    <td>
                         {{this.car.problemHistory[i]["date"] | date}}
-                    </td>
-                    <td>
-                        {{this.car.problemHistory[i]["milage"]}}
                     </td>
                     <td>
                         {{this.car.problemHistory[i]["description"]}}

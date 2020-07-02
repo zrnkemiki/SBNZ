@@ -26,6 +26,11 @@ public class CarService {
 		return carRepository.findAll();
 	}
 
+	public void deleteCar(Long carId) {
+		carRepository.deleteById(carId);
+		
+	}
+
 
 
 }
