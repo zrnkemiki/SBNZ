@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.ftn.carDiagnostic.dto.ReservationDTO;
 import com.ftn.carDiagnostic.helper.DTOConverter;
 import com.ftn.carDiagnostic.model.Appointment;
+import com.ftn.carDiagnostic.model.Car;
+import com.ftn.carDiagnostic.model.User;
 import com.ftn.carDiagnostic.repository.AppointmentRepository;
 
 @Service
@@ -20,6 +22,10 @@ public class AppointmentService {
 
 	@Autowired
 	private AppointmentRepository appointmentRepository;
+	
+	@Autowired
+	private CarService carService;
+	
 	
 	private final KieContainer kieContainer;
 	private final KieSession kSession;
@@ -38,11 +44,12 @@ public class AppointmentService {
 	}
 	
 	public List<Appointment> findByDateBetween(Date dateStart, Date dateEnd) {
-		return appointmentRepository.findByDateBetween(dateStart, dateEnd);
+		return appointmentRepository.findByStartTimeBetween(dateStart, dateEnd);
+		//return appointmentRepository.findByStartTImeBetweenOrderByStartTime(dateStart, dateEnd);
 	}
 	
 	
-	public void getAvailables(ReservationDTO resDTO) {
+	public List<Date> getAvailables(ReservationDTO resDTO) {
 		kSession.insert(resDTO);
 		int fired = kSession.fireAllRules();
 		System.out.println("[getAvailables() in AppointmentService] Number of rules fired: " + fired);
@@ -57,7 +64,7 @@ public class AppointmentService {
 			System.out.println("ERROR in [getAvailables() in AppointmentService]: " + e.getMessage());
 		}
 		
-		// nadji sve koji su vec zakazani i probaj da uglavis ovaj termin
+		// nadji sve koji su vec zakazani za taj dan
 		Date startDate = DTOConverter.makeStartDate(resDTO.getDate());
 		Date endDate = DTOConverter.makeEndDate(resDTO.getDate());
 		List<Appointment> booked = findByDateBetween(startDate, endDate);
@@ -65,21 +72,33 @@ public class AppointmentService {
 		int timeNeededInt = Integer.parseInt(timeNeeded.get(0));
 		
 		List<Date> available = new ArrayList<Date>();
-		
+		List<Date> allTimes = DTOConverter.availableTimesForDate(startDate);
 		// ako su slobodni svi termini u danu
 		if (booked.isEmpty()) {
-			available = DTOConverter.availableTimesForDate(startDate);
-		}
-		
-		// ako ima zauzetih termina --> uglavi 
-		Date forCheck = startDate;
-		for (int i = 0; i < booked.size(); i++) {
-			Date afterTimeNeeded = DateUtils.addHours(forCheck, timeNeededInt);
-			if (afterTimeNeeded.before(booked.get(i).getDate())) {
-				//available.add(e)
+			available = allTimes;
+		// ako nisu
+		} else {
+			Date startApp = null;
+			Date endApp = null;
+			
+			for (Date t : allTimes) {
+				startApp = t;
+				endApp = DateUtils.addHours(startApp, timeNeededInt);
+				for (Appointment app : booked) {
+					if (startApp.before(app.getStartTime()) && endApp.before(app.getEndTime())) {
+						available.add(startApp);
+					}
+				}
 			}
 		}
+		
+		return available;
 	}
 	
+	
+	public void makeAppointment(User loggedUser, Date startDate) {
+		
+		
+	}
 	
 }

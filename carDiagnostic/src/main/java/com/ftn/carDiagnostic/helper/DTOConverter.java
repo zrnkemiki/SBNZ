@@ -20,7 +20,7 @@ public class DTOConverter {
 		ret.setExecutionTime(new Date());
 		ret.setUserId(Long.parseLong(dto.getUserId()));
 		try {
-			ret.setDate(FORMATTER.parse(dto.getDate()));
+			ret.setStartTime(FORMATTER.parse(dto.getDate()));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -31,7 +31,7 @@ public class DTOConverter {
 		Appointment ret = new Appointment();
 		ret.setExecutionTime(new Date());
 		// SETUJ USERA!
-		ret.setDate(dto.getDate());
+		ret.setStartTime(dto.getDate());
 		return ret;
 	}
 	
@@ -64,7 +64,7 @@ public class DTOConverter {
 		
 		dateCal.set(Calendar.HOUR_OF_DAY, 7);
 		dateCal.set(Calendar.MINUTE, 0);
-		dateCal.set(Calendar.SECOND, 0);
+		dateCal.set(Calendar.SECOND, 1);
 		dateCal.set(Calendar.MILLISECOND, 0);
 		
 		
@@ -75,15 +75,11 @@ public class DTOConverter {
 		List<Date> ret = new ArrayList<Date>();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		int addHour = 7;
-		for (int i = 1; i < 16; i++) {
-			cal.set(Calendar.HOUR_OF_DAY, addHour);
-			addHour++;
+		for (int i = 7; i < 22; i++) {
+			cal.set(Calendar.HOUR_OF_DAY, i);
 			ret.add(cal.getTime());
 		}
 		
 		return ret;
-		
-		
 	}
 }

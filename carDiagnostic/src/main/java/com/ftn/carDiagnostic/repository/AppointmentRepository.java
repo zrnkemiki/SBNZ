@@ -11,8 +11,8 @@ import com.ftn.carDiagnostic.model.Appointment;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-	List<Appointment> findByDateBetween(Date dateBegin, Date dateEnd);
+	List<Appointment> findByStartTimeBetween(Date dateBegin, Date dateEnd);
 	
-	List<Appointment> findByDateBetweenOrderByDate(Date dateBegin, Date dateEnd);
+	List<Appointment> findByStartTimeBetweenOrderByStartTime(Date dateBegin, Date dateEnd);
 	
 }

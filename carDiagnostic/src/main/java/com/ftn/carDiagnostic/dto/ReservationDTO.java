@@ -2,6 +2,7 @@ package com.ftn.carDiagnostic.dto;
 
 import java.util.Date;
 
+
 public class ReservationDTO {
 
 	private String fix;
