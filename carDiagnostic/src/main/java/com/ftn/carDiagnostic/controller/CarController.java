@@ -35,12 +35,9 @@ public class CarController {
 		Car car = new Car(carDTO);
 		car = carService.saveCar(car);
 		
-		User user = userService.getLoggedUser();
+		User user = userService.getLoggedUser();	
 		
-		if(user.getCarId() != null) {
-			carService.deleteCar(user.getCarId());
-		}
-		user.setCarId(car.getId());
+		user.setCar(car);
 		userService.saveUser(user);
 
 		return new ResponseEntity<>(car, HttpStatus.CREATED);
@@ -49,7 +46,7 @@ public class CarController {
 	@GetMapping(value = "/getByUser/{param}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getVehicle(@PathVariable("param") String id, Principal principal) {
 		User u = userService.getUserByUsername(id);
-		Car car = carService.getCar(u.getCarId());
+		Car car = carService.getCar(u.getCar().getId());
 		return new ResponseEntity<>(car, HttpStatus.OK);
 	}
 
