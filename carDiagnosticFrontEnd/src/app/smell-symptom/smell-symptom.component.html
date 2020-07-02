@@ -87,7 +87,7 @@
             </tbody>
         </table>
     </div>
-    <table class="table table-bordered table-hover table-dark" *ngIf="dates">
+    <table class="table table-bordered table-hover table-dark" *ngIf="appointmentDTO">
         <thead>
             <tr>
                 <th>No.</th>
@@ -97,12 +97,12 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let date of dates; let i = index">
+            <tr *ngFor="let date of appointmentDTO.available; let i = index">
                 <td>
                     {{i}}
                 </td>
                 <td>
-                    {{date}}
+                    {{date | date:'short'}}
                 </td>
                 <td>
                     <button *ngIf="fixes" (click)="reserve(date)" id="sendlogin" class="col-md-9 btn btn-primary">Make reservation</button>

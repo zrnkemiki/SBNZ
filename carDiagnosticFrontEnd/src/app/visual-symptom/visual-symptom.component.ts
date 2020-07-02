@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { SymptomService } from '../services/symptom.service';
 import { ReservationService } from '../services/reservation.service';
 import { reservationDTO } from '../dto/reservationDTO';
+import { AppointmentDTO } from '../dto/AppointmentDTO';
 
 @Component({
   selector: 'app-visual-symptom',
@@ -22,8 +23,10 @@ export class VisualSymptomComponent implements OnInit {
   fixes;
   dates: Date[];
   reservationDTO: reservationDTO;
+  appointmentDTO: AppointmentDTO;
 
-  date1 = new Date();
+
+
 
   constructor(
     private router: Router,
@@ -32,6 +35,8 @@ export class VisualSymptomComponent implements OnInit {
     private http: HttpClient,
     private symptomService: SymptomService,
     private reservationService: ReservationService,
+
+
     
   ) {
     this.visualSymptomTemp = "";
@@ -119,16 +124,13 @@ export class VisualSymptomComponent implements OnInit {
 
   checkReservation(fix: String){
     this.reservationDTO.fix = fix;
-    this.dates = [];
-    this.dates.push(new Date());
-    this.dates.push(new Date());
-
-
-    this.reservationService.checkReservation(this.reservationDTO).subscribe(data => {this.dates = data; alert(data)})
+    this.appointmentDTO = new AppointmentDTO();
+    this.reservationService.checkReservationTest(this.reservationDTO).subscribe(data => {this.appointmentDTO = data;})
   }
 
   reserve(date: Date){
-    alert(date);
+    this.appointmentDTO.chosenDate = date;
+    this.reservationService.reserve(this.appointmentDTO).subscribe(data => {alert("Reserved!");  this.router.navigate(['/homepage']);} )
   }
 
  
