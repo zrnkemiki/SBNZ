@@ -6,6 +6,7 @@ import { SymptomService } from '../services/symptom.service';
 import { SmellSymptom } from '../model/smellSymptom';
 import { ReservationService } from '../services/reservation.service';
 import { reservationDTO } from '../dto/reservationDTO';
+import { AppointmentDTO } from '../dto/AppointmentDTO';
 
 @Component({
   selector: 'app-smell-symptom',
@@ -21,6 +22,7 @@ export class SmellSymptomComponent implements OnInit {
   fixes;
   dates: Date[];
   reservationDTO: reservationDTO;
+  appointmentDTO: AppointmentDTO;
 
   constructor(
     private router: Router,
@@ -65,13 +67,16 @@ export class SmellSymptomComponent implements OnInit {
     this.symptomService.addSmellSymptom(this.smellSymptom).subscribe(resp => {this.fixes = resp;console.log(resp); });
   
   }
+
   checkReservation(fix: String){
     this.reservationDTO.fix = fix;
-    this.reservationService.checkReservation(this.reservationDTO).subscribe(data => {this.dates = data; alert(data)})
+    this.appointmentDTO = new AppointmentDTO();
+    this.reservationService.checkReservationTest(this.reservationDTO).subscribe(data => {this.appointmentDTO = data;})
   }
 
   reserve(date: Date){
-    alert(date);
+    this.appointmentDTO.chosenDate = date;
+    this.reservationService.reserve(this.appointmentDTO).subscribe(data => {alert("Reserved!");  this.router.navigate(['/homepage']);} )
   }
  
 }
