@@ -11,18 +11,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 import com.ftn.carDiagnostic.dto.UserDTO;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	protected Long id;
-	private Long carId;
+	@OneToOne
+	private Car car;
 	protected String firstName;
 	protected String lastName;
 	protected String username;
@@ -31,22 +32,20 @@ public class User {
 	protected String city;
 	protected String phoneNumber;
 	@Enumerated(EnumType.ORDINAL)
-    protected UserStatus userStatus;
-	
+	protected UserStatus userStatus;
+
 	protected String uuid;
-    
-    
-    
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public User(Long id, Long carId, String firstName, String lastName, String username, String email, String password,
+
+	public User(Long id, Car car, String firstName, String lastName, String username, String email, String password,
 			String city, String phoneNumber, UserStatus userStatus, String uuid) {
 		super();
 		this.id = id;
-		this.carId = carId;
+		this.car = car;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -57,7 +56,7 @@ public class User {
 		this.userStatus = userStatus;
 		this.uuid = uuid;
 	}
-	
+
 	public User(UserDTO dto) {
 		this.firstName = dto.getFirstName();
 		this.lastName = dto.getLastName();
@@ -69,90 +68,92 @@ public class User {
 		this.uuid = UUID.randomUUID().toString();
 	}
 
-
-
-
-
-
-
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getCarId() {
-		return carId;
+
+	public Car getCar() {
+		return car;
 	}
-	public void setCarId(Long carId) {
-		this.carId = carId;
+
+	public void setCar(Car car) {
+		this.car = car;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-
 
 	public UserStatus getUserStatus() {
 		return userStatus;
 	}
 
-
-
 	public void setUserStatus(UserStatus userStatus) {
 		this.userStatus = userStatus;
 	}
-
-
 
 	public String getUuid() {
 		return uuid;
 	}
 
-
-
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-    
-    
+
 }

@@ -59,7 +59,7 @@ public class SymptomService {
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
 		List<CarComponentsProblem> problems = (ArrayList<CarComponentsProblem>) kSession.getGlobal("problems");
 
-		Car car = carService.getCar(user.getCarId());
+		Car car = carService.getCar(user.getCar().getId());
 
 		for (CarComponentsProblem carComponentsProblem : problems) {
 			carComponentsProblem.setDate(new Date());
@@ -80,7 +80,7 @@ public class SymptomService {
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
 		List<CarComponentsProblem> problems = (ArrayList<CarComponentsProblem>) kSession.getGlobal("problems");
 
-		Car car = carService.getCar(user.getCarId());
+		Car car = carService.getCar(user.getCar().getId());
 
 		for (CarComponentsProblem carComponentsProblem : problems) {
 			carComponentsProblem.setDate(new Date());
@@ -100,7 +100,7 @@ public class SymptomService {
 		@SuppressWarnings("unchecked")
 		List<CarComponentsProblem> problems = (ArrayList<CarComponentsProblem>) kSession.getGlobal("problems");
 
-		Car car = carService.getCar(user.getCarId());
+		Car car = carService.getCar(user.getCar().getId());
 
 		for (CarComponentsProblem carComponentsProblem : problems) {
 			carComponentsProblem.setDate(new Date());
@@ -119,7 +119,7 @@ public class SymptomService {
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
 		List<CarComponentsProblem> problems = (ArrayList<CarComponentsProblem>) kSession.getGlobal("problems");
 
-		Car car = carService.getCar(user.getCarId());
+		Car car = carService.getCar(user.getCar().getId());
 
 		for (CarComponentsProblem carComponentsProblem : problems) {
 			carComponentsProblem.setDate(new Date());
