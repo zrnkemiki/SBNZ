@@ -84,6 +84,7 @@ public class AppointmentService {
 			for (Date t : allTimes) {
 				startApp = t;
 				endApp = DateUtils.addHours(startApp, timeNeededInt);
+				endApp = DTOConverter.setSecondsToZero(endApp);
 				for (Appointment app : booked) {
 					if (startApp.before(app.getStartTime()) && endApp.before(app.getStartTime())) {
 						available.add(startApp);
