@@ -105,7 +105,7 @@ public class AppointmentService {
 		newApt.setUser(loggedUser);
 		newApt.setStartTime(dto.getChosenDate());
 		Date endTime = DateUtils.addHours(dto.getChosenDate(), dto.getAppointmentDuration());
-		newApt.setEndTime(endTime);
+		newApt.setEndTime(DTOConverter.setSecondsToZero(endTime));
 		
 		Appointment saved = appointmentRepository.save(newApt);
 		
