@@ -9,6 +9,7 @@ import { AudioSymptomComponent } from './audio-symptom/audio-symptom.component';
 import { FeelingSymptomComponent } from './feeling-symptom/feeling-symptom.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { CarViewComponent } from './car-view/car-view.component';
+import { AddCarComponent } from './add-car/add-car.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'audio-symptom', component: AudioSymptomComponent},
   { path: 'feeling-symptom', component: FeelingSymptomComponent},
   { path: 'car-view', component: CarViewComponent},
+  { path: 'add-car', component: AddCarComponent},
   
 
     //Disabled AuthGuard

@@ -15,6 +15,7 @@ import { FeelingSymptomComponent } from './feeling-symptom/feeling-symptom.compo
 import { SmellSymptomComponent } from './smell-symptom/smell-symptom.component';
 import { CarViewComponent } from './car-view/car-view.component';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
+import { AddCarComponent } from './add-car/add-car.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
     AudioSymptomComponent,
     FeelingSymptomComponent,
     SmellSymptomComponent,
-    CarViewComponent
+    CarViewComponent,
+    AddCarComponent
   ],
   imports: [
     BrowserModule,
