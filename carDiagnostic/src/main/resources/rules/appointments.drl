@@ -9,7 +9,7 @@ global java.util.List timeNeeded;
 
 rule "Time for headlight fix"
 	when
-		ReservationDTO(getFix() == "Headlight replacement");
+		ReservationDTO(getFix() == "Check fuse");
 	then
 		timeNeeded.add("1");
 
