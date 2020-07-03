@@ -47,12 +47,6 @@ public class SymptomController {
 		User user = userService.getLoggedUser();
 		List<String> fixes = symptomService.insertVisualSymptom(visualSymptom, user);
 
-		if (fixes != null) {
-			for (String fix : fixes) {
-				System.out.println(fix);
-			}
-		}
-		System.out.println("Ovo je za front povratne vrednosti" + fixes);
 		
 		return new ResponseEntity<>(fixes, HttpStatus.OK);		
 	}
@@ -63,11 +57,7 @@ public class SymptomController {
 		System.out.println("Usao u add audio symptom controller");
 		List<String> fixes = symptomService.insertAudioSymptom(audioSymptom, user);
 	
-		if (fixes != null) {
-			for (String fix : fixes) {
-				System.out.println(fix);
-			}
-		}
+		
 		System.out.println("ovo je za fron provratne vrednosti" + fixes);
 		return new ResponseEntity<>(fixes, HttpStatus.OK);
 		
@@ -79,11 +69,7 @@ public class SymptomController {
 		System.out.println("Usao u add smell symptom controller");
 		List<String> fixes = symptomService.insertSmellSymptom(smellSymptom, user);
 		
-		if (fixes != null) {
-			for (String fix : fixes) {
-				System.out.println(fix);
-			}
-		}
+		
 		return new ResponseEntity<>(fixes, HttpStatus.OK);
 	}
 	
@@ -92,12 +78,6 @@ public class SymptomController {
 		User user = userService.getLoggedUser();
 		System.out.println("Usao u add feeling symptom controller");
 		List<String> fixes = symptomService.insertFeelSymptom(feelingSymptom, user);
-		
-		if (fixes != null) {
-			for (String fix : fixes) {
-				System.out.println(fix);
-			}
-		}
 		
 		return new ResponseEntity<>(fixes, HttpStatus.OK);
 	}

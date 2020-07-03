@@ -9,6 +9,7 @@ import com.ftn.carDiagnostic.model.parts.AirFlowParts;
 import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom
 import com.ftn.carDiagnostic.model.symptoms.AudioSymptom
 import com.ftn.carDiagnostic.model.Log
+import com.ftn.carDiagnostic.model.Car;
 
 global java.util.List problems;
 
@@ -18,12 +19,40 @@ global java.util.List problems;
 
 
 
+rule "Kvar vise puta"
+    when
+    	$vs: VisualSymptom( isHeadlightNotWorking() == true );
+        $c: Car($problemHistory: problemHistory)
+        Number($value: intValue >= 2) from accumulate(
+        	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
+        	count($t)
+        )
+    then
+    	delete($vs);  
+    	delete($c);
+    	ElectricalParts ep = new ElectricalParts(); 
+       	ep.setTailLight(true);
+       	ep.setDescription("Problem with tail light");
+       	problems.clear();
+       	problems.add(ep);
+       	insert(ep); //dodajemo novi problem
+    	System.out.println("Kvar headlight vise  od 2 puta");
+
+end
+
+
 
 rule "Headlight not working symptom"
     when
         $vs: VisualSymptom( isHeadlightNotWorking() == true );
+        $c: Car($problemHistory: problemHistory)
+        Number($value: intValue < 2) from accumulate(
+        	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
+        	count($t)
+        )
     then
     	delete($vs); //izbaci simptom iz baze znanja
+    	delete($c);
        	ElectricalParts ep = new ElectricalParts(); ////pravi novi electrical parts problem gde je samo headlight true 
        	ep.setHeadlight(true);
        	ep.setDescription("Problem with headlight");
