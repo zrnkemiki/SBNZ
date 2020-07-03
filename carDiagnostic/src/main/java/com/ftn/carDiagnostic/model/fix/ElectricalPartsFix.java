@@ -36,9 +36,11 @@ public class ElectricalPartsFix {
 	private List<String> batteryFix;
 	@ElementCollection
 	private List<String> electricFanFix;
+	@ElementCollection
+	private List<String> alternatorFix; 
 	
 	public ElectricalPartsFix(List<String> headlightFix, List<String> taillightFix, List<String> electricWindowsFix,
-			List<String> batteryFix, List<String> electricFanFix, List<String> electricWindowMotorFix) {
+			List<String> batteryFix, List<String> electricFanFix, List<String> electricWindowMotorFix, List<String> alternatorFix) {
 		super();
 		this.headlightFix = headlightFix;
 		this.taillightFix = taillightFix;
@@ -46,6 +48,7 @@ public class ElectricalPartsFix {
 		this.batteryFix = batteryFix;
 		this.electricFanFix = electricFanFix;
 		this.electricWindowMotorFix = electricWindowMotorFix;
+		this.alternatorFix = alternatorFix;
 	}
 
 	public ElectricalPartsFix() {
@@ -60,6 +63,7 @@ public class ElectricalPartsFix {
 		this.batteryFix = new ArrayList<String>();;
 		this.electricFanFix = new ArrayList<String>();
 		this.electricWindowMotorFix = new ArrayList<String>();
+		this.alternatorFix = new ArrayList<String>();
 		
 		this.headlightFix.add("Check fuse");
 		this.headlightFix.add("Check front contact");
@@ -77,6 +81,9 @@ public class ElectricalPartsFix {
 		this.electricFanFix.add("Replace fan");
 		this.electricFanFix.add("Electricfan replacement");
 		this.electricWindowMotorFix.add("Window motor replacement");
+		this.alternatorFix.add("Check alternator charging voltage");
+		this.alternatorFix.add("Check Rotor and Stator");
+		this.alternatorFix.add("Alternator replacement");
 	}
 	
 	public List<String> getHeadlightFix() {
@@ -110,15 +117,7 @@ public class ElectricalPartsFix {
 	public void setBatteryFix(List<String> batteryFix) {
 		this.batteryFix = batteryFix;
 	}
-	/*
-	public String getTestFix() {
-		return testFix;
-	}
 
-	public void setTestFix(String testFix) {
-		this.testFix = testFix;
-	}
-	*/
 	public List<String> getElectricFanFix() {
 		return electricFanFix;
 	}
@@ -133,6 +132,14 @@ public class ElectricalPartsFix {
 
 	public void setElectricWindowMotorFix(List<String> electricWindowMotorFix) {
 		this.electricWindowMotorFix = electricWindowMotorFix;
+	}
+
+	public List<String> getAlternatorFix() {
+		return alternatorFix;
+	}
+
+	public void setAlternatorFix(List<String> alternatorFix) {
+		this.alternatorFix = alternatorFix;
 	}
 	
 	

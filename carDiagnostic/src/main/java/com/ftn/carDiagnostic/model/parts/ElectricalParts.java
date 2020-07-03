@@ -24,6 +24,7 @@ public class ElectricalParts extends CarComponentsProblem {
 	private boolean electricWindowMotor;
 	private boolean battery;
 	private boolean electricFan;
+	private boolean alternator;
 
 	public ElectricalParts() {
 		super();
@@ -31,13 +32,14 @@ public class ElectricalParts extends CarComponentsProblem {
 	}
 
 	public ElectricalParts(boolean headlights, boolean tailLights, 
-			boolean electricWindows, boolean battery, boolean electricFan) {
+			boolean electricWindows, boolean battery, boolean electricFan, boolean alternator ) {
 		super();
 		this.headlight = headlights;
 		this.tailLight = tailLights;
 		this.electricWindows = electricWindows;
 		this.battery = battery;
 		this.electricFan = electricFan;
+		this.alternator = alternator ;
 	}
 	
 	public ElectricalParts(boolean headlight) {
@@ -93,5 +95,13 @@ public class ElectricalParts extends CarComponentsProblem {
 
 	public void setElectricFan(boolean electricFan) {
 		this.electricFan = electricFan;
+	}
+
+	public boolean isAlternator() {
+		return alternator;
+	}
+
+	public void setAlternator(boolean alternator) {
+		this.alternator = alternator;
 	}
 }
