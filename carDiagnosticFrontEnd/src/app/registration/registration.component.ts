@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
 
   addUser() {
     if (this.user.firstName == undefined) {
-      alert("You must enter username.")
+      alert("You must enter first name.")
     }
     else if (this.user.lastName == undefined) {
       alert("You must enter lastName.")
@@ -54,6 +54,9 @@ export class RegistrationComponent implements OnInit {
     }
     else if (this.user.city == undefined) {
       alert("You must enter city.")
+    }
+    else if (this.user.phoneNumber == undefined) {
+      alert("You must enter phone number.")
     }
     else {
       this.userService.addUser(this.user);

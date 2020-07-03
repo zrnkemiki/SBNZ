@@ -12,7 +12,7 @@ public class UserDTO {
 	protected String username;
     protected String email;
     protected String city;
-    protected String number;
+    protected String phoneNumber;
     protected String JWTToken;
 
     public UserDTO() {
@@ -28,7 +28,7 @@ public class UserDTO {
 		this.username = username;
 		this.email = email;
 		this.city = city;
-		this.number = number;
+		this.phoneNumber = number;
 		this.JWTToken = jWTToken;
 		this.companyName = companyName;
 	}
@@ -101,11 +101,11 @@ public class UserDTO {
 	}
 	
 	public String getNumber() {
-		return number;
+		return phoneNumber;
 	}
 	
 	public void setNumber(String number) {
-		this.number = number;
+		this.phoneNumber = number;
 	}
 	
 	public String getCompanyName() {

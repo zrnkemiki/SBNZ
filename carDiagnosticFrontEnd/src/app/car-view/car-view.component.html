@@ -7,47 +7,48 @@
 <div class="container">
     <form class="well form-horizontal">
         <div class="form-group">
-            <label class="col-md-4 control-label">Car ID</label>
-            <label> {{this.car.id}} </label>
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label">Car model</label>
+            <label class="col-md-4 control-label"><strong>Car model</strong> </label>
             <label> {{this.car.model}} </label>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">Brand</label>
+            <label class="col-md-4 control-label"><strong>Brand</strong></label>
             <label> {{this.car.brand}} </label>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">Year</label>
+            <label class="col-md-4 control-label"><strong>Year</strong></label>
             <label> {{this.car.year}} </label>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">Engine Type</label>
+            <label class="col-md-4 control-label"><strong>Engine Type</strong></label>
             <label> {{this.car.engineType}} </label>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">Milage</label>
+            <label class="col-md-4 control-label"><strong>Milage</strong></label>
             <label> {{this.car.milage}} </label>
         </div>
+    </form>
 
 
-        <table class="table table-bordered table-hover table-dark">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
+    <br>
+    <h2>Reported problem history:</h2>
+    <hr>
 
-            <tbody>
-                <tr *ngFor="let e of this.car.problemHistory; let i = index">
-                    <td>
-                        {{this.car.problemHistory[i]["date"] | date}}
-                    </td>
-                    <td>
-                        {{this.car.problemHistory[i]["description"]}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <table class="table table-bordered table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Problem description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let e of this.car.problemHistory; let i = index">
+                <td>
+                    {{this.car.problemHistory[i]["date"] | date}}
+                </td>
+                <td>
+                    {{this.car.problemHistory[i]["description"]}}
+                </td>
+            </tr>
+        </tbody>
+    </table>

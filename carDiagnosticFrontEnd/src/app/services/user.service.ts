@@ -85,7 +85,7 @@ export class UserService {
         addedUser => {
           this.users.push(addedUser);
           this.userSource.next(this.users);
-          alert("Succesfully added user" + user.username + "now.");
+          alert("Succesfully added user " + user.username + ".");
         }
       )
   }

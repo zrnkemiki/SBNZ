@@ -23,6 +23,7 @@ export class CarViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserCar();
+    this.car = new Car();
   }
 
 
