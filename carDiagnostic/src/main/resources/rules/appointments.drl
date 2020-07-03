@@ -166,7 +166,7 @@ rule "Time for Tyre replacement"
 		ReservationDTO(getFix() == "Tyre replacement");
 	then
 		timeNeeded.clear();
-		timeNeedd.add("1");
+		timeNeeded.add("1");
 
 end
 
