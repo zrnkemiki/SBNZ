@@ -6,6 +6,7 @@ import com.ftn.carDiagnostic.model.RuleReturnTest;
 import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
 import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
 import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
+import com.ftn.carDiagnostic.model.Car;
 
 global java.util.List fixes;
 global java.util.List appointments;
@@ -13,6 +14,7 @@ global java.util.List appointments;
 //DRUGA GRUPA PRAVILA, NA OSNOVU PROBLEMATICNOG DELA SE PRONALAZI POPRAVKA ZA ISTI
 
 //ELECTRICAL PROBLEMS
+
 
 rule "FAILURE ID-1 -loginFail multiple"
 	when
