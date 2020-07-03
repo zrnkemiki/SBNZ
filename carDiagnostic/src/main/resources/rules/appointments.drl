@@ -35,4 +35,139 @@ rule "Time for Window fix"
 
 end
 
+rule "Time for Window motor replacement fix"
+	when
+		ReservationDTO(getFix() == "Window motor replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Battery replacement fix"
+	when
+		ReservationDTO(getFix() == "Battery replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Electricfan replacement fix"
+	when
+		ReservationDTO(getFix() == "Electricfan replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for Alternator replacement fix"
+	when
+		ReservationDTO(getFix() == "Alternator replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for turboChargerFix fix"
+	when
+		ReservationDTO(getFix() == "Turbo charger replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for DPF replacement"
+	when
+		ReservationDTO(getFix() == "DPF replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("3");
+
+end
+
+rule "Time for Shockabsorber replacement"
+	when
+		ReservationDTO(getFix() == "Shockabsorber replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Brake disc replacement"
+	when
+		ReservationDTO(getFix() == "Brake disc replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for stabilizer replacement fix"
+	when
+		ReservationDTO(getFix() == "Stabilizer replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Brake pads replacement"
+	when
+		ReservationDTO(getFix() == "Brake pads replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for Engine belt replacement"
+	when
+		ReservationDTO(getFix() == "Engine belt replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for brake lines replacement"
+	when
+		ReservationDTO(getFix() == "Brake lines replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Gasket replacement"
+	when
+		ReservationDTO(getFix() == "Gasket replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for Dualmass flywheel replacement"
+	when
+		ReservationDTO(getFix() == "Dualmass flywheel replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("4");
+
+end
+
+rule "Time for Tyre replacement"
+	when
+		ReservationDTO(getFix() == "Tyre replacement");
+	then
+		timeNeeded.clear();
+		timeNeedd.add("1");
+
+end
+
 
