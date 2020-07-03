@@ -56,31 +56,7 @@ public class TestController {
 		epf = eservice.saveEPF(epf);
 		mpf = mservice.saveMPF(mpf);
 		
-		Car car = new Car();
-		car.setBrand("Audi");
-		car.setEngineType("2.0 TDI");
-		car.setMilage("100000");
-		car.setYear("2015");
-		car.setModel("A4");
 		
-		List<CarComponentsProblem> problemi = new ArrayList<CarComponentsProblem>();
-		
-		ElectricalParts headlight = new ElectricalParts();
-		headlight.setHeadlight(true);
-		headlight.setDate(new Date());
-		headlight.setMilage(98000);
-		
-		ElectricalParts taillight = new ElectricalParts();
-		taillight.setTailLight(true);
-		taillight.setDate(new Date());
-		taillight.setMilage(95000);
-		
-		problemi.add(headlight);
-		problemi.add(taillight);
-		
-		car.setProblemHistory(problemi);
-		
-		carService.saveCar(car);
 		
 	}
 	
