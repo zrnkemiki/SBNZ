@@ -78,7 +78,6 @@ public class ElectricalPartsFix {
 		this.batteryFix.add("Jump start your car");
 		this.batteryFix.add("Recharge battery");
 		this.batteryFix.add("Battery replacement");
-		this.electricFanFix.add("Replace fan");
 		this.electricFanFix.add("Electricfan replacement");
 		this.electricWindowMotorFix.add("Window motor replacement");
 		this.alternatorFix.add("Check alternator charging voltage");
