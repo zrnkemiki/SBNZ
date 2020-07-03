@@ -18,23 +18,25 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent},
   { path: 'homepage', component: HomepageComponent},
   { path: '', component: HomepageComponent },
-  
+  /*
   { path: 'visual-symptom', component: VisualSymptomComponent},
   { path: 'smell-symptom', component: SmellSymptomComponent},
   { path: 'audio-symptom', component: AudioSymptomComponent},
   { path: 'feeling-symptom', component: FeelingSymptomComponent},
   { path: 'car-view', component: CarViewComponent},
   { path: 'add-car', component: AddCarComponent},
-  
+  */
 
-    //Disabled AuthGuard
-  /*
+    //AuthGuard
+
   
   { path: 'visual-symptom', component: VisualSymptomComponent , canActivate: [AuthGuard]},
   { path: 'smell-symptom', component: SmellSymptomComponent , canActivate: [AuthGuard]},
   { path: 'audio-symptom', component: AudioSymptomComponent , canActivate: [AuthGuard]},
   { path: 'feeling-symptom', component: FeelingSymptomComponent , canActivate: [AuthGuard]},
-  */
+  { path: 'car-view', component: CarViewComponent, canActivate: [AuthGuard]},
+  { path: 'add-car', component: AddCarComponent, canActivate: [AuthGuard]},
+  
 
 ];
 

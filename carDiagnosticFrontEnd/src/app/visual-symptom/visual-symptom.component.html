@@ -4,25 +4,13 @@
 </section>
 
 <div class="container">
+
     <div class="row justify-content-center align-items-center" style="height:50vh">
+
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
                     <form action="" autocomplete="off">
-                        <!--
-                        <div class="form-group">
-                            <div class="col-md-9 selectContainer">
-                                <label>Please fill in visual symptoms:</label>
-                                <div class="input-group">
-                                    <select name="car" [(ngModel)]="this.carTemp" class="form-control selectpicker">
-                                        <option value="">Select your Vehicle</option>
-                                        <option>Audi A4</option>
-                                        <option>Fiat Panda</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        -->
                         <div class="col-md-9 selectContainer" *ngIf="!fixes">
                             <div class="input-group">
                                 <select name="visualSymptom" class="form-control" [(ngModel)]="this.visualSymptomTemp" required>
@@ -44,7 +32,6 @@
                                     <option value="engineOverHeating" selected>Engine overheating</option>
                                     <option value="unevenTyreWear" selected>Unewaven tyre wear</option>
                                     <option value="engineStartProblem" selected>Engine start problem</option>
-                                    <option value="engineShaking" selected>Engine shaking</option>
                                     <option value="carUnstable" selected>Car unstable</option>
                                     <option value="brakeFluidLow" selected>Brake fluid low</option>
                                 </select>
@@ -66,7 +53,7 @@
 
                         </div>
                         <br>
-                        <button *ngIf="!fixes" (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Submit</button>
+                        <button *ngIf="!fixes" (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Submit visual symptom</button>
                         <button *ngIf="fixes" (click)="refresh()" id="sendlogin" class="col-md-9 btn btn-primary">Submit new symptom</button>
 
                     </form>

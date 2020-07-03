@@ -9,20 +9,6 @@
             <div class="card">
                 <div class="card-body">
                     <form action="" autocomplete="off">
-                        <!--
-                        <div class="form-group">
-                            <div class="col-md-9 selectContainer">
-                                <label>Please fill in feeling symptoms:</label>
-                                <div class="input-group">
-                                    <select name="car" [(ngModel)]="this.carTemp" class="form-control selectpicker">
-                                        <option value="">Select your Vehicle</option>
-                                        <option>Audi A4</option>
-                                        <option>Fiat Panda</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        -->
                         <div class="col-md-9 selectContainer">
                             <div class="input-group">
                                 <select name="visualSymptom" class="form-control" [(ngModel)]="this.feelingSymptomTemp" required>
@@ -52,7 +38,7 @@
 
                         </div>
                         <br>
-                        <button *ngIf="!fixes" (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Submit</button>
+                        <button *ngIf="!fixes" (click)="addVisualSymptom()" id="sendlogin" class="col-md-9 btn btn-primary">Submit feeling symptom</button>
                         <button *ngIf="fixes" (click)="refresh()" id="sendlogin" class="col-md-9 btn btn-primary">Submit new symptom</button>
 
                     </form>
