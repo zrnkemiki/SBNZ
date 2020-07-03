@@ -47,8 +47,10 @@ public class AirFlowPartsFix {
 		
 		this.turboChargerFix.add("Check for oil signs in turbo charger");
 		this.turboChargerFix.add("Check turbine gap in turbo charger");
+		this.turboChargerFix.add("Turbo charger replacement");
 		this.dpfFix.add("Go to highway and drive car for 20min on higher revs");
 		this.dpfFix.add("Using diagnostic force dpf regeneration");
+		this.dpfFix.add("DPF replacement");
 		
 	}
 	
