@@ -451,7 +451,7 @@ end
 
 rule "long starting problem"
 	when
-		$fs: FeelingSymptom( isLongStarting() ) ;
+		$fs: FeelingSymptom(isLongStarting());
 	then
 		delete($fs);
 		FuelInjectionParts fp = new FuelInjectionParts();
@@ -465,7 +465,7 @@ end
 
 rule "shaking problem"
 	when
-		$fs: FeelingSymptom( isShaking() ) ;
+		$fs: FeelingSymptom( isShaking() );
 	then
 		delete($fs);
 		FuelInjectionParts fp = new FuelInjectionParts();

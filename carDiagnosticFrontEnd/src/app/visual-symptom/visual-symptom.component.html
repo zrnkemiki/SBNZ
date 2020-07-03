@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         -->
-                        <div class="col-md-9 selectContainer">
+                        <div class="col-md-9 selectContainer" *ngIf="!fixes">
                             <div class="input-group">
                                 <select name="visualSymptom" class="form-control" [(ngModel)]="this.visualSymptomTemp" required>
                                     <option value="">Select your symptom</option>
@@ -52,7 +52,7 @@
 
                         </div>
                         <br>
-                        <div class="col-md-9 selectContainer">
+                        <div class="col-md-9 selectContainer" *ngIf="!fixes">
                             <div class="input-group">
                                 <select name="carState" class="form-control" [(ngModel)]="this.carStateTemp" required>
                                     <option value="">Select your car state</option>
@@ -94,10 +94,10 @@
                         {{fix}}
                     </td>
                     <td>
-                        <input placeholder="YYYY-MM-DD" class="form-control" type="date" [(ngModel)]="this.reservationDTO.date" id="example-date-input">
+                        <input *ngIf="fix.includes('replacement')" placeholder="YYYY-MM-DD" class="form-control" type="date" [(ngModel)]="this.reservationDTO.date" id="example-date-input">
                     </td>
                     <td>
-                        <button *ngIf="fixes" (click)="checkReservation(fix)" id="sendlogin" class="col-md-9 btn btn-primary">Check for reservation</button>
+                        <button *ngIf="fix.includes('replacement')" (click)="checkReservation(fix)" id="sendlogin" class="col-md-9 btn btn-primary">Check for reservation</button>
                     </td>
                 </tr>
             </tbody>
