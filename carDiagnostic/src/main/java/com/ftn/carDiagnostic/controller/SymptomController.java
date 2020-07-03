@@ -25,7 +25,6 @@ import com.ftn.carDiagnostic.service.UserServiceImpl;
 
 @RestController
 @RequestMapping(value = "/symptom")
-@Transactional
 public class SymptomController {
 	
 	private List<String> alerts;
