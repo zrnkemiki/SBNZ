@@ -20,6 +20,7 @@ global java.util.List problems;
 
 
 rule "Kvar vise puta"
+	salience(50) 
     when
     	$vs: VisualSymptom( isHeadlightNotWorking() == true );
         $c: Car($problemHistory: problemHistory)
@@ -43,9 +44,10 @@ end
 
 
 rule "Headlight not working symptom"
+	salience(100) 
     when
         $vs: VisualSymptom( isHeadlightNotWorking() == true );
-        $c: Car($problemHistory: problemHistory)
+        $c: Car($problemHistory: problemHistory )
         Number($value: intValue < 2) from accumulate(
         	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
         	count($t)
