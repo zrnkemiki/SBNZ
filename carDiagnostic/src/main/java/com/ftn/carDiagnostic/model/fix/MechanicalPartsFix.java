@@ -18,34 +18,24 @@ public class MechanicalPartsFix {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column
 	@ElementCollection
 	private List<String> shockAbsorberFix;
-	@Column
 	@ElementCollection
 	private List<String> brakeDiscFix;
-	@Column
 	@ElementCollection
 	private List<String> stabilizerFix;
-	@Column
 	@ElementCollection
 	private List<String> brakePadsFix;
-	@Column
 	@ElementCollection
 	private List<String> engineBeltFix;
-	@Column
 	@ElementCollection
 	private List<String> brakeLinesFix;
-	@Column
 	@ElementCollection
 	private List<String> engineOilConsumptionFix;
-	@Column
 	@ElementCollection
 	private List<String> engineGasketFix;
-	@Column
 	@ElementCollection
 	private List<String> dualMassFlyWheelFix;
-	@Column
 	@ElementCollection
 	private List<String> tyreFix;
 
@@ -63,22 +53,26 @@ public class MechanicalPartsFix {
 
 		this.shockAbsorberFix.add("Check shock absorber for oil leakage");
 		this.shockAbsorberFix.add("Check shock absorber is straight");
+		this.shockAbsorberFix.add("Shockabsorber replacement");
 		this.brakeDiscFix.add("Check brake discs for damage");
 		this.brakeDiscFix.add("Replace brake discs");
+		this.brakeDiscFix.add("Brake disc replacement");
 		this.stabilizerFix.add("Check stabilizer is tight");
-		this.stabilizerFix.add("Check for bends"); // Prebaci problem na electric window motor!
+		this.stabilizerFix.add("Check for bends");
+		this.stabilizerFix.add("Stabilizer replacement");
 		this.brakePadsFix.add("Check brake pads wear");
 		this.brakePadsFix.add("Replace brake pads");
+		this.brakePadsFix.add("Brake pads replacement");
 		this.engineBeltFix.add("Put some soap on belt");
-		this.engineBeltFix.add("Replace belt");
+		this.engineBeltFix.add("Engine belt replacement");
 		this.brakeLinesFix.add("Repair brake lines");
-		this.brakeLinesFix.add("Replace brake lines");
+		this.brakeLinesFix.add("Brake lines replacement");
 		this.engineOilConsumptionFix.add("Try using oil with more density");
-		this.engineGasketFix.add("Replace gasket");
-		this.dualMassFlyWheelFix.add("Replace dualmass flywheel");
+		this.engineGasketFix.add("Gasket replacement");
+		this.dualMassFlyWheelFix.add("Dualmass flywheel replacement");
 		this.tyreFix.add("Re-inflate tyre");
 		this.tyreFix.add("Repair puncture");
-		this.tyreFix.add("Change tyre");
+		this.tyreFix.add("Tyre replacement");
 	}
 
 	public MechanicalPartsFix() {

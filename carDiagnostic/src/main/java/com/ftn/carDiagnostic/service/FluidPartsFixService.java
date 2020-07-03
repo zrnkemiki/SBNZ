@@ -19,7 +19,7 @@ public class FluidPartsFixService {
 		return fpf;
 	}
 	
-	public FluidPartsFix getAFPF(Long id) {
+	public FluidPartsFix getFPF(Long id) {
 		return fluidPartsFixRepository.findById(id).orElse(null);
 	}
 	

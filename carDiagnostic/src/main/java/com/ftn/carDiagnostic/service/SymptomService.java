@@ -15,7 +15,12 @@ import com.ftn.carDiagnostic.model.CarComponentsProblem;
 import com.ftn.carDiagnostic.model.Log;
 import com.ftn.carDiagnostic.model.User;
 import com.ftn.carDiagnostic.model.UserStatus;
+import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
 import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.fix.FluidPartsFix;
+import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
+import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
+import com.ftn.carDiagnostic.model.parts.FuelInjectionParts;
 import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
 import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
 import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
@@ -39,9 +44,23 @@ public class SymptomService {
 
 	@Autowired
 	private ElectricalPartsFixService electricalPartsFixService;
+	
+	@Autowired
+	private MechanicalPartsFixService mechanicalPartsFixService;
+	
+	@Autowired
+	private AirFlowPartsFixService airFlowPartsFixService;
+	
+	@Autowired
+	private FluidPartsFixService fluidPartsFixService;
+	
+	@Autowired
+	private FuelInjectionPartsFixService fluidInjectionPartsFixService;
 
 	@Autowired
 	private UserServiceImpl userService;
+	
+	
 
 	@Autowired
 	private CarService carService;
@@ -49,9 +68,8 @@ public class SymptomService {
 	@SuppressWarnings("unchecked")
 	public List<String> insertVisualSymptom(VisualSymptom vs, User user) {
 		vs.setExecutionTime(new Date());
-		ElectricalPartsFix epf = electricalPartsFixService.getEPF(1L);
-		kSession.insert(epf);
-
+		Car car = carService.getCar(user.getCar().getId());
+		insertFixesSession();
 		kSession.insert(vs);
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
@@ -59,7 +77,7 @@ public class SymptomService {
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
 		List<CarComponentsProblem> problems = (ArrayList<CarComponentsProblem>) kSession.getGlobal("problems");
 
-		Car car = carService.getCar(user.getCar().getId());
+		
 
 		for (CarComponentsProblem carComponentsProblem : problems) {
 			carComponentsProblem.setDate(new Date());
@@ -74,7 +92,12 @@ public class SymptomService {
 
 	@SuppressWarnings("unchecked")
 	public List<String> insertAudioSymptom(AudioSymptom as, User user) {
+		
+		insertFixesSession();
+		
 		kSession.insert(as);
+		
+		
 		int fired = kSession.fireAllRules();
 		System.out.println("[SymptomService insertAudioSymptom()] Number of rules fired: " + fired);
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
@@ -92,6 +115,8 @@ public class SymptomService {
 	}
 
 	public List<String> insertSmellSymptom(SmellSymptom ss, User user) {
+		insertFixesSession();
+		
 		kSession.insert(ss);
 		int fired = kSession.fireAllRules();
 		System.out.println("[SymptomService insertSmellSymptom()] Number of rules fired: " + fired);
@@ -113,6 +138,7 @@ public class SymptomService {
 
 	@SuppressWarnings("unchecked")
 	public List<String> insertFeelSymptom(FeelingSymptom fs, User user) {
+		insertFixesSession();
 		kSession.insert(fs);
 		int fired = kSession.fireAllRules();
 		System.out.println("[SymptomService insertFeelingSymptom()] Number of rules fired: " + fired);
@@ -132,6 +158,7 @@ public class SymptomService {
 
 	@SuppressWarnings("unchecked")
 	public void insertLog(Log log, LoginDTO loginDTO) {
+		insertFixesSession();
 		kSession.insert(log);
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
@@ -151,6 +178,20 @@ public class SymptomService {
 		}
 		logs.clear();
 
+	}
+	
+	public void insertFixesSession() {
+		AirFlowPartsFix afpf = airFlowPartsFixService.getAFPF(1L);
+		ElectricalPartsFix epf = electricalPartsFixService.getEPF(1L);
+		FluidPartsFix fpf = fluidPartsFixService.getFPF(1L);
+		FuelInjectionPartsFix fipf = fluidInjectionPartsFixService.getFIPF(1L);
+		MechanicalPartsFix mpf = mechanicalPartsFixService.getMPF(1L);
+		
+		kSession.insert(afpf);
+		kSession.insert(epf);
+		kSession.insert(fpf);
+		kSession.insert(fipf);
+		kSession.insert(mpf);
 	}
 
 }

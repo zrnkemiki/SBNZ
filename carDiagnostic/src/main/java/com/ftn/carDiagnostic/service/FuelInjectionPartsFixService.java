@@ -19,7 +19,7 @@ public class FuelInjectionPartsFixService {
 		return fipf;
 	}
 	
-	public FuelInjectionPartsFix getEPF(Long id) {
+	public FuelInjectionPartsFix getFIPF(Long id) {
 		return fuelInjectionPartsFixRepository.findById(id).orElse(null);
 	}
 	
