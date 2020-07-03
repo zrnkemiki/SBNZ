@@ -63,15 +63,20 @@ public class ElectricalPartsFix {
 		
 		this.headlightFix.add("Check fuse");
 		this.headlightFix.add("Check front contact");
+		this.headlightFix.add("Headlight replacement");
 		this.taillightFix.add("Check fuse");
 		this.taillightFix.add("Check rear contact");
+		this.taillightFix.add("Taillight replacement");
 		this.electricWindowsFix.add("Check fuse");
 		this.electricWindowsFix.add("Check contact");
 		this.electricWindowsFix.add("Check window motor");
+		this.electricWindowsFix.add("Window replacement");
 		this.batteryFix.add("Jump start your car");
 		this.batteryFix.add("Recharge battery");
+		this.batteryFix.add("Battery replacement");
 		this.electricFanFix.add("Replace fan");
-		this.electricWindowMotorFix.add("Replace window motor.");
+		this.electricFanFix.add("Electricfan replacement");
+		this.electricWindowMotorFix.add("Window motor replacement");
 	}
 	
 	public List<String> getHeadlightFix() {
