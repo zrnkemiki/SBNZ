@@ -16,6 +16,20 @@ global java.util.List appointments;
 //ELECTRICAL PROBLEMS
 
 
+rule "Kvar vise puta"
+    when
+        $c: Car($problemHistory: problemHistory)
+        Number($value: intValue >= 2) from accumulate(
+        	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
+        	count($t)
+        )
+    then
+    	System.out.println("Kvar vise od 2 puta");
+
+end
+
+
+
 rule "FAILURE ID-1 -loginFail multiple"
 	when
 	    $log: Log( getId() == 1 && getMessage() == 'login_fail' , $user: userName );

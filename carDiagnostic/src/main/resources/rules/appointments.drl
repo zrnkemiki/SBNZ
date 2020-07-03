@@ -11,6 +11,7 @@ rule "Time for headlight fix"
 	when
 		ReservationDTO(getFix() == "Headlight replacement");
 	then
+		timeNeeded.clear();
 		timeNeeded.add("1");
 
 end
