@@ -15,3 +15,24 @@ rule "Time for headlight fix"
 		timeNeeded.add("1");
 
 end
+
+rule "Time for taillight fix"
+	when
+		ReservationDTO(getFix() == "Taillight replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+
+rule "Time for Window fix"
+	when
+		ReservationDTO(getFix() == "Window replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+
