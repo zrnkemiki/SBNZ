@@ -23,7 +23,7 @@ rule "Kvar vise puta"
 	salience(50) 
     when
     	$vs: VisualSymptom( isHeadlightNotWorking() == true );
-        $c: Car($problemHistory: problemHistory)
+        $c: Car($problemHistory: problemHistory);
         Number($value: intValue >= 2) from accumulate(
         	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
         	count($t)
@@ -47,7 +47,7 @@ rule "Headlight not working symptom"
 	salience(100) 
     when
         $vs: VisualSymptom( isHeadlightNotWorking() == true );
-        $c: Car($problemHistory: problemHistory )
+        $c: Car($problemHistory: problemHistory );
         Number($value: intValue < 2) from accumulate(
         	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
         	count($t)
@@ -94,9 +94,15 @@ rule "Electric windows not working"
        	System.out.println("Uspeo da setujem da je problem u Electric windows");
 end 
 
-rule "battery, isEngineStartProblem problem"
+rule "Engine wont start --> dead battery"
+	salience(100)
     when
         $vs: VisualSymptom( isEngineStartProblem() == true );
+        $c: Car($problemHistory: problemHistory )
+        Number($value: intValue < 2) from accumulate(
+        	ElectricalParts($t: this, isEngineStartProblem() == true) from $problemHistory,
+        	count($t)
+        );
     then
     	ElectricalParts ep = new ElectricalParts();
        	ep.setBattery(true); 
@@ -108,6 +114,28 @@ rule "battery, isEngineStartProblem problem"
        	System.out.println("Uspeo da setujem da je problem u battery");
         //update($vs);
 end 
+
+rule "Battery dead more than 3 times -> alternator problem"
+	salience(50)
+	when
+    	$vs: VisualSymptom( isEngineStartProblem() == true );
+        $c: Car($problemHistory: problemHistory)
+        Number($value: intValue >= 2) from accumulate(
+        	ElectricalParts($t: this, isEngineStartProblem() == true) from $problemHistory,
+        	count($t)
+        )
+    then
+    	delete($vs);  
+    	delete($c);
+    	ElectricalParts ep = new ElectricalParts(); 
+       	ep.setAlternator(true);
+       	ep.setDescription("Problem with alternator instead of battery!");
+       	problems.clear();
+       	problems.add(ep);
+       	insert(ep); //dodajemo novi problem
+    	System.out.println("Kvar battery treci put --> alternator problem");
+
+end
 
 
 rule "coolant dash light"
