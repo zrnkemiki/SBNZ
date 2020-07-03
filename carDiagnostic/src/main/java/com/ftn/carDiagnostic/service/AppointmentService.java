@@ -43,7 +43,7 @@ public class AppointmentService {
 		return appointmentRepository.findById(id).orElse(null);
 	}
 	
-	public List<Appointment> findByDateBetween(Date dateStart, Date dateEnd) {
+	public List<Appointment> findByStartDateBetween(Date dateStart, Date dateEnd) {
 		return appointmentRepository.findByStartTimeBetween(dateStart, dateEnd);
 		//return appointmentRepository.findByStartTImeBetweenOrderByStartTime(dateStart, dateEnd);
 	}
@@ -67,7 +67,7 @@ public class AppointmentService {
 		// nadji sve koji su vec zakazani za taj dan
 		Date startDate = DTOConverter.makeStartDate(resDTO.getDate());
 		Date endDate = DTOConverter.makeEndDate(resDTO.getDate());
-		List<Appointment> booked = findByDateBetween(startDate, endDate);
+		List<Appointment> booked = findByStartDateBetween(startDate, endDate);
 		
 		int timeNeededInt = Integer.parseInt(timeNeeded.get(0));
 		
