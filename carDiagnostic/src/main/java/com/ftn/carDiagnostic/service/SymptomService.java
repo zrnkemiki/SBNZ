@@ -70,6 +70,7 @@ public class SymptomService {
 		vs.setExecutionTime(new Date());
 		Car car = carService.getCar(user.getCar().getId());
 		insertFixesSession();
+		kSession.insert(car);
 		kSession.insert(vs);
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
