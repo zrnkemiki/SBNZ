@@ -75,6 +75,17 @@ rule "Battery fix"
    		
 end 
 
+rule "Alternator fix"
+    when
+        $ep: ElectricalParts( isAlternator() == true );
+        ElectricalPartsFix( $alternatorFix: alternatorFix);
+    then
+    	delete($ep);
+    	fixes.clear();
+    	fixes.addAll($alternatorFix);
+   		
+end 
+
 rule "Electrical fan"
     when
         $ep: ElectricalParts( isElectricFan() == true );

@@ -84,10 +84,10 @@ rule "Electric windows not working"
     when
         $vs: VisualSymptom( isElectricWindowNotWorking() == true );
     then
+       	delete($vs);
     	ElectricalParts ep = new ElectricalParts();
        	ep.setElectricWindows(true); 
        	ep.setDescription("Problem with electric windows");
-       	delete($vs);
        	problems.clear();
        	problems.add(ep);
        	insert(ep);
@@ -95,7 +95,7 @@ rule "Electric windows not working"
 end 
 
 rule "Engine wont start --> dead battery"
-	salience(100)
+	salience(99)
     when
         $vs: VisualSymptom( isEngineStartProblem() == true );
         $c: Car($problemHistory: problemHistory )
@@ -104,26 +104,28 @@ rule "Engine wont start --> dead battery"
         	count($t)
         );
     then
+       	delete($vs);
+       	delete($c);
     	ElectricalParts ep = new ElectricalParts();
        	ep.setBattery(true); 
        	ep.setDescription("Problem with battery");
        	problems.clear();
        	problems.add(ep);
-       	insert(ep);
        	delete($vs);
+       	insert(ep);
        	System.out.println("Uspeo da setujem da je problem u battery");
         //update($vs);
 end 
 
 rule "Battery dead more than 3 times -> alternator problem"
-	salience(50)
+	salience(49)
 	when
     	$vs: VisualSymptom( isEngineStartProblem() == true );
         $c: Car($problemHistory: problemHistory)
         Number($value: intValue >= 2) from accumulate(
         	ElectricalParts($t: this, battery == true) from $problemHistory,
         	count($t)
-        )
+        );
     then
     	delete($vs);  
     	delete($c);
@@ -142,6 +144,7 @@ rule "coolant dash light"
     when
         $vs: VisualSymptom( isCoolantDashLight() == true );
     then
+    	delete($vs);
     	FluidParts fp = new FluidParts();
        	fp.setCoolant(true);; //pravi novi electrical parts problem gde je samo taillight true 
        	fp.setLevel(0);       	
@@ -149,7 +152,6 @@ rule "coolant dash light"
        	problems.clear();
        	problems.add(fp);       	
        	insert(fp);
-    	delete($vs);
        	System.out.println("Uspeo da setujem da je problem u coolant");
 end 
 
