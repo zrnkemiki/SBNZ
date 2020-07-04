@@ -9,25 +9,10 @@
             <div class="card">
                 <div class="card-body">
                     <form action="" autocomplete="off">
-                        <!--
-                        <div class="form-group">
-                            <div class="col-md-9 selectContainer">
-                                <label>Please fill in audio symptoms:</label>
-                                <div class="input-group">
-                                    <select name="car" [(ngModel)]="this.carTemp" class="form-control selectpicker">
-                                        <option value="">Select your Vehicle</option>
-                                        <option>Audi A4</option>
-                                        <option>Fiat Panda</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        -->
-                        <div class="col-md-9 selectContainer">
+                        <div class="col-md-9 selectContainer" *ngIf="!fixes">
                             <div class="input-group">
                                 <select name="visualSymptom" class="form-control" [(ngModel)]="this.audioSymptomTemp" required>
                                     <option value="">Select your symptom</option>
-                                    <option value="grinding" selected>Grinding noise</option>
                                     <option value="squealing" selected>Squealing noise</option>
                                     <option value="whistling" selected>Whistling noise</option>
                                     <option value="knocking" selected>Knocking noise</option>
@@ -37,7 +22,7 @@
 
                         </div>
                         <br>
-                        <div class="col-md-9 selectContainer">
+                        <div class="col-md-9 selectContainer" *ngIf="!fixes">
                             <div class="input-group">
                                 <select name="carState" class="form-control" [(ngModel)]="this.carStateTemp" required>
                                     <option value="">Select your car state</option>
