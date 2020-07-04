@@ -1,5 +1,6 @@
 package com.ftn.carDiagnostic.model.fix;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -28,6 +29,49 @@ public class FluidPartsFix {
 	@ElementCollection
 	private List<String> freonFix;
 	
+	public void GenerateFixes() {
+		this.oilFix = new ArrayList<String>();
+		this.brakeFluidFix = new ArrayList<String>();
+		this.coolantFix = new ArrayList<String>();
+		this.washerFluidFix = new ArrayList<String>();
+		this.transmissionFluidFix = new ArrayList<String>();
+		this.freonFix = new ArrayList<String>();
+		
+		
+		this.oilFix.add("Check oil level on level surface");
+		this.oilFix.add("Use oil with more density");
+		this.oilFix.add("Oil replacement");
+		this.brakeFluidFix.add("Check brake fluid humidity %");
+		this.brakeFluidFix.add("Brake fluid replacement");
+		
+		this.coolantFix.add("Check coolant freezing temperature");
+		this.coolantFix.add("Coolant replacement");
+		
+		this.washerFluidFix.add("Top-up washer fluid");
+		this.transmissionFluidFix.add("Transmission fluid replacement");
+		this.freonFix.add("Check for freon leakage");
+		this.freonFix.add("Freon gas replacement");
+		
+		
+		
+		
+	}
+	
+	public FluidPartsFix() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public FluidPartsFix(Long id, List<String> oilFix, List<String> brakeFluidFix, List<String> coolantFix,
+			List<String> washerFluidFix, List<String> transmissionFluidFix, List<String> freonFix) {
+		super();
+		this.id = id;
+		this.oilFix = oilFix;
+		this.brakeFluidFix = brakeFluidFix;
+		this.coolantFix = coolantFix;
+		this.washerFluidFix = washerFluidFix;
+		this.transmissionFluidFix = transmissionFluidFix;
+		this.freonFix = freonFix;
+	}
 	public List<String> getOilFix() {
 		return oilFix;
 	}

@@ -170,4 +170,77 @@ rule "Time for Tyre replacement"
 
 end
 
+rule "Time for Oil replacement"
+	when
+		ReservationDTO(getFix() == "Oil replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Coolant replacement"
+	when
+		ReservationDTO(getFix() == "Coolant replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for Transmission fluid replacement"
+	when
+		ReservationDTO(getFix() == "Transmission fluid replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Freon gas replacement"
+	when
+		ReservationDTO(getFix() == "Freon gas replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Fuel pump replacement"
+	when
+		ReservationDTO(getFix() == "Fuel pump replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("2");
+
+end
+
+rule "Time for Fuel filter replacement"
+	when
+		ReservationDTO(getFix() == "Fuel filter replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for Nozlle replacement"
+	when
+		ReservationDTO(getFix() == "Nozzle replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+rule "Time for sparkplug replacement"
+	when
+		ReservationDTO(getFix() == "Sparkplug replacement");
+	then
+		timeNeeded.clear();
+		timeNeeded.add("1");
+
+end
+
+
 

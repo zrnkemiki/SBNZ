@@ -1,5 +1,6 @@
 package com.ftn.carDiagnostic.model.fix;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -17,38 +18,67 @@ public class FuelInjectionPartsFix {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@ElementCollection
-	private List<String> fuelPump;
+	private List<String> fuelPumpFix;
 	@ElementCollection
-	private List<String> fuelFilter;
+	private List<String> fuelFilterFix;
 	@ElementCollection
 	private List<String> nozzleFix;
 	@ElementCollection
 	private List<String> sparkPlugFix;
 	
+	public void GenerateFixes() {
+		this.fuelPumpFix = new ArrayList<String>();
+		this.fuelFilterFix = new ArrayList<String>();
+		this.nozzleFix = new ArrayList<String>();
+		this.sparkPlugFix = new ArrayList<String>();
+		
+		this.fuelPumpFix.add("Clean fuel pump filter");
+		this.fuelPumpFix.add("Fuel pump replacement");
+		
+		this.fuelFilterFix.add("Fuel filter replacement");
+		
+		this.nozzleFix.add("Use Nozzle cleaner liquid");
+		this.nozzleFix.add("Nozzle replacement");
+		
+		this.sparkPlugFix.add("Sparkplug replacement");
+		
+	}
 	
 	
+	
+	public FuelInjectionPartsFix(Long id, List<String> fuelPump, List<String> fuelFilter, List<String> nozzleFix,
+			List<String> sparkPlugFix) {
+		super();
+		this.id = id;
+		this.fuelPumpFix = fuelPump;
+		this.fuelFilterFix = fuelFilter;
+		this.nozzleFix = nozzleFix;
+		this.sparkPlugFix = sparkPlugFix;
+	}
+
+
 	public FuelInjectionPartsFix() {
 		
 	}
 
 
 	public List<String> getFuelPump() {
-		return fuelPump;
+		return fuelPumpFix;
 	}
 
 
 	public void setFuelPump(List<String> fuelPump) {
-		this.fuelPump = fuelPump;
+		this.fuelPumpFix = fuelPump;
 	}
 
 
 	public List<String> getFuelFilter() {
-		return fuelFilter;
+		return fuelFilterFix;
 	}
 
 
 	public void setFuelFilter(List<String> fuelFilter) {
-		this.fuelFilter = fuelFilter;
+		this.fuelFilterFix = fuelFilter;
 	}
 
 
