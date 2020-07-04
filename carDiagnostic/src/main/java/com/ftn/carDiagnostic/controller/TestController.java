@@ -15,12 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.carDiagnostic.model.Car;
 import com.ftn.carDiagnostic.model.CarComponentsProblem;
 import com.ftn.carDiagnostic.model.User;
+import com.ftn.carDiagnostic.model.fix.AirFlowPartsFix;
 import com.ftn.carDiagnostic.model.fix.ElectricalPartsFix;
+import com.ftn.carDiagnostic.model.fix.FluidPartsFix;
+import com.ftn.carDiagnostic.model.fix.FuelInjectionPartsFix;
 import com.ftn.carDiagnostic.model.fix.MechanicalPartsFix;
 import com.ftn.carDiagnostic.model.parts.ElectricalParts;
 import com.ftn.carDiagnostic.security.TokenUtils;
+import com.ftn.carDiagnostic.service.AirFlowPartsFixService;
 import com.ftn.carDiagnostic.service.CarService;
 import com.ftn.carDiagnostic.service.ElectricalPartsFixService;
+import com.ftn.carDiagnostic.service.FluidPartsFixService;
+import com.ftn.carDiagnostic.service.FuelInjectionPartsFixService;
 import com.ftn.carDiagnostic.service.MechanicalPartsFixService;
 import com.ftn.carDiagnostic.service.UserServiceImpl;
 
@@ -32,6 +38,15 @@ public class TestController {
 	
 	@Autowired
 	MechanicalPartsFixService mservice;
+	
+	@Autowired
+	AirFlowPartsFixService aservice;
+	
+	@Autowired
+	FluidPartsFixService fservice;
+	
+	@Autowired
+	FuelInjectionPartsFixService fuelInjectionService;
 	
 	@Autowired
 	CarService carService;
@@ -48,13 +63,25 @@ public class TestController {
 		ElectricalPartsFix epf = new ElectricalPartsFix();
 		epf.GenerateFixes();
 		
-		System.out.println(epf.getBatteryFix().get(0));
-		
 		MechanicalPartsFix mpf = new MechanicalPartsFix();
 		mpf.GenerateFixes();
 		
-		epf = eservice.saveEPF(epf);
-		mpf = mservice.saveMPF(mpf);
+		AirFlowPartsFix apf = new AirFlowPartsFix();
+		apf.GenerateFixes();
+		
+		FluidPartsFix fpf = new FluidPartsFix();
+		fpf.GenerateFixes();
+		
+		
+		FuelInjectionPartsFix fipf = new FuelInjectionPartsFix();
+		fipf.GenerateFixes();
+		
+		
+		//epf = eservice.saveEPF(epf);
+		//mpf = mservice.saveMPF(mpf);
+		apf = aservice.saveAFPF(apf);
+		fpf = fservice.saveFPF(fpf);
+		fipf = fuelInjectionService.saveFIPF(fipf);
 		
 		
 		
