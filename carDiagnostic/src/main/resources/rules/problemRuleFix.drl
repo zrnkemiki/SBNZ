@@ -275,10 +275,10 @@ rule "Poor performance fix"
 end
 
 
-rule "Catalytic Converter fix":
+rule "Catalytic Converter fix"
 	when
 		$ap: AirFlowParts ( catalyticConverter == true );
-		$apf: AirFlowPartsFix ( $catalFix: catalyticConverter );
+		$apf: AirFlowPartsFix ( $catalFix: catalyticConverterFix );
 	then
 		delete($ap);
 		fixes.clear();
