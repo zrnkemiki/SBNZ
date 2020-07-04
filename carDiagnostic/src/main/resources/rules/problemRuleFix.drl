@@ -110,7 +110,6 @@ rule "Coolant fix"
     	delete($fp);
     	fixes.clear();
     	fixes.addAll($coolantFix);
-    	
 end 
 
 //Proveriti da li ima prijavljen problem sa uljem, jer ovo znaci da motor trosi ulje?
@@ -121,8 +120,7 @@ rule "Oil fix"
     then
     	delete($fp);
     	fixes.clear();
-    	fixes.addAll($oilFix);
-    	
+    	fixes.addAll($oilFix);	
 end 
 
 
@@ -135,8 +133,9 @@ rule "Freon fix"
 		delete($fp);
 		fixes.clear();
     	fixes.addAll($freonFix);
-		
 end
+
+
 
 //MECHANICAL PART FIX
 rule "Brakepad fix"
@@ -220,6 +219,16 @@ rule "Engine belt fix"
 		fixes.clear();
     	fixes.addAll($engineBeltFix);
 		
+end
+
+rule "Engine Gasket fix"
+	when
+		$mp: MechanicalParts( engineGasket == true );
+		$mpf: MechanicalPartsFix( $engineGasketFix: engineGasketFix );
+	then
+		delete($mp);
+		fixes.clear();
+		fixes.addAll($engineGasketFix);
 end
 
 //FUEL INJECTION PARTS FIX
