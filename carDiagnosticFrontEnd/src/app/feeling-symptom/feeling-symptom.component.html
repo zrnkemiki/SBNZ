@@ -66,10 +66,10 @@
                         {{fix}}
                     </td>
                     <td>
-                        <input placeholder="YYYY-MM-DD" class="form-control" type="date" [(ngModel)]="this.reservationDTO.date" id="example-date-input">
+                        <input *ngIf="fix.includes('replacement')" placeholder="YYYY-MM-DD" class="form-control" type="date" [(ngModel)]="this.reservationDTO.date" id="example-date-input">
                     </td>
                     <td>
-                        <button *ngIf="fixes" (click)="checkReservation(fix)" id="sendlogin" class="col-md-9 btn btn-primary">Check for reservation</button>
+                        <button *ngIf="fix.includes('replacement')" (click)="checkReservation(fix)" id="sendlogin" class="col-md-9 btn btn-primary">Check for reservation</button>
                     </td>
                 </tr>
             </tbody>
