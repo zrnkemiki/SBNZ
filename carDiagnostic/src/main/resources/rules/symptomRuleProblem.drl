@@ -342,6 +342,37 @@ rule "Engine overheating"
 end
 
 
+rule "Uneven Tyrewear"
+	agenda-group "visual-symptom"
+	when
+		$vs: VisualSymptom( unevenTyreWear = true );
+	then
+		delete($vs);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setShockAbsorber(true);
+		problems.clear();
+		problems.add(mp);
+		insert(mp);
+		System.out.println("Shock absorber problem based on uneven tyrewear!");
+end
+
+
+rule "Car is unstable"
+	agenda-group "visual-symptom"
+	when
+		$vs: VisualSymptom( carUnstable = true );
+	then
+		delete($vs);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setShockAbsorber(true);
+		problems.clear();
+		problems.add(mp);
+		insert(mp);
+		System.out.println("Shock absorber problem based on car unstability!");
+end
+
+
+
 // Feels like symptoms
 
 rule "Vehicle rides uncomforbaly"
@@ -517,6 +548,58 @@ rule "bouncing problem"
 		insert(mp);
 		System.out.println("Tyre problem");
 end
+
+
+// SMELL
+
+rule "Burning smell sypmtom"
+	agenda-group "smell-symptom"
+	when
+		$ss: SmellSymptom( burningSmell  == true );
+	then
+		delete($ss);
+    	FuelInjectionParts fip = new FuelInjectionParts();
+       	fip.setNozzle(true);
+       	fip.setDescription("Problem with nozzle.");
+       	problems.clear();
+       	problems.add(fip);
+       	insert(fip);    	
+       	//$vs.setHeadlightNotWorking(false);
+       	System.out.println("Nozzle problem based on burning smell");
+		
+end
+
+rule "Rotten Egg smell symptom"
+	agenda-group "smell-symptom"
+	when
+		$ss: SmellSymptom( rottenEggSmell == true );
+	then
+		delete($ss);
+		AirFlowParts afp = new AirFlowParts();
+		afp.setCatalyticConverter(true);
+		afp.setDescription("Problem with catalytic converter ");
+		problems.clear();
+		problems.add(afp);
+		insert(afp);
+		System.out.println("Catalytic problem based on rotten-egg smell");
+end
+
+rule "Sweet smell symptom"
+	agenda-group "smell-symptom"
+	when
+		$ss: SmellSymptom( sweetSmell == true );
+	then
+		delete($ss);
+		FluidParts fp = new FluidParts();
+		fp.setCoolant(true);
+		problems.clear();
+		problems.add(fp);
+		insert(fp);
+		System.out.println("Coolant problem based on sweet smell");
+end
+
+
+
 
 
 
