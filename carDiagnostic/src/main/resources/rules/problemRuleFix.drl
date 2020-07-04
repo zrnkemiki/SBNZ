@@ -272,8 +272,20 @@ rule "Poor performance fix"
     	fixes.addAll($intakeManifoldFix);
     	fixes.addAll($egrValveFix);
     	fixes.addAll($airIntakeTube);
-		
 end
+
+
+rule "Catalytic Converter fix":
+	when
+		$ap: AirFlowParts ( catalyticConverter == true );
+		$apf: AirFlowPartsFix ( $catalFix: catalyticConverter );
+	then
+		delete($ap);
+		fixes.clear();
+		fixes.addAll($catalFix);
+end
+
+
 
 rule "Spark plug fix"
 	when
