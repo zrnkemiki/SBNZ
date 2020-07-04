@@ -140,6 +140,7 @@ end
 
 //MECHANICAL PART FIX
 rule "Brakepad fix"
+	salience(46)
 	when
 		$mp: MechanicalParts( brakePads == true);
 		$mpf: MechanicalPartsFix( $brakePadsFix: brakePadsFix);
@@ -173,6 +174,7 @@ rule "Shock absorber fix"
 end
 
 rule "Brake Disc fix"
+	salience(47)
 	when
 		$mp: MechanicalParts( brakeDisc == true );
 		$mpf: MechanicalPartsFix( $brakeDiscFix: brakeDiscFix);
@@ -180,6 +182,19 @@ rule "Brake Disc fix"
 		delete($mp);
 		fixes.clear();
     	fixes.addAll($brakeDiscFix);
+		
+end
+
+rule "Brake Disc and pads fix"
+	salience(97)
+	when
+		$mp: MechanicalParts( brakeDisc == true, brakePads == true );
+		$mpf: MechanicalPartsFix( $brakeDiscFix: brakeDiscFix, $brakePadsFix: brakePadsFix);
+	then
+		delete($mp);
+		fixes.clear();
+    	fixes.addAll($brakeDiscFix);
+    	fixes.addAll($brakePadsFix);
 		
 end
 
@@ -221,6 +236,7 @@ end
 
 //AIRFLOW PARTS FIX
 rule "Turbo charger fix"
+	salience(48)
 	when
 		$ap: AirFlowParts ( turboCharger == true );
 		$apf: AirFlowPartsFix( $turboChargerFix: turboChargerFix);
@@ -228,6 +244,20 @@ rule "Turbo charger fix"
 		delete($ap);
 		fixes.clear();
     	fixes.addAll($turboChargerFix);
+		
+end
+
+rule "Poor performance fix"
+	salience(98)
+	when
+		$ap: AirFlowParts ( turboCharger == true, massAirFlowMeter == true, intakeManifold == true,
+		manifoldAirPressure == true, egrValve == true, airIntakeTube == true, airFilter == true);
+		$apf: AirFlowPartsFix( $turboChargerFix: turboChargerFix, $massAirFlowMeterFix: mafFix, $intakeManifoldFix: intakemanifoldFix,
+		$egrValveFix: egrFix, $airIntakeTube: airIntakeTubeFix);
+	then
+		delete($ap);
+		fixes.clear();
+    	fixes.addAll($turboChargerFix,$massAirFlowMeterFix, $intakeManifoldFix, $egrValveFix, $airIntakeTube );
 		
 end
 

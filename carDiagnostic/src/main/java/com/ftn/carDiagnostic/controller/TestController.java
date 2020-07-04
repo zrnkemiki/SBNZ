@@ -77,8 +77,8 @@ public class TestController {
 		fipf.GenerateFixes();
 		
 		
-		//epf = eservice.saveEPF(epf);
-		//mpf = mservice.saveMPF(mpf);
+		epf = eservice.saveEPF(epf);
+		mpf = mservice.saveMPF(mpf);
 		apf = aservice.saveAFPF(apf);
 		fpf = fservice.saveFPF(fpf);
 		fipf = fuelInjectionService.saveFIPF(fipf);

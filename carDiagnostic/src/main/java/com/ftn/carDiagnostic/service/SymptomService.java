@@ -177,10 +177,10 @@ public class SymptomService {
 	}
 
 	public void insertFixesSession() {
-		AirFlowPartsFix afpf = airFlowPartsFixService.getAFPF(1L);
+		AirFlowPartsFix afpf = airFlowPartsFixService.getAFPF(2L);
 		ElectricalPartsFix epf = electricalPartsFixService.getEPF(1L);
-		FluidPartsFix fpf = fluidPartsFixService.getFPF(1L);
-		FuelInjectionPartsFix fipf = fluidInjectionPartsFixService.getFIPF(1L);
+		FluidPartsFix fpf = fluidPartsFixService.getFPF(3L);
+		FuelInjectionPartsFix fipf = fluidInjectionPartsFixService.getFIPF(4L);
 		MechanicalPartsFix mpf = mechanicalPartsFixService.getMPF(1L);
 
 		kSession.insert(afpf);

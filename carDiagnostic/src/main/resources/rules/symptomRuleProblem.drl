@@ -187,61 +187,7 @@ rule "steering fluid dash light"
         //update($vs);
 end 
 
-rule "Brake fluid low level"
-	when
-		$vs: VisualSymptom( isBrakeFluidLow() );
-	then
-		delete($vs);
-		FluidParts fp = new FluidParts();
-		fp.setBrakeFluid(true);
-		fp.setLevel(0);
-		MechanicalParts mp = new MechanicalParts();
-		mp.setBrakeLines(true);
-		
-		fp.setDescription("Problem with brake fluid level.");
-		mp.setDescription("Problem with brake lines.");
-		problems.clear();
-       	problems.add(fp);
-       	problems.add(mp);
-		insert(fp);
-		insert(mp);
-		System.out.println("Brake fluid fix + brakeLines - SET");	
-end
 
-rule "Air condition not working"
-	when
-		$vs: VisualSymptom( isAirConditionNotWorking() );
-	then
-		delete($vs);
-		FluidParts fp = new FluidParts();
-		fp.setFreon(true);
-		fp.setDescription("Problem with low freon level.");
-		fp.setLevel(0);
-		problems.clear();
-       	problems.add(fp);
-		insert(fp);
-		System.out.println("Fluid problem - SET");
-end
-
-rule "Engine overheating"
-	when
-		$vs: VisualSymptom( isEngineOverHeating() );
-	then
-		delete($vs);
-		FluidParts fp = new FluidParts();
-		fp.setCoolant(true);
-		fp.setLevel(0);
-		ElectricalParts ep = new ElectricalParts();
-		ep.setElectricFan(true);
-		fp.setDescription("Problem with coolant level.");
-		ep.setDescription("Problem with electric fan.");
-		problems.clear();
-       	problems.add(fp);
-       	problems.add(ep);
-		insert(fp);
-		insert(ep);
-		System.out.println("Coolant problem + electric fan - SET");	
-end
 
 
 
@@ -410,7 +356,7 @@ rule "Poor breaking"
 		System.out.println("Brake pads, brake disc problem");
 end
 
-rule "Poor performanece"
+rule "Poor performance"
 	when
 		$fs: FeelingSymptom( poorPerformance == true );
 	then
@@ -427,7 +373,7 @@ rule "Poor performanece"
 		problems.clear();
        	problems.add(ap);
 		insert(ap);
-		System.out.println("Brake pads, brake disc problem");
+		System.out.println("Multiple possible problems with air injection system.");
 end
 
 // Audio symptom -- DONE
