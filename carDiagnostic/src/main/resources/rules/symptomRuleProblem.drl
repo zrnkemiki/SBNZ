@@ -6,9 +6,10 @@ import com.ftn.carDiagnostic.model.parts.FluidParts;
 import com.ftn.carDiagnostic.model.parts.MechanicalParts;
 import com.ftn.carDiagnostic.model.parts.FuelInjectionParts;
 import com.ftn.carDiagnostic.model.parts.AirFlowParts;
-import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom
-import com.ftn.carDiagnostic.model.symptoms.AudioSymptom
-import com.ftn.carDiagnostic.model.Log
+import com.ftn.carDiagnostic.model.symptoms.FeelingSymptom;
+import com.ftn.carDiagnostic.model.symptoms.AudioSymptom;
+import com.ftn.carDiagnostic.model.symptoms.SmellSymptom;
+import com.ftn.carDiagnostic.model.Log;
 import com.ftn.carDiagnostic.model.Car;
 
 global java.util.List problems;
@@ -345,7 +346,7 @@ end
 rule "Uneven Tyrewear"
 	agenda-group "visual-symptom"
 	when
-		$vs: VisualSymptom( unevenTyreWear = true );
+		$vs: VisualSymptom( unevenTyreWear == true );
 	then
 		delete($vs);
 		MechanicalParts mp = new MechanicalParts();
@@ -360,7 +361,7 @@ end
 rule "Car is unstable"
 	agenda-group "visual-symptom"
 	when
-		$vs: VisualSymptom( carUnstable = true );
+		$vs: VisualSymptom( carUnstable == true );
 	then
 		delete($vs);
 		MechanicalParts mp = new MechanicalParts();
