@@ -257,7 +257,12 @@ rule "Poor performance fix"
 	then
 		delete($ap);
 		fixes.clear();
-    	fixes.addAll($turboChargerFix,$massAirFlowMeterFix, $intakeManifoldFix, $egrValveFix, $airIntakeTube );
+    	//fixes.addAll($turboChargerFix,$massAirFlowMeterFix, $intakeManifoldFix, $egrValveFix, $airIntakeTube );
+    	fixes.addAll($turboChargerFix);
+    	fixes.addAll($massAirFlowMeterFix);
+    	fixes.addAll($intakeManifoldFix);
+    	fixes.addAll($egrValveFix);
+    	fixes.addAll($airIntakeTube);
 		
 end
 

@@ -20,6 +20,7 @@ global java.util.List problems;
 
 
 rule "Kvar vise puta"
+	agenda-group "visual-symptom"
 	salience(50) 
     when
     	$vs: VisualSymptom( headlightNotWorking == true );
@@ -44,6 +45,7 @@ end
 
 
 rule "Headlight not working symptom"
+	agenda-group "visual-symptom"
 	salience(100) 
     when
         $vs: VisualSymptom( headlightNotWorking == true );
@@ -67,6 +69,7 @@ end
 
 
 rule "Taillight not working symptom"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( taillightNotWorking == true );
     then
@@ -81,6 +84,7 @@ rule "Taillight not working symptom"
 end 
 
 rule "Electric windows not working"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( electricWindowNotWorking == true );
     then
@@ -95,6 +99,7 @@ rule "Electric windows not working"
 end 
 
 rule "Engine wont start --> dead battery"
+	agenda-group "visual-symptom"
 	salience(99)
     when
         $vs: VisualSymptom( engineStartProblem == true );
@@ -118,6 +123,7 @@ rule "Engine wont start --> dead battery"
 end 
 
 rule "Battery dead more than 3 times -> alternator problem"
+	agenda-group "visual-symptom"
 	salience(49)
 	when
     	$vs: VisualSymptom( engineStartProblem == true );
@@ -141,6 +147,7 @@ end
 
 
 rule "coolant dash light"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( coolantDashLight == true );
     then
@@ -156,6 +163,7 @@ rule "coolant dash light"
 end 
 
 rule "oil dash light"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( oilDashLight == true );
     then
@@ -171,6 +179,7 @@ rule "oil dash light"
 end 
 
 rule "steering fluid dash light"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( steeringWheelDashLight == true );
     then
@@ -192,6 +201,7 @@ end
 
 
 rule "white smoke on exhaust, engine gasket fail"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( whiteSmoke == true );
     then
@@ -208,6 +218,7 @@ rule "white smoke on exhaust, engine gasket fail"
 end 
 
 rule "blue smoke on exhaust"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( blueSmoke == true );
     then
@@ -225,6 +236,7 @@ end
 
 
 rule "black smoke on exhaust"
+	agenda-group "visual-symptom"
     when
         $vs: VisualSymptom( blackSmoke == true );
     then
@@ -241,6 +253,7 @@ rule "black smoke on exhaust"
 end
 
 rule "Brakepad dash light - Visual Symptom"
+	agenda-group "visual-symptom"
 	when
 		$vs: VisualSymptom( brakePadsDashLight == true );
 	then
@@ -255,6 +268,7 @@ rule "Brakepad dash light - Visual Symptom"
 end
 
 rule "Air condition not working"
+	agenda-group "visual-symptom"
 	when
 		$vs: VisualSymptom( airConditionNotWorking == true );
 	then
@@ -270,6 +284,7 @@ rule "Air condition not working"
 end
 
 rule "DPF dash light On"
+	agenda-group "visual-symptom"
 	when
 		$vs: VisualSymptom( dpfDashLight == true );
 	then
@@ -284,6 +299,7 @@ rule "DPF dash light On"
 end
 
 rule "Brake fluid low level"
+	agenda-group "visual-symptom"
 	when
 		$vs: VisualSymptom( brakeFluidLow == true );
 	then
@@ -305,6 +321,7 @@ rule "Brake fluid low level"
 end
 
 rule "Engine overheating"
+	agenda-group "visual-symptom"
 	when
 		$vs: VisualSymptom( engineOverHeating == true );
 	then
@@ -328,6 +345,7 @@ end
 // Feels like symptoms
 
 rule "Vehicle rides uncomforbaly"
+	agenda-group "feeling-symptom"
 	when
 		$fs: FeelingSymptom( ridesUncomfortable == true);
 	then
@@ -342,6 +360,7 @@ rule "Vehicle rides uncomforbaly"
 end
 
 rule "Poor breaking"
+	agenda-group "feeling-symptom"
 	when
 		$fs: FeelingSymptom( poorBraking == true );	
 	then
@@ -357,6 +376,7 @@ rule "Poor breaking"
 end
 
 rule "Poor performance"
+	agenda-group "feeling-symptom"
 	when
 		$fs: FeelingSymptom( poorPerformance == true );
 	then
@@ -379,6 +399,7 @@ end
 // Audio symptom -- DONE
 
 rule "Grinding symptom"
+	agenda-group "feeling-symptom"
 	when
 		$as: AudioSymptom( grinding == true );
 	then
@@ -393,6 +414,7 @@ rule "Grinding symptom"
 end
 
 rule "Knocking symptom"
+	agenda-group "audio-symptom"
 	when
 		$as: AudioSymptom( knocking == true );
 	then
@@ -407,6 +429,7 @@ rule "Knocking symptom"
 end
 
 rule "Whistling symptom"
+	agenda-group "audio-symptom"
 	when
 		$as: AudioSymptom( whistling == true );
 	then
@@ -421,6 +444,7 @@ rule "Whistling symptom"
 end
 
 rule "Ticking symptom"
+	agenda-group "audio-symptom"
 	when
 		$as: AudioSymptom( ticking == true );
 	then
@@ -435,6 +459,7 @@ rule "Ticking symptom"
 end
 
 rule "squealing symptom"
+	agenda-group "audio-symptom"
 	when
 		$as: AudioSymptom( squealing == true );
 	then
@@ -449,6 +474,7 @@ rule "squealing symptom"
 end
 
 rule "long starting problem"
+	agenda-group "feeling-symptom"
 	when
 		$fs: FeelingSymptom( longStarting == true );
 	then
@@ -463,6 +489,7 @@ rule "long starting problem"
 end
 
 rule "shaking problem"
+	agenda-group "feeling-symptom"
 	when
 		$fs: FeelingSymptom( shaking == true );
 	then
@@ -477,6 +504,7 @@ rule "shaking problem"
 end
 
 rule "bouncing problem"
+	agenda-group "feeling-symptom"
 	when
 		$fs: FeelingSymptom( bouncing == true ) ;
 	then

@@ -70,6 +70,7 @@ public class SymptomService {
 		insertFixesSession();
 		kSession.insert(car);
 		kSession.insert(vs);
+		kSession.getAgenda().getAgendaGroup("visual-symptom").setFocus();
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
 
@@ -93,6 +94,7 @@ public class SymptomService {
 		insertFixesSession();
 		kSession.insert(car);
 		kSession.insert(as);
+		kSession.getAgenda().getAgendaGroup("audio-symptom").setFocus();
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
 
@@ -114,6 +116,7 @@ public class SymptomService {
 		insertFixesSession();
 		kSession.insert(car);
 		kSession.insert(ss);
+		kSession.getAgenda().getAgendaGroup("smell-symptom").setFocus();
 		int fired = kSession.fireAllRules();
 		System.out.println("Number of rules fired: " + fired);
 
@@ -136,7 +139,9 @@ public class SymptomService {
 		insertFixesSession();
 		kSession.insert(car);
 		kSession.insert(fs);
+		kSession.getAgenda().getAgendaGroup("feeling-symptom").setFocus();
 		int fired = kSession.fireAllRules();
+		
 		System.out.println("Number of rules fired: " + fired);
 
 		List<String> fixes = (ArrayList<String>) kSession.getGlobal("fixes");
