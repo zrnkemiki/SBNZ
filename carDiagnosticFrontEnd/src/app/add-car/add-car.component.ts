@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Car } from '../model/car';
 import { CarDTO } from '../dto/carDTO';
 import { CarService } from '../services/car.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-car',
@@ -22,7 +23,7 @@ export class AddCarComponent implements OnInit {
   }
 
   addCar(){
-    this.carService.addCar(this.carDTO).subscribe(data => {this.car = data;})
+    this.carService.addCar(this.carDTO).subscribe(data => {this.car = data; alert("New car " + this.car.brand + " car added"); window.location.replace('')})
   }
 
 }
