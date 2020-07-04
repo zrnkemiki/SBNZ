@@ -100,7 +100,7 @@ rule "Engine wont start --> dead battery"
         $vs: VisualSymptom( isEngineStartProblem() == true );
         $c: Car($problemHistory: problemHistory )
         Number($value: intValue < 2) from accumulate(
-        	ElectricalParts($t: this, isEngineStartProblem() == true) from $problemHistory,
+        	ElectricalParts($t: this, battery == true) from $problemHistory,
         	count($t)
         );
     then
@@ -121,7 +121,7 @@ rule "Battery dead more than 3 times -> alternator problem"
     	$vs: VisualSymptom( isEngineStartProblem() == true );
         $c: Car($problemHistory: problemHistory)
         Number($value: intValue >= 2) from accumulate(
-        	ElectricalParts($t: this, isEngineStartProblem() == true) from $problemHistory,
+        	ElectricalParts($t: this, battery == true) from $problemHistory,
         	count($t)
         )
     then
