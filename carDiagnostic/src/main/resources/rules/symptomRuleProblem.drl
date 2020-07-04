@@ -22,10 +22,10 @@ global java.util.List problems;
 rule "Kvar vise puta"
 	salience(50) 
     when
-    	$vs: VisualSymptom( isHeadlightNotWorking() == true );
+    	$vs: VisualSymptom( headlightNotWorking == true );
         $c: Car($problemHistory: problemHistory);
         Number($value: intValue >= 2) from accumulate(
-        	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
+        	ElectricalParts($t: this, headlight == true) from $problemHistory,
         	count($t)
         )
     then
@@ -46,10 +46,10 @@ end
 rule "Headlight not working symptom"
 	salience(100) 
     when
-        $vs: VisualSymptom( isHeadlightNotWorking() == true );
+        $vs: VisualSymptom( headlightNotWorking == true );
         $c: Car($problemHistory: problemHistory );
         Number($value: intValue < 2) from accumulate(
-        	ElectricalParts($t: this, isHeadlight() == true) from $problemHistory,
+        	ElectricalParts($t: this, headlight == true) from $problemHistory,
         	count($t)
         )
     then
@@ -68,7 +68,7 @@ end
 
 rule "Taillight not working symptom"
     when
-        $vs: VisualSymptom( isTaillightNotWorking() == true );
+        $vs: VisualSymptom( taillightNotWorking == true );
     then
    		delete($vs); //izbaci simptom iz baze znanja
    		ElectricalParts ep = new ElectricalParts();
@@ -82,7 +82,7 @@ end
 
 rule "Electric windows not working"
     when
-        $vs: VisualSymptom( isElectricWindowNotWorking() == true );
+        $vs: VisualSymptom( electricWindowNotWorking == true );
     then
        	delete($vs);
     	ElectricalParts ep = new ElectricalParts();
@@ -97,7 +97,7 @@ end
 rule "Engine wont start --> dead battery"
 	salience(99)
     when
-        $vs: VisualSymptom( isEngineStartProblem() == true );
+        $vs: VisualSymptom( engineStartProblem == true );
         $c: Car($problemHistory: problemHistory )
         Number($value: intValue < 2) from accumulate(
         	ElectricalParts($t: this, battery == true) from $problemHistory,
@@ -120,7 +120,7 @@ end
 rule "Battery dead more than 3 times -> alternator problem"
 	salience(49)
 	when
-    	$vs: VisualSymptom( isEngineStartProblem() == true );
+    	$vs: VisualSymptom( engineStartProblem == true );
         $c: Car($problemHistory: problemHistory)
         Number($value: intValue >= 2) from accumulate(
         	ElectricalParts($t: this, battery == true) from $problemHistory,
@@ -142,7 +142,7 @@ end
 
 rule "coolant dash light"
     when
-        $vs: VisualSymptom( isCoolantDashLight() == true );
+        $vs: VisualSymptom( coolantDashLight == true );
     then
     	delete($vs);
     	FluidParts fp = new FluidParts();
@@ -157,7 +157,7 @@ end
 
 rule "oil dash light"
     when
-        $vs: VisualSymptom( isOilDashLight() == true );
+        $vs: VisualSymptom( oilDashLight == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
     	FluidParts fp = new FluidParts();
@@ -172,7 +172,7 @@ end
 
 rule "steering fluid dash light"
     when
-        $vs: VisualSymptom( isSteeringWheelDashLight() == true );
+        $vs: VisualSymptom( steeringWheelDashLight == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
     	FluidParts fp = new FluidParts();
@@ -247,7 +247,7 @@ end
 
 rule "white smoke on exhaust, engine gasket fail"
     when
-        $vs: VisualSymptom( isWhiteSmoke() == true );
+        $vs: VisualSymptom( whiteSmoke == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
     	MechanicalParts mp = new MechanicalParts();
@@ -263,7 +263,7 @@ end
 
 rule "blue smoke on exhaust"
     when
-        $vs: VisualSymptom( isBlueSmoke() == true );
+        $vs: VisualSymptom( blueSmoke == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
     	MechanicalParts mp = new MechanicalParts();
@@ -280,7 +280,7 @@ end
 
 rule "black smoke on exhaust"
     when
-        $vs: VisualSymptom( isBlackSmoke() == true );
+        $vs: VisualSymptom( blackSmoke == true );
     then
     	delete($vs); //izbaci simptom iz baze znanja
     	FuelInjectionParts fip = new FuelInjectionParts();
@@ -296,7 +296,7 @@ end
 
 rule "Brakepad dash light - Visual Symptom"
 	when
-		$vs: VisualSymptom( isBrakePadsDashLight() );
+		$vs: VisualSymptom( brakePadsDashLight == true );
 	then
 		delete($vs);
 		MechanicalParts mp = new MechanicalParts();
@@ -308,11 +308,24 @@ rule "Brakepad dash light - Visual Symptom"
 		System.out.println("Mechanical part problem - SET");
 end
 
-
+rule "Air condition not working"
+	when
+		$vs: VisualSymptom( airConditionNotWorking == true );
+	then
+		delete($vs);
+		FluidParts fp = new FluidParts();
+		fp.setFreon(true);
+		fp.setDescription("Problem with low freon level.");
+		fp.setLevel(0);
+		problems.clear();
+       	problems.add(fp);
+		insert(fp);
+		System.out.println("Fluid problem - SET");
+end
 
 rule "DPF dash light On"
 	when
-		$vs: VisualSymptom( isDpfDashLight() );
+		$vs: VisualSymptom( dpfDashLight == true );
 	then
 		delete($vs);
 		AirFlowParts ap = new AirFlowParts();
@@ -324,13 +337,53 @@ rule "DPF dash light On"
 		System.out.println("Airflow part problem - SET");
 end
 
+rule "Brake fluid low level"
+	when
+		$vs: VisualSymptom( brakeFluidLow == true );
+	then
+		delete($vs);
+		FluidParts fp = new FluidParts();
+		fp.setBrakeFluid(true);
+		fp.setLevel(0);
+		MechanicalParts mp = new MechanicalParts();
+		mp.setBrakeLines(true);
+		
+		fp.setDescription("Problem with brake fluid level.");
+		mp.setDescription("Problem with brake lines.");
+		problems.clear();
+       	problems.add(fp);
+       	problems.add(mp);
+		insert(fp);
+		insert(mp);
+		System.out.println("Brake fluid fix + brakeLines - SET");	
+end
+
+rule "Engine overheating"
+	when
+		$vs: VisualSymptom( engineOverHeating == true );
+	then
+		delete($vs);
+		FluidParts fp = new FluidParts();
+		fp.setCoolant(true);
+		fp.setLevel(0);
+		ElectricalParts ep = new ElectricalParts();
+		ep.setElectricFan(true);
+		fp.setDescription("Problem with coolant level.");
+		ep.setDescription("Problem with electric fan.");
+		problems.clear();
+       	problems.add(fp);
+       	problems.add(ep);
+		insert(fp);
+		insert(ep);
+		System.out.println("Coolant problem + electric fan - SET");	
+end
 
 
 // Feels like symptoms
 
 rule "Vehicle rides uncomforbaly"
 	when
-		$fs: FeelingSymptom( isRidesUncomfortable() );
+		$fs: FeelingSymptom( ridesUncomfortable == true);
 	then
 		delete($fs);
 		MechanicalParts mp = new MechanicalParts();
@@ -344,7 +397,7 @@ end
 
 rule "Poor breaking"
 	when
-		$fs: FeelingSymptom( isPoorBraking() );
+		$fs: FeelingSymptom( poorBraking == true );	
 	then
 		delete($fs);
 		MechanicalParts mp = new MechanicalParts();
@@ -359,7 +412,7 @@ end
 
 rule "Poor performanece"
 	when
-		$fs: FeelingSymptom( isPoorPerformance() );
+		$fs: FeelingSymptom( poorPerformance == true );
 	then
 		delete($fs);
 		AirFlowParts ap = new AirFlowParts();
@@ -381,7 +434,7 @@ end
 
 rule "Grinding symptom"
 	when
-		$as: AudioSymptom (isGrinding());
+		$as: AudioSymptom( grinding == true );
 	then
 		delete($as);
 		MechanicalParts mp = new MechanicalParts();
@@ -395,7 +448,7 @@ end
 
 rule "Knocking symptom"
 	when
-		$as: AudioSymptom (isKnocking());
+		$as: AudioSymptom( knocking == true );
 	then
 		delete($as);
 		FuelInjectionParts fip = new FuelInjectionParts();
@@ -409,7 +462,7 @@ end
 
 rule "Whistling symptom"
 	when
-		$as: AudioSymptom (isWhistling());
+		$as: AudioSymptom( whistling == true );
 	then
 		delete($as);
 		AirFlowParts ap = new AirFlowParts();
@@ -423,7 +476,7 @@ end
 
 rule "Ticking symptom"
 	when
-		$as: AudioSymptom (isTicking());
+		$as: AudioSymptom( ticking == true );
 	then
 		delete($as);
 		MechanicalParts mp = new MechanicalParts();
@@ -437,7 +490,7 @@ end
 
 rule "squealing symptom"
 	when
-		$as: AudioSymptom (isSquealing());
+		$as: AudioSymptom( squealing == true );
 	then
 		delete($as);
 		MechanicalParts mp = new MechanicalParts();
@@ -451,7 +504,7 @@ end
 
 rule "long starting problem"
 	when
-		$fs: FeelingSymptom(isLongStarting());
+		$fs: FeelingSymptom( longStarting == true );
 	then
 		delete($fs);
 		FuelInjectionParts fp = new FuelInjectionParts();
@@ -465,7 +518,7 @@ end
 
 rule "shaking problem"
 	when
-		$fs: FeelingSymptom( isShaking() );
+		$fs: FeelingSymptom( shaking == true );
 	then
 		delete($fs);;
 		MechanicalParts mp = new MechanicalParts();
@@ -479,7 +532,7 @@ end
 
 rule "bouncing problem"
 	when
-		$fs: FeelingSymptom( isBouncing() ) ;
+		$fs: FeelingSymptom( bouncing == true ) ;
 	then
 		delete($fs);
 		MechanicalParts mp = new MechanicalParts();

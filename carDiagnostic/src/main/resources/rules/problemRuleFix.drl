@@ -19,7 +19,7 @@ global java.util.List appointments;
 
 rule "FAILURE ID-1 -loginFail multiple"
 	when
-	    $log: Log( getId() == 1 && getMessage() == 'login_fail' , $user: userName );
+	    $log: Log( id == 1 && message == 'login_fail' , $user: userName );
 	    Number(intValue >= 2) from accumulate(
         $log2: Log( this != $log, userName == $user, this meets[10s] $log),count($log2))
 	then
@@ -44,7 +44,7 @@ rule "Headlight fix"
 
 rule "Taillight fix"
     when
-        $ep: ElectricalParts( isTailLight() == true );
+        $ep: ElectricalParts( tailLight == true );
         $epf: ElectricalPartsFix( $taillightFix: taillightFix);
     then
     	delete($ep);
@@ -55,7 +55,7 @@ end
 
 rule "ElectricWindows fix"
     when
-        $ep: ElectricalParts( isElectricWindows() == true );
+        $ep: ElectricalParts( electricWindows == true );
         ElectricalPartsFix( $electricWindowsFix : electricWindowsFix);
     then
     	delete($ep);
@@ -66,7 +66,7 @@ end
 
 rule "Battery fix"
     when
-        $ep: ElectricalParts( isBattery() == true );
+        $ep: ElectricalParts( battery == true );
         ElectricalPartsFix( $batteryFix: batteryFix);
     then
     	delete($ep);
@@ -77,7 +77,7 @@ end
 
 rule "Alternator fix"
     when
-        $ep: ElectricalParts( isAlternator() == true );
+        $ep: ElectricalParts( alternator == true );
         ElectricalPartsFix( $alternatorFix: alternatorFix);
     then
     	delete($ep);
@@ -88,7 +88,7 @@ end
 
 rule "Electrical fan"
     when
-        $ep: ElectricalParts( isElectricFan() == true );
+        $ep: ElectricalParts( electricFan == true );
         $epf: ElectricalPartsFix( $electricFanFix: electricFanFix);
     then
     	delete($ep);
@@ -104,7 +104,7 @@ end
 //Verovatno samo kondenzacija, proveriti nivo rashladne tecnosti
 rule "Coolant fix"
     when
-        $fp: FluidParts( isCoolant() == true );
+        $fp: FluidParts( coolant == true );
         $fpf: FluidPartsFix( $coolantFix: coolantFix);
     then
     	delete($fp);
@@ -116,7 +116,7 @@ end
 //Proveriti da li ima prijavljen problem sa uljem, jer ovo znaci da motor trosi ulje?
 rule "Oil fix"
     when
-        $fp: FluidParts( isOil() == true );
+        $fp: FluidParts( oil == true );
         $fpf: FluidPartsFix( $oilFix: oilFix);
     then
     	delete($fp);
@@ -129,7 +129,7 @@ end
 		
 rule "Freon fix"
 	when
-		$fp: FluidParts( isFreon() == true );
+		$fp: FluidParts( freon == true );
 		$fpf: FluidPartsFix ( $freonFix: freonFix );
 	then
 		delete($fp);
@@ -141,7 +141,7 @@ end
 //MECHANICAL PART FIX
 rule "Brakepad fix"
 	when
-		$mp: MechanicalParts( isBrakePads() == true);
+		$mp: MechanicalParts( brakePads == true);
 		$mpf: MechanicalPartsFix( $brakePadsFix: brakePadsFix);
 	then
 		delete($mp);
@@ -152,7 +152,7 @@ end
 
 rule "DPF fix"
 	when
-		$ap: AirFlowParts( isDieselParticulateFilter() );
+		$ap: AirFlowParts( dieselParticulateFilter == true );
 		$apf: AirFlowPartsFix( $dpfFix: dpfFix);
 	then
 		delete($ap);
@@ -163,7 +163,7 @@ end
 
 rule "Shock absorber fix"
 	when
-		$mp: MechanicalParts( isShockAbsorber() );
+		$mp: MechanicalParts( shockAbsorber == true );
 		$mpf: MechanicalPartsFix( $shockAbsorberFix: shockAbsorberFix);
 	then
 		delete($mp);
@@ -174,7 +174,7 @@ end
 
 rule "Brake Disc fix"
 	when
-		$mp: MechanicalParts( isBrakeDisc() );
+		$mp: MechanicalParts( brakeDisc == true );
 		$mpf: MechanicalPartsFix( $brakeDiscFix: brakeDiscFix);
 	then
 		delete($mp);
@@ -186,7 +186,7 @@ end
 
 rule "Stabilizer fix"
 	when
-		$mp: MechanicalParts( isStabilizer() );
+		$mp: MechanicalParts( stabilizer == true );
 		$mpf: MechanicalPartsFix( $stabilizerFix: stabilizerFix);
 	then	
 		delete($mp);
@@ -198,7 +198,7 @@ end
 
 rule "Engine belt fix"
 	when
-		$mp: MechanicalParts( isEngineBelt() );
+		$mp: MechanicalParts( engineBelt == true );
 		$mpf: MechanicalPartsFix( $engineBeltFix: engineBeltFix);
 	then	
 		delete($mp);
@@ -210,7 +210,7 @@ end
 //FUEL INJECTION PARTS FIX
 rule "Nozzle fix"
 	when
-		$fip: FuelInjectionParts( isNozzle() );
+		$fip: FuelInjectionParts( nozzle == true );
 		$fipf: FuelInjectionPartsFix( $nozzleFix: nozzleFix);
 	then
 		delete($fip);
@@ -222,7 +222,7 @@ end
 //AIRFLOW PARTS FIX
 rule "Turbo charger fix"
 	when
-		$ap: AirFlowParts ( isTurboCharger() );
+		$ap: AirFlowParts ( turboCharger == true );
 		$apf: AirFlowPartsFix( $turboChargerFix: turboChargerFix);
 	then
 		delete($ap);
@@ -233,7 +233,7 @@ end
 
 rule "Spark plug fix"
 	when
-		$fp: FuelInjectionParts ( isSparkPlug() );
+		$fp: FuelInjectionParts ( sparkPlug == true );
 		$fipf: FuelInjectionPartsFix( $sparkPlugFix: sparkPlugFix);
 	then
 		delete($fp);
@@ -244,7 +244,7 @@ end
 
 rule "Dualmassflywheel fix"
 	when
-		$mp: MechanicalParts( isDualMassFlyWheel() );
+		$mp: MechanicalParts( dualMassFlyWheel == true );
 		$mpf: MechanicalPartsFix( $dualMassFlyWheelFix: dualMassFlyWheelFix);
 	then	
 		delete($mp);
@@ -256,7 +256,7 @@ end
 
 rule "Tyre fix"
 	when
-		$mp: MechanicalParts( isTyre() );
+		$mp: MechanicalParts( tyre == true );
 		$mpf: MechanicalPartsFix( $tyreFix: tyreFix);
 	then	
 		delete($mp);
