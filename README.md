@@ -1,6 +1,6 @@
 # SBNZ
 Projekat iz predmeta Sistemi bazirani na znanju
 
-Short DEMO for KT1: https://www.youtube.com/watch?v=-AJDJSD3fLo&t=33s
+Project DEMO: https://www.youtube.com/watch?v=7G2zEAFWqjI
 
 Fakultet tehnickih nauka, Novi Sad
